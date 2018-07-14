@@ -10,7 +10,7 @@ public class HibernateUtil {
 		ses.close();
 	}
 	private static SessionFactory sf= new Configuration()
-			.configure("hibernate.cfg.xml")
+			.configure("Hibernate.cfg.xml")
 				.buildSessionFactory();
 	public static Session getSession() {
 		if(ses==null) {

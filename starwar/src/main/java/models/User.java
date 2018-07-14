@@ -11,6 +11,7 @@ package models;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,13 +60,13 @@ public class User {
 	@Column(name="ABOUT")
 	private String about;
 	
-	@OneToOne(mappedBy="IMAGE", fetch=FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
 	private Image image;
 	
-	@OneToMany(mappedBy="POSTS", fetch=FetchType.LAZY) 
+	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY) 
 	private List<Post> postList;
 	
-	@ManyToMany(mappedBy="FOLLOWERS", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
 	private List<User> followers;
 	
 	//no args

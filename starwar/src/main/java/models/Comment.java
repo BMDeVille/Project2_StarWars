@@ -24,14 +24,14 @@ import javax.persistence.Table;
 public class Comment {
 	
 	@Id
-	@Column(name="ID")
+	@Column(name="CID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int cid;
 	
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@OneToMany(mappedBy="LIKES", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
 	private List<User> likes;
 	
 	public Comment() {
@@ -52,15 +52,15 @@ public class Comment {
 	}
 	
 	//all members
-	public Comment(int id, String body, List<User> likes) {
+	public Comment(int cid, String body, List<User> likes) {
 		super();
-		this.id = id;
+		this.cid = cid;
 		this.body = body;
 		this.likes = likes;
 	}
 
 	public int getId() {
-		return id;
+		return cid;
 	}
 
 	public String getBody() {
@@ -71,8 +71,8 @@ public class Comment {
 		return likes;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int cid) {
+		this.cid = cid;
 	}
 
 	public void setBody(String body) {
@@ -85,7 +85,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", body=" + body + ", likes=" + likes + "]";
+		return "Comment [id=" + cid + ", body=" + body + ", likes=" + likes + "]";
 	}
 	
 	

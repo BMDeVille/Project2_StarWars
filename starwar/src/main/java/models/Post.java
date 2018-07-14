@@ -25,9 +25,9 @@ import javax.persistence.Table;
 public class Post {
 	
 	@Id
-	@Column(name="ID")
+	@Column(name="PID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int pid;
 	
 	@Column(name="BODY", nullable= false)
 	private String body;
@@ -38,13 +38,13 @@ public class Post {
 	@Column(name="CREATED_DATE", nullable= false)
 	private Timestamp created;
 	
-	@OneToMany(mappedBy="COMMENTS", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="cid", fetch=FetchType.LAZY)
 	private List<Comment> comments;
 	
-	@OneToMany(mappedBy="LIKES", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
 	private List<User> likes;
 	
-	@OneToMany(mappedBy="IMAGES", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY)
 	private List<Image> images;
 	
 	//no args
@@ -80,10 +80,10 @@ public class Post {
 		this.images = images;
 	}
 	//all members
-	public Post(int id, String body, String youtube, Timestamp created, List<Comment> comments, List<User> likes,
+	public Post(int pid, String body, String youtube, Timestamp created, List<Comment> comments, List<User> likes,
 			List<Image> images) {
 		super();
-		this.id = id;
+		this.pid = pid;
 		this.body = body;
 		this.youtube = youtube;
 		this.created = created;
@@ -92,7 +92,7 @@ public class Post {
 		this.images = images;
 	}
 	public int getId() {
-		return id;
+		return pid;
 	}
 	public String getBody() {
 		return body;
@@ -112,8 +112,8 @@ public class Post {
 	public List<Image> getImages() {
 		return images;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int pid) {
+		this.pid = pid;
 	}
 	public void setBody(String body) {
 		this.body = body;
@@ -135,7 +135,7 @@ public class Post {
 	}
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", comments="
+		return "Post [id=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", comments="
 				+ comments + ", likes=" + likes + ", images=" + images + "]";
 	}
 	

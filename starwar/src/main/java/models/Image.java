@@ -22,9 +22,9 @@ import javax.persistence.Table;
 public class Image {
 	
 	@Id
-	@Column(name="ID")
+	@Column(name="IID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int iid;
 	
 	@Column(name="IMAGE", nullable = false)
 	private Blob image;
@@ -41,22 +41,22 @@ public class Image {
 	}
 	
 	//all members
-	public Image(int id, Blob image) {
+	public Image(int iid, Blob image) {
 		super();
-		this.id = id;
+		this.iid = iid;
 		this.image = image;
 	}
 
 	public int getId() {
-		return id;
+		return iid;
 	}
 
 	public Blob getImage() {
 		return image;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int iid) {
+		this.iid = iid;
 	}
 
 	public void setImage(Blob image) {
@@ -65,7 +65,7 @@ public class Image {
 
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", image=" + image + "]";
+		return "Image [id=" + iid + ", image=" + image + "]";
 	}
 	
 	
