@@ -1,0 +1,21 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+        <session-factory>
+        	<property name="hibernate.connection.username">moviedb</property>
+       		<property name="hibernate.connection.password">p4ssw0rd</property>
+       		<property name="hibernate.connection.url">jdbc:oracle:thin:@wvudatabase.cc93kh0afrcy.us-east-2.rds.amazonaws.com:1521:orcl</property>
+       		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+
+			<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+			<property name="hibernate.show_sql">false</property>
+			<property name="hibernate.format_sql">false</property>
+			<property name="hibernate.hbm2ddl.auto">create</property>
+			
+			<mapping class="com.example.models.User"/>
+			<mapping class="com.example.models.Post"/>
+			<mapping class="com.example.models.Image"/>
+			<mapping class="com.example.models.Comment"/>
+        </session-factory>
+</hibernate-configuration>

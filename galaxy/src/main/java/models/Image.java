@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,12 @@ public class Image {
 	
 	@Column(name="IMAGE", nullable = false)
 	private Blob image;
+	
+	@OneToOne
+	private User myUser;
+	
+	@ManyToOne
+	private Post myPost;
 	
 	//no args
 	public Image() {
