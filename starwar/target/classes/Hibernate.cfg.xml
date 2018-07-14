@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- JDBC API stuff -->
+		<property name="hibernate.connection.username">moviedb</property>
+		<property name="hibernate.connection.password">p4ssw0rd</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@wvudatabase.cznuma459cki.us-east-2.rds.amazonaws.com:1521:orcl</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<!-- additional hibernate awesomeness -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.show_sql">false</property><!-- won't display the sql statement in console -->
+		<property name="hibernate.format_sql">false</property>
+
+<!-- 		<property name="hibernate.hbm2ddl.auto">create</property> -->
+<!-- 		<property name="hibernate.hbm2ddl.auto">update</property> -->
+			<property name="hibernate.hbm2ddl.auto">create</property> 
+
+
+		<mapping class="models.User" />
+		<mapping class="models.Post"/>
+		<mapping class="models.Comment"/>
+		<mapping class="models.Image"/>
+		
+		
+		<!-- use for the mapping file(hbm.xml) -->
+<!-- 		<mapping resource="character.hbm.xml"></mapping>
+ -->	</session-factory>
+
+</hibernate-configuration>
