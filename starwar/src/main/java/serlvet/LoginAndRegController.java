@@ -27,7 +27,7 @@ import models.User;
 
 public class LoginAndRegController {
 	private static DaoService ds = new DaoServiceImpl();
-	public static void login(HttpServletRequest req, HttpServletResponse res)
+	public static String login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
 		
@@ -48,14 +48,13 @@ public class LoginAndRegController {
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
 		}
-		return;
+		return "";
 
 	}
 	public static String createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 System.out.println("You are creating a user");
     	
-    	DaoService service = new DaoServiceImpl();
     	
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -129,7 +128,6 @@ System.out.println("You are creating a user");
 	//    
 //		}
 
-	}
 	
 	
 }

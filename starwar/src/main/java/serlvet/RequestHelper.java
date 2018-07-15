@@ -20,7 +20,7 @@ public class RequestHelper {
 		case "/starwar/reset.do":
 			//return ResetPassword.reset(req,res);
 		default:
-			 break;
+			 return "";
 		
 		}
 	}
