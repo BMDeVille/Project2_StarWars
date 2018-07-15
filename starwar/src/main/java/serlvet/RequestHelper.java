@@ -15,9 +15,9 @@ public class RequestHelper {
 		switch(req.getRequestURI()) {
 		case "/starwar/login.ms":
 			return LoginAndRegController.login(req,res);	
-		case "/starwar/reg.do":
+		case "/starwar/reg.ms":
 			return LoginAndRegController.createAccount(req,res);
-		case "/starwar/reset.do":
+		case "/starwar/reset.ms":
 			//return ResetPassword.reset(req,res);
 		default:
 			 return "";
