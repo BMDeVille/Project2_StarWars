@@ -22,6 +22,15 @@ export class ModalService {
     document.getElementById(this.overlayElementId).className = 'show';
   }
 
+  reInit(component: any, inputs: object, outputs: object) {
+    const componentConfig = {
+      inputs: inputs,
+      outputs: outputs
+    };
+    this._domService.removeComponent();
+    this._domService.appendComponentTo(this.modalElementId, component, componentConfig);
+  }
+
   destroy() {
     this._domService.removeComponent();
     document.getElementById(this.modalElementId).className = 'hidden';

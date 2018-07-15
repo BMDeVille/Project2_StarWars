@@ -15,6 +15,7 @@ import { PostService } from './services/post.service';
 import { ProfileService } from './services/profile.service';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DomService } from './services/dom.service';
     FeedComponent,
     LoginComponent,
     PostComponent,
-    InboxComponent
+    InboxComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule, FormsModule, RouterModule.forRoot([
@@ -34,7 +36,8 @@ import { DomService } from './services/dom.service';
     ]), HttpClientModule,
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
