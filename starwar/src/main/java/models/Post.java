@@ -2,7 +2,7 @@
  * ---------------Star Wars Facebook-----------------
  * Primary Author: Jeffrey Martinez
  * Team:JiaLing Chen, Brandon DeVille, Jeffrey Martinez, Quinn Conlon
- * Last Modified: 14 Jul 2018
+ * Last Modified: 15 Jul 2018
  * -------------------------------------------------
  */
 
@@ -11,6 +11,7 @@ package models;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,13 +39,13 @@ public class Post {
 	@Column(name="CREATED_DATE", nullable= false)
 	private Timestamp created;
 	
-	@OneToMany(mappedBy="cid", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="cid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
-	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> likes;
 	
-	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Image> images;
 	
 	//no args

@@ -2,7 +2,7 @@
  * ---------------Star Wars Facebook-----------------
  * Primary Author: Jeffrey Martinez
  * Team:JiaLing Chen, Brandon DeVille, Jeffrey Martinez, Quinn Conlon
- * Last Modified: 14 Jul 2018
+ * Last Modified: 15 Jul 2018
  * -------------------------------------------------
  */
 
@@ -18,7 +18,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,22 +51,20 @@ public class User {
 	@Column(name="SEC_ANS", nullable = false)
 	private String securityAnswer;
 	
-	
-	
-	@Column(name="ALLEGIANCE", nullable= false)
-	private int allegiance;
-
 	@Column(name="ABOUT")
 	private String about;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Image image;
 	
-	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY) 
+	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
 	private List<Post> postList;
 	
-	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private int allegiance;
 	
 	//no args
 	public User() {
