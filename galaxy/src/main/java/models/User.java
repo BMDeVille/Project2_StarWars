@@ -115,6 +115,8 @@ public class User {
 		this.allegiance = allegiance;
 		this.about = about;
 	}
+	
+	
 	//no id
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
 				String securityAnswer, Image image, int allegiance, String about) {
