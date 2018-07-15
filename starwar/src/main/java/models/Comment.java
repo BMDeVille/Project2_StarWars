@@ -2,7 +2,7 @@
  * ---------------Star Wars Facebook-----------------
  * Primary Author: Jeffrey Martinez
  * Team:JiaLing Chen, Brandon DeVille, Jeffrey Martinez, Quinn Conlon
- * Last Modified: 14 Jul 2018
+ * Last Modified: 15 Jul 2018
  * -------------------------------------------------
  */
 
@@ -10,6 +10,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class Comment {
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@OneToMany(mappedBy="id", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> likes;
 	
 	public Comment() {

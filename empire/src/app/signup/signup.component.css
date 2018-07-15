@@ -2,7 +2,7 @@
     size: 50%;
 }
 
-.login input[type="text"], form.login input[type="password"]
+form.login input[type="text"], form.login input[type="password"], form.login input[type="email"]
 {
     width: 60%;
     margin: 0;
@@ -20,7 +20,7 @@
     outline: 0;
 }
 
-.login input[type="submit"]
+form.login input[type="submit"]
 {
     width: 10%;
     font-size: 14px;
@@ -32,7 +32,7 @@
     letter-spacing: 1px;
 }
 
-.login input[type="submit"]:hover
+form.login input[type="submit"]:hover
 {
     transition: background-color 0.5s ease;
 }
