@@ -8,6 +8,7 @@
 
 package DAO;
 
+import java.sql.Connection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -18,6 +19,7 @@ import models.Post;
 import util.HibernateUtil;
 
 public class CommentDAOImpl implements CommentDAO{
+
 
 	public void insert(Comment c) {
 		Session ses = HibernateUtil.getSession();

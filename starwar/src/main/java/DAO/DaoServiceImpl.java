@@ -88,7 +88,7 @@ public class DaoServiceImpl implements DaoService {
 		return ud.selectAll();
 	}
 
-	public List<User> selectByUsername(String username) {
+	public User selectByUsername(String username) {
 		return ud.selectByUsername(username);
 	}
 

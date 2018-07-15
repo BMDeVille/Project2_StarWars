@@ -3,10 +3,17 @@
   <display-name>starwar</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+    <servlet>
+  	<servlet-name>MasterServ</servlet-name>
+  	<servlet-class>servlet.MasterServlet</servlet-class>
+ 	 <load-on-startup>0</load-on-startup>
+
+	</servlet>
+ <servlet-mapping>
+ 	<servlet-name>MasterServ</servlet-name>
+ 	<url-pattern>*.ms</url-pattern>
+ </servlet-mapping>
 </web-app>

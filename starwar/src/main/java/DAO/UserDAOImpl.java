@@ -31,10 +31,13 @@ public class UserDAOImpl implements UserDAO {
 		return ulist;
 	}
 
-	public List<User> selectByUsername(String username) {
+	public User selectByUsername(String username) {
 		Session ses = HibernateUtil.getSession();
 		List<User> ulist = ses.createQuery("from User where username=" + username, User.class).list();
-		return ulist;
+		//get the first and only one user from the list
+		//and return it as user object
+		User u = ulist.get(0);
+		return u;
 	}
 
 	public List<User> selectByFirstName(String fname) {

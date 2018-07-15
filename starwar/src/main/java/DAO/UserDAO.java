@@ -17,7 +17,7 @@ public interface UserDAO {
 	public void insert(User u);
 	//read
 	public List<User> selectAll();
-	public List<User> selectByUsername(String username);
+	public User selectByUsername(String username);
 	public List<User> selectByFirstName(String fname);
 	public List<User> selectByLastName(String lname);
 	//update
