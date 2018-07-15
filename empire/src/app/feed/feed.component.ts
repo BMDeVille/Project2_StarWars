@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 
 import { ModalService } from '../services/modal.service';
 import { LoginComponent } from '../login/login.component';
@@ -10,13 +10,12 @@ import { LoginComponent } from '../login/login.component';
 })
 export class FeedComponent implements OnInit, AfterViewInit {
 
-  constructor(private _modalService: ModalService, private _cdr: ChangeDetectorRef) { }
+  constructor(private _modalService: ModalService) { }
 
   ngOnInit() {
   }
   ngAfterViewInit() {
-    this.initLoginModal();
-    this._cdr.detectChanges();
+    setTimeout(_ => this.initLoginModal());
   }
 
    initLoginModal() {

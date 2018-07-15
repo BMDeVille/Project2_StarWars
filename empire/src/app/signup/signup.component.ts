@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalService } from '../services/modal.service';
 
 @Component({
@@ -8,13 +8,11 @@ import { ModalService } from '../services/modal.service';
 })
 export class SignupComponent implements OnInit, AfterViewInit {
 
-  constructor(private _modalService: ModalService, private _cdr: ChangeDetectorRef) { }
+  constructor(private _modalService: ModalService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    this._cdr.detectChanges();
   }
 
   public close() {
