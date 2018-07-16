@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 
+// test jenkins build
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
