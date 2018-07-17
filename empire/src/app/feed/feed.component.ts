@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit} from '@angular/core';
 
 import { ModalService } from '../services/modal.service';
 import { LoginComponent } from '../login/login.component';
+import { PostService } from '../services/post.service';
+import { IPost } from '../db_models/post';
 
 @Component({
   selector: 'app-feed',
@@ -10,7 +12,10 @@ import { LoginComponent } from '../login/login.component';
 })
 export class FeedComponent implements OnInit, AfterViewInit {
 
-  constructor(private _modalService: ModalService) { }
+  posts: IPost[] = [];
+  constructor(private _modalService: ModalService, _postservice: PostService) { 
+    this.posts = _postservice.getFeed('');
+  }
 
   ngOnInit() {
   }

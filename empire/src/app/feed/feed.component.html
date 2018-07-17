@@ -1,3 +1,18 @@
 <p>
   feed works!
 </p>
+
+<table>
+  <tr *ngFor = 'let p of posts'>
+    <td>{{p.body}}&nbsp;&nbsp;</td>
+    <td>{{p.created|date:'short'}}&nbsp;&nbsp;</td>
+    <!--<td *ngIf = 'p.youtube != null'><br/>{{p.youtube}}</td>
+    <td *ngIf = 'p.images.length > 0'><br/>
+      <img *ngFor = 'let i of p.images' [src]='i.image'></img>
+    </td>-->
+    <td><button ><img src = 'assets/images/1485477009-like_78561.png' width = '30px' height = '30px'></button>[{{p.likes != null? p.likes.length:0}}]&nbsp;&nbsp;</td>
+    <td><a>comments&nbsp;</a>[{{p.comments != null? p.comments.length:0}}]</td>
+  </tr>
+</table>
+
+<!-- <img src ='../resources/1485477009-like_78561.png'> -->
