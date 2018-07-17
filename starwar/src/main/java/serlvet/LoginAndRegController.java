@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -26,6 +27,8 @@ import models.User;
 //@CrossOrigin(origins= {"http://localhost:4200"});
 
 public class LoginAndRegController {
+	final static Logger logger = Logger.getLogger(LoginAndRegController.class);
+
 	private static DaoService ds = new DaoServiceImpl();
 	public static String login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
@@ -39,12 +42,14 @@ public class LoginAndRegController {
 		User u1 = ds.selectByUsername(username);
 		if(u1 !=null) {
 			if(BCrypt.checkpw(password, u1.getPassword())) {
+				logger.info("user: " + u1.getUsername() + " login ");
 				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
 				return "";
 			}	
 		}
 		else {
 			System.out.println("no exist username");
+			logger.info("no existing username: " + username);
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
 		}
@@ -53,7 +58,7 @@ public class LoginAndRegController {
 	}
 	public static String createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
-System.out.println("You are creating a user");
+		System.out.println("You are creating a user");
     	
     	
         String username = req.getParameter("username");
@@ -84,7 +89,7 @@ System.out.println("You are creating a user");
  
     	///creating the user object with the no id, about, and image constructor
         User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, allegiance1);
-       
+		logger.info("user register: " + user1.getUsername() + " " + user1.getFname() + " "+ user1.getLname());
         ds.insertUser(user1);
         
         //confirming the account is made throught the console

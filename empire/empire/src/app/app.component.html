@@ -1,0 +1,32 @@
+<div>
+  <nav class='navbar navbar-default'>
+      <div>
+        <a class='navbar-img' routerLink='/feed'>
+          <img alt='Brand' src="http://icons.iconarchive.com/icons/sensibleworld/starwars/48/Death-Star-icon.png">
+        </a>
+        <a class='navbar-brand' routerLink='/feed'>
+          {{title | uppercase}}
+          <span id="new-messages-feed" class="badge"></span>
+        </a>
+        <ul class='nav navbar-nav'>
+          <li>
+            <a routerLink="/profile">Your Profile</a>
+          </li>
+          <li>
+            <a routerLink="/inbox">Inbox<span id="new-messages-inbox" class="badge"></span></a>
+          </li>
+        </ul>
+        <div class="search-container">
+          <form action="">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+  </nav>
+  <div class='container'>
+      <router-outlet></router-outlet>
+  </div>
+  <div id="modal-container" class="hidden"></div>
+  <div id="overlay" class="hidden"></div>
+</div>
