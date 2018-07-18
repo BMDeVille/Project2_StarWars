@@ -14,7 +14,7 @@
    height: 200px;
 }
 
-.container{
+.infoSection{
     right: 190px;
     top: 10px;
     bottom: 45px;
@@ -34,7 +34,7 @@ ul {
     margin: 0;
     padding: 0;
     width: 100px;
-    background-color: black;
+    /* background-color: black; */
     color: cyan;
     position: relative;
     margin-left: -35%;
@@ -53,4 +53,13 @@ li a {
 li a:hover {
     background-color: #555;
     color: white;
+}
+
+button{
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
 }

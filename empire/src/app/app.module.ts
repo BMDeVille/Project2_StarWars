@@ -17,6 +17,7 @@ import { ProfileService } from './services/profile.service';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { SignupComponent } from './signup/signup.component';
+import { UserinformationComponent } from './userinformation/userinformation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     PostComponent,
     InboxComponent,
-    SignupComponent
+    SignupComponent,
+    UserinformationComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -38,7 +40,8 @@ import { SignupComponent } from './signup/signup.component';
   ],
   entryComponents: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UserinformationComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
