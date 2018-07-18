@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalService } from '../services/modal.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,13 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   public close() {
     this._modalService.destroy();
+  }
+
+  initLoginModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.reInit(LoginComponent, inputs, {});
   }
 
 }
