@@ -1,0 +1,43 @@
+.squeeze-img{
+    size: 50%;
+}
+
+.login input[type="text"], form.login input[type="password"]
+{
+    width: 60%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid gold;
+    outline: 0;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: yellow;
+    outline: 0;
+}
+
+.login input[type="submit"]
+{
+    width: 10%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.login input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+::placeholder {
+    color: yellow;
+    opacity: 1;
+}
