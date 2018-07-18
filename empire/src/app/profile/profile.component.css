@@ -7,8 +7,10 @@
 }
 
 .profilepageimage{
+    position: absolute;
     width: 200px;
     height: 200px;
+
 }
 
 .form-group{
@@ -27,6 +29,14 @@
     position:relative;
     right: 190px;
     bottom: 45px;
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    height: 250px;
 }
 
 ul {
