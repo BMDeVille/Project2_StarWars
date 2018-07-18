@@ -1,4 +1,11 @@
+.navbar-back {
+    background-color: black;
+    color: blue;
+    border: 3px solid;
+}
+
 .navbar-img {
+    background-color: blue;
     float: left;
     height: 50px;
     font-size: 18px;
