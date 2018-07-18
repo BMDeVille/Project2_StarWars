@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,12 +29,18 @@ import models.User;
 //@Controller
 //@RequestMapping("user")
 //@CrossOrigin(origins= {"http://localhost:4200"});
-
+@Controller
 public class LoginAndRegController {
+	public LoginAndRegController() {
+	}
+	
 	final static Logger logger = Logger.getLogger(LoginAndRegController.class);
 
+	@Autowired
 	private static DaoService ds = new DaoServiceImpl();
-	public static String login(HttpServletRequest req, HttpServletResponse res)
+	
+	@GetMapping(value="/login.app")
+	public static @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
 		
@@ -41,10 +51,11 @@ public class LoginAndRegController {
 		
 		User u1 = ds.selectByUsername(username);
 		if(u1 !=null) {
+			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
 				logger.info("user: " + u1.getUsername() + " login ");
-				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
-				return "";
+				//res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
+				return u1;
 			}	
 		}
 		else {
@@ -53,9 +64,10 @@ public class LoginAndRegController {
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
 		}
-		return "";
+		return u1;
 
 	}
+	@GetMapping(value="/createAccount.app")
 	public static String createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("You are creating a user");

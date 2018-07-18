@@ -10,53 +10,55 @@ package DAO;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import models.Image;
 import models.Post;
 import models.User;
-import util.HibernateUtil;
 
+@Repository("ImageDao")
+@Transactional
 public class ImageDAOImpl implements ImageDAO{
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Autowired
+	private SessionFactory sesFact;
+	
+	public ImageDAOImpl() {
 
+	}
+	
 	public void insert(Image img) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.save(img);
-		tx.commit();
+		sesFact.getCurrentSession().save(img);
 	}
 
 	public List<Image> selectAll() {
-		Session ses = HibernateUtil.getSession();
-		List<Image> imglist = ses.createQuery("from Image", Image.class).list();
-		return imglist;
+		return sesFact.getCurrentSession().createQuery("from Image", Image.class).list();
 	}
 
 	public List<Image> selectByUser(User u) {
-		Session ses = HibernateUtil.getSession();
-		List<Image> imglist = ses.createQuery("from Image where myUser=" + u, Image.class).list();
-		return imglist;
+		return sesFact.getCurrentSession().createQuery("from Image where myUser=" + u, Image.class).list();
 	}
 
 	public List<Image> selectByPost(Post p) {
-		Session ses = HibernateUtil.getSession();
-		List<Image> imglist = ses.createQuery("from Image where myPost=" + p, Image.class).list();
-		return imglist;
+		return sesFact.getCurrentSession().createQuery("from Image where myPost=" + p, Image.class).list();
 	}
 
 	public void update(Image img) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.update(img);
-		tx.commit();
+		sesFact.getCurrentSession().update(img);
 	}
 
 	public void delete(Image img) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.delete(img);
-		tx.commit();
+		sesFact.getCurrentSession().delete(img);
 	}
 
 }

@@ -49,7 +49,9 @@
       </div>
   </li>
 
-  <li>
+  <!-- actually code -->
+  <div *ngIf = 'newFollower && newFollower.length'>
+  <li  *ngFor = 'let post of newPost'>
     <div class="media">
         <div class="media-left">
             <a href="#">
@@ -58,11 +60,83 @@
         </div>
         <div class="media-body">
             <ul class="n-user-list">
-            <li><a href="#"><img src="https://image.flaticon.com/icons/png/512/280/280747.png" class="avatar rounded" alt="..."></a></li>
+            <li *ngFor='let p of post'>
+              <a href="#">
+                <img src="{{p.user.images}}" class="avatar rounded" alt="...">
+              </a>
+            </li>
             </ul>
-            <p class="media-heading"><b>xxxx </b> Just Post .</p>
+            <p class="media-heading"><b>{{post.user.username}} </b> Just Post .</p>
         </div>
     </div>
 </li>
+</div>
+
+<div *ngIf = 'newComment && newComment.length'>
+<li  *ngFor = 'let comment of newComment'>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img src="http://icons.iconarchive.com/icons/sensibleworld/starwars/128/Boba-Fett-icon.png" class="media-object cat-icon rounded-circle" alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <ul class="n-user-list">
+            <li *ngFor = 'let c of comment'>
+              <a href="#">
+                <img src="{{c.user.image}}" class="avatar rounded" alt="...">
+              </a>
+            </li>
+            </ul>
+            <p class="media-heading"><b>{{comment.user.username}} </b> Comment Your Post .</p>
+        </div>
+    </div>
+</li>
+</div>
+
+<div *ngIf = 'newLike && newLike.length'>
+<li  *ngFor = 'let like of newLike'>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img src="http://icons.iconarchive.com/icons/sensibleworld/starwars/128/Lightsaber-Red-icon.png" class="media-object cat-icon rounded-circle" alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <ul class="n-user-list">
+            <li *ngFor='let l of like'>
+              <a href="#">
+                <img src="{{l.user.image}}" class="avatar rounded" alt="...">
+              </a>
+            </li>
+            </ul>
+            <p class="media-heading"><b>{{like.likes.username}} </b> Like Your Post .</p>
+        </div>
+    </div>
+</li>
+</div>
+
+<div *ngIf = 'newFollower && newFollower.length'>
+<li  *ngFor = 'let follower of newFollower'>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img src="http://icons.iconarchive.com/icons/sensibleworld/starwars/128/Lightsaber-Red-icon.png" class="media-object cat-icon rounded-circle" alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <ul class="n-user-list">
+            <li *ngFor='let f of follower'>
+              <a href="#">
+                <img src="{{f.images}}" class="avatar rounded" alt="...">
+              </a>
+            </li>
+            </ul>
+            <p class="media-heading"><b> {{follower.username}} </b> Like Your Post .</p>
+        </div>
+    </div>
+</li>
+</div>
   </ul>
 </div>
+
