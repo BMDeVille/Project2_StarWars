@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -28,7 +28,7 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   imports: [
-    BrowserModule, FormsModule, RouterModule.forRoot([
+    BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
       {path: '', redirectTo: 'feed', pathMatch: 'full'},
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
