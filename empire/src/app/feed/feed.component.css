@@ -1,0 +1,17 @@
+.feed {
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+}
+.feed li{
+    border-bottom: 3px solid;
+    border-bottom-color: blue;
+}
+
+.feed button{
+    background-color: black;
+    border: none;
+}
