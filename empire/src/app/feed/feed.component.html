@@ -1,6 +1,9 @@
 
 <div class='feed'>
   <h3>Your Galactic Feed</h3>
+  <span style='margin-left: 80%'><button><img src = 'assets/images/122-512.png' width = '30px' height = '30px'>new post</button></span><br/>
+  <span style='margin-left: 80%'><button><img src = 'assets/images/cc911ed0.png' width = '20px' height = '20px'>new post</button></span><br/>
+  <span style='margin-left: 80%'><button><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'>new post</button></span><br/>
 <ul *ngFor = 'let p of posts'>
   <li id='{{p.pid}}'>{{p.body}}&nbsp;&nbsp;
     {{p.created|date:'short'}}&nbsp;&nbsp;
