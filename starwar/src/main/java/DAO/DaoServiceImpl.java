@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.List;
 
+import models.Allegiance;
 import models.Comment;
 import models.Image;
 import models.Post;
@@ -13,6 +14,7 @@ public class DaoServiceImpl implements DaoService {
 	private ImageDAO id = new ImageDAOImpl();
 	private PostDAO pd = new PostDAOImpl();
 	private UserDAO ud = new UserDAOImpl();
+	private AllegianceDAO ad = new AllegianceDAOImpl();
 	
 	//comment dao
 	public void insertComment(Comment c) {
@@ -107,5 +109,24 @@ public class DaoServiceImpl implements DaoService {
 	public void deleteUser(User u) {
 		ud.delete(u);
 	}
+	
+	
+	//Allegiance dao
+	public void insertAllegiance(Allegiance u) {
+		ad.insert(u);
+	}
+	public List<Allegiance> selectAllAllegiance() {
+		return ad.selectAll();
+	}
+	public List<Allegiance> selectByAllByAllegiance(Allegiance u) {
+		return ad.selectByAllegiance(u);
+	}
+	public void updateAllegiance(Allegiance u) {
+		ad.update(u);
+	}
+	public void deleteAllegiance(Allegiance u) {
+		ad.delete(u);
+	}
+	
 	
 }

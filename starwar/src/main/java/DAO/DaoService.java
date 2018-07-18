@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.List;
 
+import models.Allegiance;
 import models.Comment;
 import models.Image;
 import models.Post;
@@ -54,4 +55,14 @@ public interface DaoService {
 		public void updateUser(User u);
 		//delete
 		public void deleteUser(User u);
+		
+		//Allegiance service 
+		public void insertAllegiance(Allegiance u);
+		//read
+		public List<Allegiance> selectAllAllegiance();
+		public List<Allegiance> selectByAllByAllegiance(Allegiance u);
+		//update
+		public void updateAllegiance(Allegiance u);
+		//delete
+		public void deleteAllegiance(Allegiance u);
 }
