@@ -1,35 +1,20 @@
 .feed{
-    position: relative;
-    top: 250px;
-    left: 50px;
+    top: 200px;
     width: 600px;
     height: 100px;
 }
 
-.profilepageimage{
-    position: absolute;
-    width: 200px;
-    height: 200px;
-
-}
 
 .form-group{
-    position:relative;
-    top: 10px;
-    bottom: 40px;
-    right: 175px;
+  
 }
 
 .profilepageimage{
-    position:relative;
-    top: 150px;
-    right: 175px;
-    width: 200px;
-    height: 200px;
+   width: 200px;
+   height: 200px;
 }
 
 .container{
-    position:relative;
     right: 190px;
     top: 10px;
     bottom: 45px;
@@ -41,18 +26,20 @@
     margin: 10px;
     width: 250px;
     height: 250px;
+    margin-left: 0%;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 75px;
+    width: 100px;
     background-color: black;
     color: cyan;
     position: relative;
-    right: 240px;
-    bottom: 212px;
+    margin-left: -35%;
+    margin-top: -1.75%;
+   
 }
 
 li a {
