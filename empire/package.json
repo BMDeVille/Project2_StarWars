@@ -20,8 +20,12 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "angular2-simple-countdown": "0.0.6",
     "core-js": "^2.5.4",
     "git": "^0.1.5",
+    "ng2-date-countdown": "^1.0.2",
+    "ng4-date-countdown-timer": "^1.0.4",
+    "npm": "^6.2.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
