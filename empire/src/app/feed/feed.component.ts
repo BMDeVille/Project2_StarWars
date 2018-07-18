@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 import { PostService } from '../services/post.service';
 import { IPost } from '../db_models/post';
 import { IComment } from '../db_models/comment';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-feed',
@@ -33,6 +34,14 @@ export class FeedComponent implements OnInit, AfterViewInit {
     };
     this._modalService.init(LoginComponent, inputs, {});
   }
+
+  initNewPostModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.init(PostComponent, inputs, {});
+  }
+
   toggleComments(event: { target: HTMLInputElement; }) {
     if (!this.toggleFlag) {
     const commentId = +event.target.parentElement.id; // + casts to number
@@ -43,10 +52,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
         }
     }
     const ul = document.createElement('ul');
-    ul.className = 'feed';
+    // ul.className = 'Feed';
     for (let i = 0; i < this.cp.comments.length; ++i) {
       const li = document.createElement('li');
-      li.innerHTML = this.cp.comments[i].body
+      li.innerHTML = '<< ' + this.cp.comments[i].body
        + '<button style="border: none; background-color: black" (click)="likeComment">'
        + '<img src = "assets/images/1485477009-like_78561.png" width = "30px" height = "30px"></button>['
         + (this.cp.comments[i].likes != null ? this.cp.comments[i].likes.length : 0 ) + ']';

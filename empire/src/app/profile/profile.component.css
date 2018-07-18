@@ -4,9 +4,14 @@
     height: 100px;
 }
 
+.squeeze {
+    width: 50%;
+    border-color: blue;
+    border-width: 3px solid;
+}
 
-.form-group{
-  
+.push-hard-right{
+    margin-left: 15%;
 }
 
 .profilepageimage{
@@ -33,18 +38,22 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     width: 100px;
     /* background-color: black; */
     color: cyan;
+=======
+    width: 10%;
+    background-color: black;
+>>>>>>> 7379cf725832acf844eef893864bac613749b03b
     position: relative;
-    margin-left: -35%;
-    margin-top: -1.75%;
-   
+    margin-left: 1%;
+    margin-right: 89%;   
 }
 
 li a {
     display: block;
-    color: white;
+    color: cyan;
     padding: 8px 16px;
     text-decoration: none;
 }
@@ -52,7 +61,7 @@ li a {
 /* Change the link color on hover */
 li a:hover {
     background-color: #555;
-    color: white;
+    color: aquamarine;
 }
 
 button{

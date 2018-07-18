@@ -2,51 +2,51 @@ package DAO;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import models.Allegiance;
-import models.Comment;
-import util.HibernateUtil;
 
+@Repository("AllegianceDao")
+@Transactional
 public class AllegianceDAOImpl implements AllegianceDAO{
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Autowired
+	private SessionFactory sesFact;
+	
+	public AllegianceDAOImpl() {
+	}
 
-	@Override
 	public void insert(Allegiance a) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.save(a);
-		tx.commit();		
+		sesFact.getCurrentSession().save(a);
 	}
-
-	@Override
+	
 	public List<Allegiance> selectAll() {
-		Session ses = HibernateUtil.getSession();
-		List<Allegiance> alist = ses.createQuery("from Allegiance", Allegiance.class).list();
-		return alist;
+		return sesFact.getCurrentSession().createQuery("from Allegiance", Allegiance.class).list();
 	}
 
-	@Override
 	public List<Allegiance> selectByAllegiance(Allegiance a) {
-		Session ses = HibernateUtil.getSession();
-		List<Allegiance> alist = ses.createQuery("from Allegiance where allegiance=" + a, Allegiance.class).list();
-		return alist;
+		return sesFact.getCurrentSession().createQuery("from Allegiance where aid=" + a.getAid(), Allegiance.class).list();
 	}
 
-	@Override
 	public void update(Allegiance a) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.update(a);
-		tx.commit();		
+		sesFact.getCurrentSession().update(a);
+		
 	}
 
-	@Override
 	public void delete(Allegiance a) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.delete(a);
-		tx.commit();		
+		sesFact.getCurrentSession().delete(a);
 	}
+
+
 
 }

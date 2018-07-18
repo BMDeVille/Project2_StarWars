@@ -10,60 +10,58 @@ package DAO;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import models.User;
-import util.HibernateUtil;
 
+
+@Repository("UserDao")
+@Transactional
 public class UserDAOImpl implements UserDAO {
-
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Autowired
+	private SessionFactory sesFact;
+	
+	public UserDAOImpl() {
+	}
+	
 	public void insert(User u) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.save(u);
-		tx.commit();
+		sesFact.getCurrentSession().save(u);
 	}
 
 	public List<User> selectAll() {
-		Session ses = HibernateUtil.getSession();
-		List<User> ulist = ses.createQuery("from User", User.class).list();
-		return ulist;
+		return sesFact.getCurrentSession().createQuery("from User", User.class).list();
 	}
 
 	public User selectByUsername(String username) {
-		Session ses = HibernateUtil.getSession();
-		List<User> ulist = ses.createQuery("from User where username=" + username, User.class).list();
-		//get the first and only one user from the list
-		//and return it as user object
-		User u = ulist.get(0);
-		return u;
+		//since username should be unique, there will be only one result
+		return sesFact.getCurrentSession().createQuery("from User", User.class).list().get(0);
 	}
 
 	public List<User> selectByFirstName(String fname) {
-		Session ses = HibernateUtil.getSession();
-		List<User> ulist = ses.createQuery("from User where fname=" + fname, User.class).list();
-		return ulist;
+		return sesFact.getCurrentSession().createQuery("from User where fname="+fname, User.class).list();
 	}
 
 	public List<User> selectByLastName(String lname) {
-		Session ses = HibernateUtil.getSession();
-		List<User> ulist = ses.createQuery("from User where lname=" + lname, User.class).list();
-		return ulist;
+		return sesFact.getCurrentSession().createQuery("from User where lname="+lname, User.class).list();
 	}
 
 	public void update(User u) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.update(u);
-		tx.commit();
+		sesFact.getCurrentSession().update(u);
 	}
 
 	public void delete(User u) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.delete(u);
-		tx.commit();
+		sesFact.getCurrentSession().delete(u);
 	}
 
 }
