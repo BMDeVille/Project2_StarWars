@@ -38,7 +38,8 @@ import { SignupComponent } from './signup/signup.component';
   ],
   entryComponents: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PostComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]

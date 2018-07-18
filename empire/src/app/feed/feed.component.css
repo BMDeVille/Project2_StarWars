@@ -9,6 +9,10 @@
     height: 400px;
     overflow: auto;
 }
+
+.feed ul{
+    list-style-type: none;
+}
 .feed li{
     border-bottom: 3px solid;
     border-bottom-color: blue;
