@@ -2,7 +2,7 @@
     size: 50%;
 }
 
-.login input[type="text"], form.login input[type="password"]
+.login input[type="text"], .login input[type="password"]
 {
     width: 60%;
     margin: 0;
