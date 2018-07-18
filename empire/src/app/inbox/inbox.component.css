@@ -12,6 +12,7 @@ body{padding:15px}
 }
 .inbox-list .cat-icon {
     width: 30px;
+    border-radius: 10px;
     background-color: blue;
 }
 .inbox-list .avatar {
