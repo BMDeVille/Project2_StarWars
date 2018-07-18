@@ -1,3 +1,7 @@
+import { IImage } from 'empire/src/app/db_models/image';
+import { IPost } from 'empire/src/app/db_models/post';
+import { IAllegiance } from 'empire/src/app/db_models/allegiance';
+
 export class IUser {
     id: number;
     username: string;
@@ -7,10 +11,10 @@ export class IUser {
     dob: Date;
     sec_ans: string;
     about: string;
-    image: number;
-    posts: number[];
-    followers: number[];
-    allegiance: number;
+    image: IImage;
+    posts: IPost[];
+    followers: IUser[];
+    allegiance: IAllegiance;
 
     constructor (user: IUser) {
         this.id = user.id;
