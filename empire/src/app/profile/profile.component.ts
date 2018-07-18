@@ -1,6 +1,8 @@
 
 import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ModalService } from '../services/modal.service';
+import { UserinformationComponent } from '../userinformation/userinformation.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,9 +18,16 @@ export class ProfileComponent implements OnInit {
 
 
   @ViewChild('fileInput') fileInput: ElementRef;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,  private _modal: ModalService) {
     this.createForm();
     this.showImageChange = false;
+  }
+
+  initAboutModal() {
+    const inputs = {
+      isMobile: false,
+    };
+    this._modal.init(UserinformationComponent, inputs, {});
   }
 
   createForm() {
@@ -35,8 +44,6 @@ export class ProfileComponent implements OnInit {
   hideOption() {
     this.showImageChange = false;
   }
-
-
 
   onSubmit() {
     const formModel = this.form.value;

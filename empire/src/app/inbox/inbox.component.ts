@@ -22,7 +22,7 @@ export class InboxComponent implements OnInit {
   }
 
 
-  showNotify(){
+  showNotify() {
     this._notify.login();
   }
 }

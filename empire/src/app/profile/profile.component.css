@@ -19,7 +19,7 @@
    height: 200px;
 }
 
-.container{
+.infoSection{
     right: 190px;
     top: 10px;
     bottom: 45px;
@@ -38,8 +38,14 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
+    width: 100px;
+    /* background-color: black; */
+    color: cyan;
+=======
     width: 10%;
     background-color: black;
+>>>>>>> 7379cf725832acf844eef893864bac613749b03b
     position: relative;
     margin-left: 1%;
     margin-right: 89%;   
@@ -56,4 +62,13 @@ li a {
 li a:hover {
     background-color: #555;
     color: aquamarine;
+}
+
+button{
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
 }
