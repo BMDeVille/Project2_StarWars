@@ -1,38 +1,45 @@
-
-<img class = "profilepageimage" src='#fileInput'/>
-
-<!-- <<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/> -->
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-
+<div>
+  <div class="squeeze">
     <ul>
-        <li><a href="default.asp">Home</a></li>
-        <li><a href="news.asp">News</a></li>
-        <li><a href="contact.asp">Contact</a></li>
-        <li><a href="about.asp">About</a></li>
-      </ul>
-  <!-- <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
-  </div> -->
-  <div class="form-group">
-      <button (click)="showOption()">Change Profile Picture</button>
-      <button (click)="hideOption()">Hide Options</button>
-      <div *ngIf="showImageChange">
-    <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
-    <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
-    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+      <li><a href="default.asp">Home</a></li>
+      <li><a href="news.asp">News</a></li>
+      <li><a href="contact.asp">Contact</a></li>
+      <li><a href="about.asp">About</a></li>
+    </ul>
+  </div>
+
+  <div class="push-hard-right">
+    <img class = "profilepageimage" src='#fileInput'/>
+
+    <!-- <<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/> -->
+    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+      
+      <!-- <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
+      </div> -->
+      <div class="form-group">
+          <button (click)="showOption()">Change Profile Picture</button>
+          <button (click)="hideOption()">Hide Options</button>
+          <div *ngIf="showImageChange">
+        <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+        <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+        <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+      </div>
+    </div>
+        <div class = "container">
+          <label>Day of Birth:</label>
+          <br/>
+          <label>Allegiance:</label>
+          <br/>
+          <label>About: </label>
+    
+    
+      </div>
+      
+    </form>
   </div>
 </div>
-    <div class = "container">
-      <label>Day of Birth:</label>
-      <br/>
-      <label>Allegiance:</label>
-      <br/>
-      <label>About: </label>
-
-
-  </div>
- 
-</form>
 

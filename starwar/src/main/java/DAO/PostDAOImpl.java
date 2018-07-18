@@ -11,45 +11,53 @@ package DAO;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import models.Post;
 import models.User;
 import util.HibernateUtil;
 
-public class PostDAOImpl implements PostDAO {
 
+@Repository("PostDao")
+@Transactional
+public class PostDAOImpl implements PostDAO {
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Autowired
+	private SessionFactory sesFact;
+	
+	public PostDAOImpl() {
+
+	}
+	
 	public void insert(Post p) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.save(p);
-		tx.commit();
+		sesFact.getCurrentSession().save(p);
 	}
 
 	public List<Post> selectAll() {
-		Session ses = HibernateUtil.getSession();
-		List<Post> plist = ses.createQuery("from Post", Post.class).list();
-		return plist;
+		return sesFact.getCurrentSession().createQuery("from Post", Post.class).list();
 	}
 
 	public List<Post> selectByUser(User u) {
-		Session ses = HibernateUtil.getSession();
-		List<Post> plist = ses.createQuery("from Post where author=" + u , Post.class).list();
-		return plist;
+		return sesFact.getCurrentSession().createQuery("from Post where author="+u, Post.class).list();
 	}
 
 	public void update(Post p) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.update(p);
-		tx.commit();
+		sesFact.getCurrentSession().update(p);
 	}
 
 	public void delete(Post p) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.delete(p);
-		tx.commit();
+		sesFact.getCurrentSession().delete(p);
 	}
 
 }

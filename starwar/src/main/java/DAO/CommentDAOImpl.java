@@ -8,50 +8,51 @@
 
 package DAO;
 
-import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import models.Comment;
 import models.Post;
-import util.HibernateUtil;
 
+@Repository("CommentDao")
+@Transactional
 public class CommentDAOImpl implements CommentDAO{
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Autowired
+	private SessionFactory sesFact;
+	
+	public CommentDAOImpl() {
 
-
+	}
+	
 	public void insert(Comment c) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.save(c);
-		tx.commit();
+		sesFact.getCurrentSession().save(c);
 	}
 
 	public List<Comment> selectAll() {
-		Session ses = HibernateUtil.getSession();
-		List<Comment> clist = ses.createQuery("from Comment", Comment.class).list();
-		return clist;
+		return sesFact.getCurrentSession().createQuery("from Comment", Comment.class).list();
 	}
 
 	public List<Comment> selectByPost(Post p) {
-		Session ses = HibernateUtil.getSession();
-		List<Comment> clist = ses.createQuery("from Post where parent=" + p, Comment.class).list();
-		return clist;
+		return sesFact.getCurrentSession().createQuery("from Post where parent=" + p, Comment.class).list();
 	}
 
 	public void update(Comment c) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.update(c);
-		tx.commit();
+		sesFact.getCurrentSession().update(c);
 	}
 
 	public void delete(Comment c) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx= ses.beginTransaction();
-		ses.delete(c);
-		tx.commit();
+		sesFact.getCurrentSession().delete(c);
 	}
 
 }

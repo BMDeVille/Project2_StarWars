@@ -6,8 +6,10 @@
     padding: 10px;
     margin: 10px;
     width: 70%;
-    height: 400px;
+    margin-left:15%;
+    margin-right: 15%;
     overflow: auto;
+    height: 700px;
 }
 
 .feed ul{
