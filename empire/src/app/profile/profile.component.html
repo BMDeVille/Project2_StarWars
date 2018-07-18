@@ -1,7 +1,8 @@
 
 <img class = "profilepageimage" src='#fileInput'/>
 
-<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/>
+<!-- <<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/> -->
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <ul>
@@ -18,7 +19,6 @@
       <button (click)="showOption()">Change Profile Picture</button>
       <button (click)="hideOption()">Hide Options</button>
       <div *ngIf="showImageChange">
-    <label for="avatar">Avatar</label>
     <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
     <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
     <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
@@ -28,6 +28,8 @@
       <label>Day of Birth:</label>
       <br/>
       <label>Allegiance:</label>
+      <br/>
+      <label>About: </label>
 
 
   </div>

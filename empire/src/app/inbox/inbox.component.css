@@ -6,7 +6,7 @@ body{padding:15px}
     padding: 0;
 }
 .inbox-list > li {
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid blue;
     margin-bottom: 5px;
     padding: 5px 0;
 }
@@ -25,3 +25,9 @@ body{padding:15px}
 .n-user-list li{float:left;}
 .n-user-list li + li{margin-left:5px;}
 .n-user-list li a, .n-user-list li a:hober{text-decoration:none;}
+
+.inbox {
+    background-color: black;
+    border-color: blue;
+    color: cyan;
+} 
