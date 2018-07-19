@@ -1,11 +1,11 @@
 <div class='newPost'>
   <label for='body'>post >></label><br/>
-  <span><<&nbsp;</span><input type='text' name='body' id='body'/><br/>
+  <span><<&nbsp;</span><textarea rows='4' cols='60'></textarea><br/>
   <label for="youtube">youtube link >></label><br/>
-  <span><<&nbsp;</span><input type='text' name='youtube' id='youtube'/><br/>
-  <label for=image>image upload >></label><br/>
-  <span><<&nbsp;</span><input type='file' name='image' id='image'/><br/>
-  <input type='button' value='Post' id='btnPost' (click)=close()/>
+  <span><<&nbsp;</span><input type='text' name='youtube' id='youtube' style='width:450px'/><br/><br/>
+  <label for=image>image upload >></label>
+  <input type='file' name='image' id='image' style='margin-left: 50px'/><br/>
+  <input type='button' value='Post' id='btnPost' (click)=close() style='margin-left:50px'/>
   &nbsp;
   <input type='button' value='Close' id='btnClose' (click)=close()/>
 </div>
