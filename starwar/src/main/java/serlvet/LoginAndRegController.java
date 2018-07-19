@@ -37,7 +37,7 @@ public class LoginAndRegController {
 	@Autowired
 	private static DaoService ds = new DaoServiceImpl();
 	
-	@PostMapping(value="/login.app")
+	@GetMapping(value="/login.app")
 	public static @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
@@ -57,7 +57,7 @@ public class LoginAndRegController {
 			}	
 		}
 		else {
-			System.out.println("no exist username");
+			System.out.println("no existing username");
 			logger.info("no existing username: " + username);
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
