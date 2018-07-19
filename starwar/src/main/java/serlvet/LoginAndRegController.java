@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +14,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import DAO.DaoService;
@@ -39,7 +37,7 @@ public class LoginAndRegController {
 	@Autowired
 	private static DaoService ds = new DaoServiceImpl();
 	
-	@GetMapping(value="/login.app")
+	@PostMapping(value="/login.app")
 	public static @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
@@ -67,6 +65,7 @@ public class LoginAndRegController {
 		return u1;
 
 	}
+	
 	@GetMapping(value="/createAccount.app")
 	public static String createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
