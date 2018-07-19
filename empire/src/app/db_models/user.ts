@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import { IImage } from '../db_models/image';
-import { IPost } from '../db_models/post';
-import { IAllegiance } from '../db_models/allegiance';
-=======
 import { IImage } from './image';
 import { IPost } from './post';
 import { IAllegiance } from './allegiance';
->>>>>>> 553562bc36b1ceb5b19609e9e7e090e49451641c
 
 export class IUser {
     id: number;
