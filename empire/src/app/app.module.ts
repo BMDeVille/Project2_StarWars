@@ -18,6 +18,7 @@ import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { SignupComponent } from './signup/signup.component';
 import { UserinformationComponent } from './userinformation/userinformation.component';
+import { ChangeinformationComponent } from './changeinformation/changeinformation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserinformationComponent } from './userinformation/userinformation.comp
     PostComponent,
     InboxComponent,
     SignupComponent,
-    UserinformationComponent
+    UserinformationComponent,
+    ChangeinformationComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -42,7 +44,8 @@ import { UserinformationComponent } from './userinformation/userinformation.comp
     LoginComponent,
     SignupComponent,
     UserinformationComponent,
-    PostComponent
+    PostComponent,
+    ChangeinformationComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
