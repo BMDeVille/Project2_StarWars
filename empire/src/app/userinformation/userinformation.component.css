@@ -1,4 +1,11 @@
 h2{
-    color: white;
+    color: cyan;
+}
+
+ul{
+    list-style-type: none;
+    text-align: left;
+    background-color: black;
+    color:cyan;
 }
 

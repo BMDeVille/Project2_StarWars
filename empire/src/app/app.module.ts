@@ -41,11 +41,8 @@ import { UserinformationComponent } from './userinformation/userinformation.comp
   entryComponents: [
     LoginComponent,
     SignupComponent,
-<<<<<<< HEAD
-    UserinformationComponent
-=======
+    UserinformationComponent,
     PostComponent
->>>>>>> 7379cf725832acf844eef893864bac613749b03b
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
