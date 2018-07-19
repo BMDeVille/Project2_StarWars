@@ -1,6 +1,6 @@
-import { IImage } from 'empire/src/app/db_models/image';
-import { IPost } from 'empire/src/app/db_models/post';
-import { IAllegiance } from 'empire/src/app/db_models/allegiance';
+import { IImage } from './image';
+import { IPost } from './post';
+import { IAllegiance } from './allegiance';
 
 export class IUser {
     id: number;
