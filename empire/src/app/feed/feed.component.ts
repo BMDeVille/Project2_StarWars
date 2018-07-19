@@ -6,6 +6,8 @@ import { PostService } from '../services/post.service';
 import { IPost } from '../db_models/post';
 import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
+import { IImage } from '../db_models/image';
+import { IAllegiance } from '../db_models/allegiance';
 
 @Component({
   selector: 'app-feed',
@@ -69,7 +71,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   likeComment(c: IComment) {
-    c.likes.push({'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': '',
-    'sec_ans': '', 'dob': new Date(), 'allegiance': 1, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null, 'image': 1});
+
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { IUser } from '../db_models/user';
-import { IComment } from 'empire/src/app/db_models/comment';
-import { IPost } from 'empire/src/app/db_models/post';
+import { IComment } from '../db_models/comment';
+import { IPost } from '../db_models/post';
 
 @Component({
   selector: 'app-inbox',
@@ -22,7 +22,7 @@ export class InboxComponent implements OnInit {
   }
 
 
-  showNotify(){
+  showNotify() {
     this._notify.login();
   }
 }
