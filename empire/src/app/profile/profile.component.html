@@ -1,36 +1,59 @@
-<div>
-  <ul>
-    <li><button class = "viewButton" (click)= "initAboutModal()">View Your Information</button></li>
-  </ul>
-<img class = "profilepageimage" src='#fileInput'/>
-</div>
-<!-- <<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/> -->
-
-
-<button class = "button1"(click)="showOption()">Change Profile Picture</button>
+<div class='leftColumn'>
+      <div>
+        <ul>
+          <li><button class = "viewButton" (click)= "initAboutModal()">View Your Information</button></li>
+        </ul>
+        <img class = "profilepageimage" src='#fileInput'/>
+      </div>
+      <button class = "button1"(click)="showOption()">Change Profile Picture</button>
       <button class = "button2"(click)="hideOption()">Hide Option</button>
-<form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
-  <!-- <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
-  </div> -->
-  
-  <app-feed></app-feed>
-
-  <div class="form-group">
-      <div *ngIf="showImageChange">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
+      <div class="form-group">
+        <div *ngIf="showImageChange">
           <div class = "fileuploadbuttons">
-    <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
-    <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
-    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
-  </div>
-  </div>
-</div>
-    <div class = "infoSection">
+            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+            <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+            <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class = "infoSection">
       <label>Day of Birth:</label>
       <br/>
       <label>Allegiance: </label>
       <br/>
       <label>About: </label>
+      </div>
 </div>
+
+
+<div class='rightColumn'>
+  <app-feed></app-feed>
+</div>
+    
+
+
+
+<!-- <<input class = "feed" type = "text" name = "feed" placeholder = "placeholder update"/> -->
+
+
+
+  <!-- <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
+  </div> -->
+  
+  <!-- <div class='feed'>
+      <h3>Your Galactic Feed</h3>
+      <span style='margin-left: 80%'><button (click) = "initNewPostModal()"><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'>&nbsp;new post</button></span><br/>
+    <ul class = "post"*ngFor = 'let p of posts'>
+      <li id='{{p.pid}}'><span>>>&nbsp;</span>{{p.body}}&nbsp;&nbsp;
+        {{p.created|date:'short'}}&nbsp;&nbsp;
+        <button (click)="likePost($event)"><img src = 'assets/images/1485477009-like_78561.png' width = '30px' height = '30px'></button>[{{p.likes != null? p.likes.length:0}}]&nbsp;&nbsp;
+        <a (click)="toggleComments($event)">comments&nbsp;</a>[{{p.comments != null? p.comments.length:0}}]
+        </li>
+    </ul>
+    </div> -->
+
+ 
 

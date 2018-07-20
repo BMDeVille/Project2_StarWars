@@ -1,29 +1,31 @@
 .feed{
-    left: 25%;
-    right: 5%;
+    
 }
 
 
 .profilepageimage{
    width: 200px;
    height: 200px;
-   margin-left: 11%;
+
+}
+
+.leftColumn{
+    float:left;
+    width:40%;
+    clear:left;
+}
+
+.rightColumn{
+    float:right;
+    width:60%;
+    clear:right;
 }
 
 .infoSection{
-    right: 190px;
-    top: 10px;
-    bottom: 45px;
     background-color: black;
     color: cyan;
     border: 3px solid;
     border-color: blue;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-    height: 250px;
-    margin-left: 11%;
-    margin-top: -20%;
 }
 
 ul {
@@ -33,9 +35,6 @@ ul {
     width: 100px;
     /* background-color: black; */
     color: cyan;
-    position: relative;
-    margin-left: 1%;
-    margin-right: 89%;   
 }
 
 li a {
@@ -57,8 +56,6 @@ li a:hover {
     border: 3px solid;
     border-color: blue;
     padding: 10px;
-    margin: 10px;
-    margin-left: 11%;
 }
 
 .button2{
@@ -67,8 +64,6 @@ li a:hover {
     border: 3px solid;
     border-color: blue;
     padding: 10px;
-    margin: 10px;
-    margin-left: 0%;
 }
 
 .viewButton{
@@ -79,8 +74,7 @@ li a:hover {
 }
 
 .fileuploadbuttons{
-    margin-left: 11%;
-    margin-top: -20%;
+    
 }
 
 
@@ -91,12 +85,6 @@ li a:hover {
     border-color: blue;
     padding: 10px;
     margin: 10px;
-    width: 65%;
-    margin-top: -10%;
-    margin-left:31%;
-    margin-right: 15%;
-    overflow: auto;
-    height: 500px;
 }
 
 .feed ul{
@@ -107,7 +95,7 @@ li a:hover {
     border-bottom-color: blue;
 }
 .post{
-    width: 100%;
+    
 }
 
 
@@ -117,20 +105,20 @@ li a:hover {
 }
 
 ::-webkit-scrollbar {
-width: 12px;
+    width: 12px;
     height: 12px;
-    }
+}
     
-    ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     border: 1px solid blue;
     border-radius: 10px;
-    }
+}
     
-    ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: blue;  
     border-radius: 10px;
-    }
+}
     
-    ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: blue;  
-    }
+}
