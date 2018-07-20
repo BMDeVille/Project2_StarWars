@@ -3,7 +3,11 @@ import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ModalService } from '../services/modal.service';
 import { UserinformationComponent } from '../userinformation/userinformation.component';
-import { ChangeinformationComponent } from '../changeinformation/changeinformation.component';
+import { PostService } from '../services/post.service';
+
+import { IPost } from '../db_models/post';
+import { IComment } from '../db_models/comment';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-profile',
@@ -15,20 +19,24 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   loading: boolean;
   showImageChange: boolean;
-
+  posts: IPost[] = [];
+  cp: IPost;
+  toggleFlag: boolean;
 
 
   @ViewChild('fileInput') fileInput: ElementRef;
-  constructor(private fb: FormBuilder,  private _modal: ModalService) {
+  constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService) {
     this.createForm();
     this.showImageChange = false;
+    this.posts = _postservice.getFeed('');
+    this.toggleFlag = false;
   }
 
   initAboutModal() {
     const inputs = {
       isMobile: false,
     };
-    this._modal.init(UserinformationComponent, inputs, {});
+    this._modalService.init(UserinformationComponent, inputs, {});
   }
 
   createForm() {
@@ -65,9 +73,6 @@ export class ProfileComponent implements OnInit {
     this.fileInput.nativeElement.value = '';
   }
 
-  ngOnInit() {
-  }
-
   onFileChange(event) {
     const read = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -81,5 +86,45 @@ export class ProfileComponent implements OnInit {
         });
       };
     }
+  }
+
+  ngOnInit() {
+  }
+
+  initNewPostModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.init(PostComponent, inputs, {});
+  }
+
+  toggleComments(event: { target: HTMLInputElement; }) {
+    if (!this.toggleFlag) {
+    const commentId = +event.target.parentElement.id; // + casts to number
+    for (let i = 0; i < this.posts.length; ++i) {
+        if (this.posts[i].pid === commentId) {
+          this.cp = this.posts[i];
+          break;
+        }
+    }
+    const ul = document.createElement('ul');
+    // ul.className = 'Feed';
+    for (let i = 0; i < this.cp.comments.length; ++i) {
+      const li = document.createElement('li');
+      li.innerHTML = '<< ' + this.cp.comments[i].body
+       + '<button style="border: none; background-color: black" (click)="likeComment">'
+       + '<img src = "assets/images/1485477009-like_78561.png" width = "30px" height = "30px"></button>['
+        + (this.cp.comments[i].likes != null ? this.cp.comments[i].likes.length : 0 ) + ']';
+        ul.appendChild(li);
+    }
+    event.target.parentElement.parentElement.appendChild(ul);
+  } else {
+    event.target.parentElement.parentElement.removeChild(event.target.parentElement.nextSibling);
+  }
+  this.toggleFlag = !this.toggleFlag;
+  }
+
+  likeComment(c: IComment) {
+
   }
 }
