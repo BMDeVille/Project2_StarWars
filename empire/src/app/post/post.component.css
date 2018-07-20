@@ -8,9 +8,38 @@
     font-weight: bold;
 }
 
-.newPost input, textarea{
+.txt{
     background-color: black;
     border-bottom: 3px solid;
     border-bottom-color: blue;
 }
 
+#lblImage{
+    background-color: black;
+    border: 3px solid;
+    border-bottom-color: blue;
+    padding-left: 5px;
+    padding-right: 5px;  
+}
+
+#lblImage:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
+}
+
+.btn:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
+}
+.btn{
+    background-color:black;
+    color: cyan;
+    border: 3px solid;
+    border-bottom-color: blue;
+    width: 150px;
+    font-weight: bold;
+}

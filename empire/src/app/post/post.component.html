@@ -1,12 +1,14 @@
 <div class='newPost'>
   <label for='body'>post >></label><br/>
-  <span><<&nbsp;</span><textarea rows='4' cols='60'></textarea><br/>
+  <span><<&nbsp;</span><textarea class='txt' rows='4' cols='60'></textarea><br/><br/>
   <label for="youtube">youtube link >></label><br/>
-  <span><<&nbsp;</span><input type='text' name='youtube' id='youtube' style='width:450px'/><br/><br/>
+  <span><<&nbsp;</span><input class='txt' type='text' name='youtube' id='youtube' style='width:450px'/><br/><br/>
   <label>image upload >></label><br/>
-  <label for='image' style='padding-left: 30px'><<&nbsp;Choose File<input type='file' name='image' id='image' style='margin-left: 50px' (change)="fileNameChanged()" style='display:none'/></label>&nbsp;&nbsp;<input id='filepath' type='text' value='No file chosen'style='width:350px' readyonly>
-  <br/>
-  <input type='button' value='Post' id='btnPost' (click)=close() style='margin-left:50px'/>
+  <span style='padding-left:1px; padding-right:5px' ><<</span><label id= 'lblImage' for='image'>
+      Choose File<input type='file' name='image' id='image' (change)="fileNameChanged()" style='display:none'/>
+      </label>&nbsp;&nbsp;:&nbsp;<input id='filepath' class='txt' type='text' value='No file chosen'style='width:350px' readyonly>
+  <br/><br/>
+  <input class='btn' type='button' value='Post' id='btnPost' (click)=createPost() style='margin-left:50px'/>
   &nbsp;
-  <input type='button' value='Close' id='btnClose' (click)=close()/>
+  <input class='btn' type='button' value='Close' id='btnClose' (click)=close()/>
 </div>
