@@ -3,8 +3,9 @@
   <span><<&nbsp;</span><textarea rows='4' cols='60'></textarea><br/>
   <label for="youtube">youtube link >></label><br/>
   <span><<&nbsp;</span><input type='text' name='youtube' id='youtube' style='width:450px'/><br/><br/>
-  <label for=image>image upload >></label>
-  <input type='file' name='image' id='image' style='margin-left: 50px'/><br/>
+  <label for=image>image upload >></label><br/>
+  <label for='image' style='padding-left: 30px'><<&nbsp;Choose File<input type='file' name='image' id='image' style='margin-left: 50px' (change)="fileNameChanged()" style='display:none'/></label>&nbsp;&nbsp;<input id='filepath' type='text' value='No file chosen'style='width:350px' readyonly>
+  <br/>
   <input type='button' value='Post' id='btnPost' (click)=close() style='margin-left:50px'/>
   &nbsp;
   <input type='button' value='Close' id='btnClose' (click)=close()/>

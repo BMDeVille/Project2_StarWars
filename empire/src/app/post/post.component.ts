@@ -16,4 +16,11 @@ export class PostComponent implements OnInit {
   public close() {
     this._modalService.destroy();
   }
+
+  fileNameChanged(event: { target: HTMLInputElement; }) {
+    console.log('in file change');
+    console.log(document.getElementById('image').value);
+    const filename = document.getElementById('image').value.split('\\');
+    document.getElementById('filepath').value = filename[filename.length -1];
+  }
 }

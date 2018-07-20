@@ -12,20 +12,20 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.example.DAO" />
-	<context:component-scan base-package="com.example.servlet" />
+	<context:component-scan base-package="DAO" />
+	<context:component-scan base-package="servlet" />
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
-	<aop:aspectj-autoproxy/>
+	<!-- aspect -->
+<!-- 	<aop:aspectj-autoproxy/> -->
 	
 
 	<!-- DATASOURCE -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@wvudatabase.cznuma459cki.us-east-2.rds.amazonaws.com:1521:orcl" />
+		<property name="url" value="jdbc:oracle:thin:@wvudatabase.cznuma459cki.us-east-2.rds.amazonaws.com:1521:orcl" />
 		<property name="username" value="starwar" /> <!-- remember to create starwar database in sql -->
 		<property name="password" value="p4ssw0rd" />
 	</bean>
