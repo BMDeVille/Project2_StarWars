@@ -13,19 +13,21 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import DAO.DaoService;
+import models.Allegiance;
 import models.Comment;
 import models.Post;
 import models.User;
-import util.HibernateUtil;
 
 public class StarwarTest {
 	@Autowired
-	private DaoService ds;
+	private static DaoService ds;
 	
 	@Before
 	public void before() {
 		Date date = new Date();
-		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",1);
+		Allegiance al = new Allegiance();
+		al.setAllegiance("a");
+		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
 		Post p = new Post("post1",new Timestamp(date.getTime()));
 		Comment c = new Comment("test comment");
 		//Image i = new Image();
@@ -93,9 +95,5 @@ public class StarwarTest {
 //	public void returnImage() {
 //		
 //	}
-//	
-	@After
-	public void after() {
-		HibernateUtil.closeSes();
-	}
+
 }

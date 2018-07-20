@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import models.Post;
 import models.User;
-import util.HibernateUtil;
 
 
 @Repository("PostDao")
