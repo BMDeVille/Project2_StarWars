@@ -5,8 +5,8 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import DAO.DaoService;
-import DAO.DaoServiceImpl;
+import dao.DaoService;
+import dao.UserDAOImpl;
 import models.Allegiance;
 import models.User;
 
@@ -18,11 +18,13 @@ public class Main {
 		// Jenkins test 5
 		// Jenkins test 6
 		
+		//UserDAOImpl ud = new UserDAOImpl();
 		Allegiance al = new Allegiance();
 		al.setAllegiance("idk");
 		Date date = new Date();
 		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
 		ds.insertUser(u);
+		//ud.insert(u);
 		System.out.println("done");
 	
 	}

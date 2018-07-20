@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import DAO.DaoService;
+import dao.DaoService;
 import models.Allegiance;
 import models.Comment;
 import models.Post;
