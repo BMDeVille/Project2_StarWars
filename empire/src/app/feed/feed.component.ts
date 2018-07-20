@@ -1,20 +1,17 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import { ModalService } from '../services/modal.service';
-import { LoginComponent } from '../login/login.component';
 import { PostService } from '../services/post.service';
 import { IPost } from '../db_models/post';
 import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
-import { IImage } from '../db_models/image';
-import { IAllegiance } from '../db_models/allegiance';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
-export class FeedComponent implements OnInit, AfterViewInit {
+export class FeedComponent implements OnInit {
 
   posts: IPost[] = [];
   cp: IPost;
@@ -25,16 +22,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-  }
-  ngAfterViewInit() {
-    setTimeout(_ => this.initLoginModal());
-  }
-
-   initLoginModal() {
-    const inputs = {
-      isMobile: false
-    };
-    this._modalService.init(LoginComponent, inputs, {});
   }
 
   initNewPostModal() {
