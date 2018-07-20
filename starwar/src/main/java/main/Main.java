@@ -3,23 +3,28 @@ package main;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
-
-import DAO.DaoService;
-import DAO.DaoServiceImpl;
+import dao.DaoService;
+import dao.UserDAOImpl;
+import models.Allegiance;
 import models.User;
 
 public class Main {
+	@Autowired
+	private static DaoService ds;
+	
 	public static void main(String[] args) {
 		// Jenkins test 5
 		// Jenkins test 6
 		
-		DaoService ds = new DaoServiceImpl();
+		//UserDAOImpl ud = new UserDAOImpl();
+		Allegiance al = new Allegiance();
+		al.setAllegiance("idk");
 		Date date = new Date();
-		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",1);
+		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
 		ds.insertUser(u);
+		//ud.insert(u);
 		System.out.println("done");
 	
 	}

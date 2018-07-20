@@ -6,7 +6,7 @@
  * -------------------------------------------------
  */
 
-package DAO;
+package dao;
 
 import java.util.List;
 
@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import models.Comment;
-import models.Post;
 
-@Repository("CommentDao")
+import models.Post;
+import models.User;
+
+
+@Repository("PostDao")
 @Transactional
-public class CommentDAOImpl implements CommentDAO{
+public class PostDAOImpl implements PostDAO {
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -31,28 +33,28 @@ public class CommentDAOImpl implements CommentDAO{
 	@Autowired
 	private SessionFactory sesFact;
 	
-	public CommentDAOImpl() {
+	public PostDAOImpl() {
 
 	}
 	
-	public void insert(Comment c) {
-		sesFact.getCurrentSession().save(c);
+	public void insert(Post p) {
+		sesFact.getCurrentSession().save(p);
 	}
 
-	public List<Comment> selectAll() {
-		return sesFact.getCurrentSession().createQuery("from Comment", Comment.class).list();
+	public List<Post> selectAll() {
+		return sesFact.getCurrentSession().createQuery("from Post", Post.class).list();
 	}
 
-	public List<Comment> selectByPost(Post p) {
-		return sesFact.getCurrentSession().createQuery("from Post where parent=" + p, Comment.class).list();
+	public List<Post> selectByUser(User u) {
+		return sesFact.getCurrentSession().createQuery("from Post where author="+u, Post.class).list();
 	}
 
-	public void update(Comment c) {
-		sesFact.getCurrentSession().update(c);
+	public void update(Post p) {
+		sesFact.getCurrentSession().update(p);
 	}
 
-	public void delete(Comment c) {
-		sesFact.getCurrentSession().delete(c);
+	public void delete(Post p) {
+		sesFact.getCurrentSession().delete(p);
 	}
 
 }

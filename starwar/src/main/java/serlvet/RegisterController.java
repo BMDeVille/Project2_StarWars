@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import DAO.DaoService;
+import dao.DaoService;
+import models.Allegiance;
 import models.User;
 
 @Controller("RegisterController")
@@ -59,7 +60,9 @@ public class RegisterController {
 		String about = req.getParameter("about");
 
 		/// creating the user object with the no id, about, and image constructor
-		User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, allegiance1);
+		Allegiance al = new Allegiance();
+		al.setAllegiance("aa");
+		User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
 		// logger.info("user register: " + user1.getUsername() + " " + user1.getFname()
 		// + " "+ user1.getLname());
 		ds.insertUser(user1);

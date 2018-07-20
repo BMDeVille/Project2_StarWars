@@ -6,26 +6,21 @@
  * -------------------------------------------------
  */
 
-package DAO;
+package dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import models.Comment;
 import models.Post;
-import models.User;
-import util.HibernateUtil;
 
-
-@Repository("PostDao")
+@Repository("CommentDao")
 @Transactional
-public class PostDAOImpl implements PostDAO {
+public class CommentDAOImpl implements CommentDAO{
 	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -36,28 +31,28 @@ public class PostDAOImpl implements PostDAO {
 	@Autowired
 	private SessionFactory sesFact;
 	
-	public PostDAOImpl() {
+	public CommentDAOImpl() {
 
 	}
 	
-	public void insert(Post p) {
-		sesFact.getCurrentSession().save(p);
+	public void insert(Comment c) {
+		sesFact.getCurrentSession().save(c);
 	}
 
-	public List<Post> selectAll() {
-		return sesFact.getCurrentSession().createQuery("from Post", Post.class).list();
+	public List<Comment> selectAll() {
+		return sesFact.getCurrentSession().createQuery("from Comment", Comment.class).list();
 	}
 
-	public List<Post> selectByUser(User u) {
-		return sesFact.getCurrentSession().createQuery("from Post where author="+u, Post.class).list();
+	public List<Comment> selectByPost(Post p) {
+		return sesFact.getCurrentSession().createQuery("from Post where parent=" + p, Comment.class).list();
 	}
 
-	public void update(Post p) {
-		sesFact.getCurrentSession().update(p);
+	public void update(Comment c) {
+		sesFact.getCurrentSession().update(c);
 	}
 
-	public void delete(Post p) {
-		sesFact.getCurrentSession().delete(p);
+	public void delete(Comment c) {
+		sesFact.getCurrentSession().delete(c);
 	}
 
 }

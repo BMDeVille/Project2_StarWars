@@ -63,7 +63,7 @@ public class User {
 	private List<User> followers;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private int allegiance;
+	private Allegiance allegiance;
 	
 	//no args
 	public User() {
@@ -71,7 +71,7 @@ public class User {
 	
 	//no id no about no image
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, int allegiance) {
+					String securityAnswer, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -85,7 +85,7 @@ public class User {
 	
 	//no id no about
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, Image image, int allegiance) {
+					String securityAnswer, Image image, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -100,7 +100,7 @@ public class User {
 	
 	//no id no image
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, int allegiance, String about) {
+					String securityAnswer, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -114,7 +114,7 @@ public class User {
 	}
 	//no id
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-				String securityAnswer, Image image, int allegiance, String about) {
+				String securityAnswer, Image image, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -129,7 +129,7 @@ public class User {
 	}
 	//all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, int allegiance, String about) {
+			String securityAnswer, Image image, Allegiance allegiance, String about) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -181,7 +181,7 @@ public class User {
 		return image;
 	}
 
-	public int getAllegiance() {
+	public Allegiance getAllegiance() {
 		return allegiance;
 	}
 
@@ -233,7 +233,7 @@ public class User {
 		this.image = image;
 	}
 
-	public void setAllegiance(int allegiance) {
+	public void setAllegiance(Allegiance allegiance) {
 		this.allegiance = allegiance;
 	}
 
@@ -253,7 +253,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
 				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
-				+ image + ", allegiance=" + allegiance + ", about=" + about + "]";
+				+ image + ", allegiance=" + allegiance.getAllegiance() + ", about=" + about + "]";
 	}
 	
 	

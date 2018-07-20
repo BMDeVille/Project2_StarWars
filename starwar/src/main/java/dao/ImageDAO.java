@@ -6,22 +6,23 @@
  * -------------------------------------------------
  */
 
-package DAO;
+package dao;
 
 import java.util.List;
 
+import models.Image;
+import models.Post;
 import models.User;
 
-public interface UserDAO {
+public interface ImageDAO {
 	//create
-	public void insert(User u);
+	public void insert(Image img);
 	//read
-	public List<User> selectAll();
-	public User selectByUsername(String username);
-	public List<User> selectByFirstName(String fname);
-	public List<User> selectByLastName(String lname);
+	public List<Image> selectAll();
+	public List<Image> selectByUser(User u);
+	public List<Image> selectByPost(Post p);
 	//update
-	public void update(User u);
+	public void update(Image img);
 	//delete
-	public void delete(User u);
+	public void delete(Image img);
 }

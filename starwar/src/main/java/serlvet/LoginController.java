@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import DAO.DaoService;
-import DAO.DaoServiceImpl;
+import dao.DaoService;
+import dao.DaoServiceImpl;
 import models.User;
 //
 //@Controller
