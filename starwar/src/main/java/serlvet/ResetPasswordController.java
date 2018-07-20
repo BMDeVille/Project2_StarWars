@@ -18,45 +18,44 @@ import DAO.DaoService;
 import DAO.DaoServiceImpl;
 import models.User;
 
-@Controller
+@Controller("ResetPasswordController")
 public class ResetPasswordController {
 	final static Logger logger = Logger.getLogger(ResetPasswordController.class);
 
 	@Autowired
-	private static DaoService ds = new DaoServiceImpl();
-	
+	private static DaoService ds;
+
 	public ResetPasswordController() {
 	}
 
-	@GetMapping(value="/reset.app")
+	@GetMapping(value = "/reset.app")
 	public static void reset(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
-		
+
 		String username = req.getParameter("username");
-		//current password
+		// current password
 		String password = req.getParameter("password");
-		//get the hash of new password
+		// get the hash of new password
 		String newPass = BCrypt.hashpw(req.getParameter("newPass"), BCrypt.gensalt());
 		System.out.println(username);
 		System.out.println(password);
 		System.out.println(newPass);
-		
+
 		User u1 = ds.selectByUsername(username);
-		if(u1 !=null) {
-			//check if current password match to database 
-			if(BCrypt.checkpw(password, u1.getPassword())) {
+		if (u1 != null) {
+			// check if current password match to database
+			if (BCrypt.checkpw(password, u1.getPassword())) {
 				u1.setPassword(newPass);
 				ds.updateUser(u1);
 				res.getWriter().write(new ObjectMapper().writeValueAsString("success"));
-				logger.info(u1.getUsername() + " changed password.");
-				//return something 
-			}	
-		}
-		else {
+				// logger.info(u1.getUsername() + " changed password.");
+				// return something
+			}
+		} else {
 			System.out.println("no exist username");
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
-			//return;
+			// return;
 		}
 		return;
 

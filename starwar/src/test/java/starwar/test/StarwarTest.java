@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import DAO.DaoService;
 import DAO.DaoServiceImpl;
@@ -19,7 +20,8 @@ import models.User;
 import util.HibernateUtil;
 
 public class StarwarTest {
-	private DaoService ds = new DaoServiceImpl();
+	@Autowired
+	private DaoService ds;
 	
 	@Before
 	public void before() {

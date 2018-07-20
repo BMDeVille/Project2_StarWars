@@ -2,6 +2,9 @@ package DAO;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import models.Allegiance;
 import models.Comment;
 import models.Image;
@@ -9,12 +12,23 @@ import models.Post;
 import models.User;
 
 
+
+@Service
 public class DaoServiceImpl implements DaoService {
-	private CommentDAO cd = new CommentDAOImpl();
-	private ImageDAO id = new ImageDAOImpl();
-	private PostDAO pd = new PostDAOImpl();
-	private UserDAO ud = new UserDAOImpl();
-	private AllegianceDAO ad = new AllegianceDAOImpl();
+	@Autowired
+	private CommentDAO cd;
+	@Autowired
+	private ImageDAO id;
+	@Autowired
+	private PostDAO pd;
+	@Autowired
+	private UserDAO ud;
+	@Autowired
+	private AllegianceDAO ad;
+	
+	@Autowired
+	public DaoServiceImpl() {
+	}
 	
 	//comment dao
 	public void insertComment(Comment c) {
