@@ -4,7 +4,9 @@
   <label for="youtube">youtube link >></label><br/>
   <span><<&nbsp;</span><input class='txt' type='text' name='youtube' id='youtube' style='width:450px'/><br/><br/>
   <label>image upload >></label><br/>
-  <span style='padding-left:1px; padding-right:5px' ><<</span><label id= 'lblImage' for='image'>Choose File<input type='file' name='image' id='image' (change)="fileNameChanged()" style='display:none'/></label>&nbsp;&nbsp;:&nbsp;<input id='filepath' class='txt' type='text' value='No file chosen'style='width:350px' readyonly>
+  <span style='padding-left:1px; padding-right:5px' ><<</span><label id= 'lblImage' for='image'>
+      Choose File<input type='file' name='image' id='image' (change)="fileNameChanged()" style='display:none'/>
+      </label>&nbsp;&nbsp;:&nbsp;<input id='filepath' class='txt' type='text' value='No file chosen'style='width:350px' readyonly>
   <br/><br/>
   <input class='btn' type='button' value='Post' id='btnPost' (click)=createPost() style='margin-left:50px'/>
   &nbsp;
