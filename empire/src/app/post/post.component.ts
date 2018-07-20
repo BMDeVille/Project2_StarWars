@@ -21,4 +21,8 @@ export class PostComponent implements OnInit {
     const filename = (<HTMLInputElement>document.getElementById('image')).value.split('\\');
     (<HTMLInputElement>document.getElementById('filepath')).value = filename[filename.length - 1];
   }
+
+  public createPost() {
+    this._modalService.destroy();
+  }
 }

@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import DAO.DaoService;
-import DAO.DaoServiceImpl;
 import models.Comment;
 import models.Post;
 import models.User;

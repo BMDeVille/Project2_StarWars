@@ -13,7 +13,7 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="DAO" />
-	<context:component-scan base-package="servlet" />
+	<context:component-scan base-package="serlvet" />
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
@@ -38,7 +38,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 			</props>
 		</property>
 	</bean>
