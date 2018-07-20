@@ -42,7 +42,6 @@ public class LoginController {
 	public static @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
-		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		System.out.println(username);
