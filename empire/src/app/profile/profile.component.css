@@ -7,7 +7,7 @@
 .profilepageimage{
    width: 200px;
    height: 200px;
-   margin-left: 18%;
+   margin-left: 11%;
 }
 
 .infoSection{
@@ -22,7 +22,8 @@
     margin: 10px;
     width: 200px;
     height: 250px;
-    margin-left: 18%;
+    margin-left: 11%;
+    margin-top: -20%;
 }
 
 ul {
@@ -57,7 +58,7 @@ li a:hover {
     border-color: blue;
     padding: 10px;
     margin: 10px;
-    margin-left: 18%;
+    margin-left: 11%;
 }
 
 .button2{
@@ -75,6 +76,61 @@ li a:hover {
         color: cyan;
         border: 3px solid;
         border-color: blue;
-      
-    
 }
+
+.fileuploadbuttons{
+    margin-left: 11%;
+    margin-top: -20%;
+}
+
+
+.feed {
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+    width: 65%;
+    margin-top: -10%;
+    margin-left:31%;
+    margin-right: 15%;
+    overflow: auto;
+    height: 500px;
+}
+
+.feed ul{
+    list-style-type: none;
+}
+.feed li{
+    border-bottom: 3px solid;
+    border-bottom-color: blue;
+}
+.post{
+    width: 100%;
+}
+
+
+.feed button{
+    background-color: black;
+    border: none;
+}
+
+::-webkit-scrollbar {
+width: 12px;
+    height: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+    border: 1px solid blue;
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    background: blue;  
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background: blue;  
+    }
