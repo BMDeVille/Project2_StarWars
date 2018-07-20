@@ -1,0 +1,44 @@
+label{
+    color: cyan;
+}
+
+div{
+    text-align: center;
+}
+
+table{
+    padding: 50px;
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    text-align: center;
+}
+
+h2{
+    color:cyan;
+}
+
+button{
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin-right: 1%;
+
+}
+
+input{
+    background-color: black;
+}
+
+::placeholder {
+    color: cyan;
+    opacity: 1; /* Firefox */
+}
+
+.tablediv{
+    
+}

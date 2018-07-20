@@ -10,8 +10,6 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private _cdr: ChangeDetectorRef) {
     this.CountDownTimer('12/20/2019 5:35 PM', 'newcountdown');
-
-
   }
 
   ngAfterViewInit() {

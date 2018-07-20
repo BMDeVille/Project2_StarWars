@@ -25,9 +25,9 @@
     outline: 0;
 }
 
-.login input[type="submit"]
+.login input[type="submit"], .login input[type="button"]
 {
-    width: 10%;
+    width: 12%;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 500;
@@ -35,11 +35,16 @@
     outline: 0;
     cursor: pointer;
     letter-spacing: 1px;
+    background-color: transparent;
+    color: yellow;
+    border: 3px solid;
+    border-color: gold;
+    border-radius: 5px;
 }
 
-.login input[type="submit"]:hover
+.login input[type="submit"]:hover, .login input[type="button"]:hover
 {
-    transition: background-color 0.5s ease;
+    background-color: black;
 }
 
 ::placeholder {

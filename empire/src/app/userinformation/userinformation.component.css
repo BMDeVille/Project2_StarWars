@@ -1,4 +1,19 @@
 h2{
-    color: white;
+    color: cyan;
 }
 
+ul{
+    list-style-type: none;
+    text-align: left;
+    background-color: black;
+    color:cyan;
+}
+
+button{
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin-right: 1%;
+}

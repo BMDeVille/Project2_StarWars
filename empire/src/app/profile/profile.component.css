@@ -4,19 +4,10 @@
     height: 100px;
 }
 
-.squeeze {
-    width: 50%;
-    border-color: blue;
-    border-width: 3px solid;
-}
-
-.push-hard-right{
-    margin-left: 15%;
-}
-
 .profilepageimage{
    width: 200px;
    height: 200px;
+   margin-left: 18%;
 }
 
 .infoSection{
@@ -29,23 +20,18 @@
     border-color: blue;
     padding: 10px;
     margin: 10px;
-    width: 250px;
+    width: 200px;
     height: 250px;
-    margin-left: 0%;
+    margin-left: 18%;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     width: 100px;
     /* background-color: black; */
     color: cyan;
-=======
-    width: 10%;
-    background-color: black;
->>>>>>> 7379cf725832acf844eef893864bac613749b03b
     position: relative;
     margin-left: 1%;
     margin-right: 89%;   
@@ -64,11 +50,31 @@ li a:hover {
     color: aquamarine;
 }
 
-button{
+.button1{
     background-color: black;
     color: cyan;
     border: 3px solid;
     border-color: blue;
     padding: 10px;
     margin: 10px;
+    margin-left: 18%;
+}
+
+.button2{
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 0%;
+}
+
+.viewButton{
+        background-color: black;
+        color: cyan;
+        border: 3px solid;
+        border-color: blue;
+      
+    
 }

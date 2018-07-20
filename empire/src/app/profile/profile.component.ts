@@ -3,6 +3,7 @@ import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ModalService } from '../services/modal.service';
 import { UserinformationComponent } from '../userinformation/userinformation.component';
+import { ChangeinformationComponent } from '../changeinformation/changeinformation.component';
 
 @Component({
   selector: 'app-profile',
