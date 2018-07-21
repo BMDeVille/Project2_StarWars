@@ -17,3 +17,10 @@ button{
     padding: 10px;
     margin-right: 1%;
 }
+
+.button:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
+}

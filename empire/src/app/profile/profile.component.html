@@ -1,36 +1,44 @@
 <div class='leftColumn'>
-      <div>
-        <ul>
-          <li><button class = "viewButton" (click)= "initAboutModal()">View Your Information</button></li>
-        </ul>
-        <img class = "profilepageimage" src='#fileInput'/>
-      </div>
-      <button class = "button1"(click)="showOption()">Change Profile Picture</button>
-      <button class = "button2"(click)="hideOption()">Hide Option</button>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
-      <div class="form-group">
-        <div *ngIf="showImageChange">
-          <div class = "fileuploadbuttons">
-            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
-            <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
-            <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
-          </div>
+  <div class="simpleBorder">
+    <div class="push-down">
+      <ul>
+        <li>
+          <button class="viewButton" (click)="initAboutModal()">View Your Information</button>
+        </li>
+      </ul>
+      <br>
+      <img class="profilepageimage" src='#fileInput' />
+    </div>
+    <br>
+    <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
+    <button class="button2" (click)="hideOption()">Hide Option</button>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
+    <div class="form-group">
+      <div *ngIf="showImageChange">
+        <div class="fileuploadbuttons">
+          <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+          <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+          <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
+            <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+          </button>
         </div>
       </div>
-      <div class = "infoSection">
+    </div>
+    <div class="infoSection">
       <label>Day of Birth:</label>
       <br/>
       <label>Allegiance: </label>
       <br/>
       <label>About: </label>
-      </div>
+    </div>
+  </div>
 </div>
 
 
 <div class='rightColumn'>
   <app-feed></app-feed>
 </div>
-    
+
 
 
 
@@ -38,12 +46,12 @@
 
 
 
-  <!-- <div class="form-group">
+<!-- <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
   </div> -->
-  
-  <!-- <div class='feed'>
+
+<!-- <div class='feed'>
       <h3>Your Galactic Feed</h3>
       <span style='margin-left: 80%'><button (click) = "initNewPostModal()"><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'>&nbsp;new post</button></span><br/>
     <ul class = "post"*ngFor = 'let p of posts'>
@@ -54,6 +62,3 @@
         </li>
     </ul>
     </div> -->
-
- 
-
