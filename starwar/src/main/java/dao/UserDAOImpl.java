@@ -29,6 +29,7 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
 	@Autowired
 	private SessionFactory sesFact;
 	

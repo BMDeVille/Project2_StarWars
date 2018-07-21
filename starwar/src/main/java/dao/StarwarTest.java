@@ -1,4 +1,4 @@
-package starwar.test;
+package dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,13 +11,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import dao.DaoService;
 import models.Allegiance;
 import models.Comment;
 import models.Post;
 import models.User;
 
+@Component("test")
 public class StarwarTest {
 	@Autowired
 	private static DaoService ds;
