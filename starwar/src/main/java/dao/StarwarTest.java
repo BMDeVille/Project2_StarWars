@@ -10,16 +10,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD:starwar/src/main/java/dao/StarwarTest.java
-import org.springframework.stereotype.Component;
-
-import models.Allegiance;
-import models.Comment;
-import models.Post;
-import models.User;
-
-@Component("test")
-=======
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -32,7 +22,6 @@ import com.p2.models.User;
 
 
 @Component
->>>>>>> b8e1dede65fe101e6feaa03e979101d50f6c34b3:starwar/src/test/java/starwar/test/StarwarTest.java
 public class StarwarTest {
 	@Autowired
 	private DaoService ds;

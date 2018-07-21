@@ -29,12 +29,8 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD:starwar/src/main/java/dao/UserDAOImpl.java
-	
-=======
 	//@Autowired
 	//private SessionFactory sesFact = (SessionFactory) Main.context.getBean("sessionFactory");
->>>>>>> b8e1dede65fe101e6feaa03e979101d50f6c34b3:starwar/src/main/java/com/p2/dao/UserDAOImpl.java
 	@Autowired
 	private SessionFactory sesFact;
 	public UserDAOImpl() {
