@@ -14,12 +14,19 @@ export class ProfileService {
   curr_user: IUser;
 
   constructor() {
-
+    const image = {'iid': 1, 'image': ''};
+    const allegiance = {'aid': 1, 'allegiance': 'empire'};
+    this.curr_user = {'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': 'likes cookies',
+     'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
+      'image': image};
 
    }
 
   setCurrentUser(user: IUser) {
-    this.curr_user = user;
+    // this.curr_user = user;
+  }
 
+  getCurrentUser(): IUser {
+      return this.curr_user;
   }
 }

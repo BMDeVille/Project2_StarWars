@@ -5,6 +5,8 @@ import { PostService } from '../services/post.service';
 import { IPost } from '../db_models/post';
 import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
+import { IUser } from '../db_models/user';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-feed',
@@ -16,9 +18,11 @@ export class FeedComponent implements OnInit {
   posts: IPost[] = [];
   cp: IPost;
   toggleFlag: boolean;
-  constructor(private _modalService: ModalService, _postservice: PostService) {
+  activeUser: IUser;
+  constructor(private _modalService: ModalService, private _postservice: PostService, private _userService: ProfileService) {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
+    this.activeUser = _userService.getCurrentUser();
   }
 
   ngOnInit() {
