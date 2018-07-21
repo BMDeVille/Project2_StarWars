@@ -7,10 +7,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import dao.DaoService;
 import models.Allegiance;
@@ -18,18 +18,26 @@ import models.Comment;
 import models.Post;
 import models.User;
 
+@Component
 public class StarwarTest {
+	
 	@Autowired
 	private static DaoService ds;
 	
-	@Before
-	public void before() {
+	static User u;
+	static Post p;
+	static Allegiance al;
+	static Comment c;
+	
+	
+	@BeforeClass
+	public static void before() {
 		Date date = new Date();
-		Allegiance al = new Allegiance();
+		al = new Allegiance();
 		al.setAllegiance("a");
-		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
-		Post p = new Post("post1",new Timestamp(date.getTime()));
-		Comment c = new Comment("test comment");
+		u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
+		p = new Post("post1",new Timestamp(date.getTime()));
+		c = new Comment("test comment");
 		//Image i = new Image();
 		ds.insertUser(u);
 		ds.insertPost(p);
