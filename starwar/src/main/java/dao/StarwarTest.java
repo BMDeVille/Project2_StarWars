@@ -7,10 +7,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD:starwar/src/main/java/dao/StarwarTest.java
 import org.springframework.stereotype.Component;
 
 import models.Allegiance;
@@ -19,19 +19,35 @@ import models.Post;
 import models.User;
 
 @Component("test")
+=======
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+
+import com.p2.dao.DaoService;
+import com.p2.models.Allegiance;
+import com.p2.models.Comment;
+import com.p2.models.Post;
+import com.p2.models.User;
+
+
+@Component
+>>>>>>> b8e1dede65fe101e6feaa03e979101d50f6c34b3:starwar/src/test/java/starwar/test/StarwarTest.java
 public class StarwarTest {
 	@Autowired
-	private static DaoService ds;
-	
+	private DaoService ds;
+	public static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
 	@Before
 	public void before() {
 		Date date = new Date();
 		Allegiance al = new Allegiance();
 		al.setAllegiance("a");
-		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
+		User u = new User("test4","l1","f1","test4@test4.com","test1",new Timestamp(date.getTime()),"secans",al);
 		Post p = new Post("post1",new Timestamp(date.getTime()));
 		Comment c = new Comment("test comment");
 		//Image i = new Image();
+		context.getBean("DaoService", DaoService.class);
 		ds.insertUser(u);
 		ds.insertPost(p);
 		ds.insertComment(c);
