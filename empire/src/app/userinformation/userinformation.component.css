@@ -9,6 +9,9 @@ ul{
     color:cyan;
 }
 
+.detail-list li{
+    padding-top: 5px;
+}
 button{
     background-color: black;
     color: cyan;

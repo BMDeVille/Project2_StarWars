@@ -66,7 +66,7 @@ export class PostService {
     return this.posts;
   }
 
-  createPost(body: String, youtube: String, filepath: String) {
+  createPost(post: IPost) {
 
   }
 }

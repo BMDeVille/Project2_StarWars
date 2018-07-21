@@ -1,4 +1,4 @@
-<div class='leftColumn'>
+<!-- <div class='leftColumn'>
   <div class="simpleBorder">
     <div class="push-down">
       <ul>
@@ -11,7 +11,7 @@
     </div>
     <br>
     <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
-    <button class="button2" (click)="hideOption()">Hide Option</button>
+    <button class="button2" (click)="hideOption()">Hide Option</button>&nbsp;
     <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
     <div class="form-group">
       <div *ngIf="showImageChange">
@@ -23,28 +23,55 @@
           </button>
         </div>
       </div>
-<<<<<<< HEAD
       <div class = "infoSection">
-      <label>Day of Birth: {{activeUser.dob | date:'short'}}</label>
-=======
-    </div>
-    <div class="infoSection">
-      <label>Day of Birth:</label>
->>>>>>> 94761c7cb5a8caec2d34fb7f8bceb95cbe1e5978
+      ---------------------------------------------------<br/>
+      ---------------------------------------------------
+      <label>>>&nbsp;Day of Birth: {{activeUser.dob | date:'longDate'}}</label>
       <br/>
-      <label>Allegiance: {{activeUser.allegiance}}</label>
+      <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
       <br/>
-<<<<<<< HEAD
-      <label>About: {{activeUser.about}}</label>
+      <label>>>&nbsp;About: {{activeUser.about}}</label>
+      <br/>
+      ---------------------------------------------------<br/>
+      ---------------------------------------------------
       </div>
-=======
-      <label>About: </label>
     </div>
   </div>
->>>>>>> 94761c7cb5a8caec2d34fb7f8bceb95cbe1e5978
+</div> -->
+
+<div class='leftColumn'>
+    <div class="simpleBorder">
+        <hr class='lines'>
+        <hr class='lines'>
+    <img class="profilepageimage" src='#fileInput' /><br/>
+    <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
+    <button class="button1" (click)="initAboutModal()">View Your Information</button>
+    <div class="form-group">
+        <div *ngIf="showImageChange">
+          <div class="fileuploadbuttons">
+            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+            <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+            <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
+              <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+            </button>
+          </div>
+          <button class="button1" (click)="hideOption()">Hide Option</button>
+        </div>
+    </div>
+    <div class = "infoSection">
+        <hr class='lines'>
+        <hr class='lines'>
+        <label>>>&nbsp;Day of Birth: {{activeUser.dob | date:'longDate'}}</label>
+        <br/>
+        <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
+        <br/>
+        <label>>>&nbsp;About: {{activeUser.about}}</label>
+        <hr class='lines'>
+        <hr class='lines'>
+        
+    </div>
+  </div>
 </div>
-
-
 <div class='rightColumn'>
   <app-feed></app-feed>
 </div>

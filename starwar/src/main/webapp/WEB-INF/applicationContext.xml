@@ -14,7 +14,9 @@
 	<context:annotation-config />
 	<context:component-scan base-package="dao" />
 	<context:component-scan base-package="serlvet" />
-
+	
+	<bean name="UserDao" class="dao.UserDAOImpl" autowire="byType"/>
+	
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
 	<!-- aspect -->
