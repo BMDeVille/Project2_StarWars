@@ -1,4 +1,6 @@
-import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,19 @@ import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 export class AppComponent implements AfterViewInit {
   title = 'The Cantina';
 
-  constructor(private _cdr: ChangeDetectorRef) {
+  constructor(private _modalService: ModalService) {
     this.CountDownTimer('12/20/2019 5:35 PM', 'newcountdown');
   }
 
   ngAfterViewInit() {
-    this._cdr.detectChanges();
+    setTimeout(_ => this.initLoginModal());
+  }
+
+  initLoginModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.init(LoginComponent, inputs, {});
   }
 
 CountDownTimer(dt, id) {

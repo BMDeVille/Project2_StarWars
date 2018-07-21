@@ -10,6 +10,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.p2.dao.DaoService;
 import com.p2.models.Allegiance;
@@ -18,19 +21,22 @@ import com.p2.models.Post;
 import com.p2.models.User;
 
 
+@Component
 public class StarwarTest {
 	@Autowired
-	private static DaoService ds;
-	
+	private DaoService ds;
+	public static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
 	@Before
 	public void before() {
 		Date date = new Date();
 		Allegiance al = new Allegiance();
 		al.setAllegiance("a");
-		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
+		User u = new User("test4","l1","f1","test4@test4.com","test1",new Timestamp(date.getTime()),"secans",al);
 		Post p = new Post("post1",new Timestamp(date.getTime()));
 		Comment c = new Comment("test comment");
 		//Image i = new Image();
+		context.getBean("DaoService", DaoService.class);
 		ds.insertUser(u);
 		ds.insertPost(p);
 		ds.insertComment(c);

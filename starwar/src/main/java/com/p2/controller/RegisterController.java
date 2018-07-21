@@ -38,7 +38,7 @@ public class RegisterController {
 		Allegiance al1 = new Allegiance();
 		al1.setAllegiance("a");
 		System.out.println("check1");
-		User test = new User("test2","l1","f1","test2@test1.com","test1",new Timestamp(d.getTime()),"secans",al1);
+		User test = new User("test11","l1","f1","test2@test2.com","test11",new Timestamp(d.getTime()),"secans",al1);
 		System.out.println("check2");
 		ds.insertUser(test);
 		System.out.println("check3");

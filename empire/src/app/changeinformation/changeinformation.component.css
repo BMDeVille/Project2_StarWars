@@ -30,6 +30,13 @@ button{
     margin-top: 2%;
 }
 
+.button:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
+}
+
 input{
     background-color: black;
 }

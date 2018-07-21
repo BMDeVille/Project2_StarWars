@@ -1,29 +1,33 @@
-.feed{
-    top: 200px;
-    width: 600px;
-    height: 100px;
-}
-
 .profilepageimage{
    width: 200px;
    height: 200px;
-   margin-left: 11%;
 }
 
-.infoSection{
-    right: 190px;
-    top: 10px;
-    bottom: 45px;
-    background-color: black;
-    color: cyan;
+.leftColumn{
+    float:left;
+    width:15%;
+    clear:left;
+}
+
+.simpleBorder {
+    background: black;
     border: 3px solid;
     border-color: blue;
     padding: 10px;
+    width: 150%;
     margin: 10px;
-    width: 200px;
-    height: 250px;
-    margin-left: 11%;
-    margin-top: -20%;
+    height: 700px;
+}
+
+.rightColumn{
+    float:right;
+    width:85%;
+    clear:right;
+}
+
+.infoSection{
+    background-color: black;
+    color: cyan;
 }
 
 ul {
@@ -33,9 +37,6 @@ ul {
     width: 100px;
     /* background-color: black; */
     color: cyan;
-    position: relative;
-    margin-left: 1%;
-    margin-right: 89%;   
 }
 
 li a {
@@ -51,14 +52,16 @@ li a:hover {
     color: aquamarine;
 }
 
+.push-down{
+    margin-top: 100px;
+}
+
 .button1{
     background-color: black;
     color: cyan;
     border: 3px solid;
     border-color: blue;
     padding: 10px;
-    margin: 10px;
-    margin-left: 11%;
 }
 
 .button2{
@@ -67,8 +70,6 @@ li a:hover {
     border: 3px solid;
     border-color: blue;
     padding: 10px;
-    margin: 10px;
-    margin-left: 0%;
 }
 
 .viewButton{
@@ -78,11 +79,12 @@ li a:hover {
         border-color: blue;
 }
 
-.fileuploadbuttons{
-    margin-left: 11%;
-    margin-top: -20%;
+.button1:hover, .button2:hover, .viewButton:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
 }
-
 
 .feed {
     background-color: black;
@@ -91,12 +93,6 @@ li a:hover {
     border-color: blue;
     padding: 10px;
     margin: 10px;
-    width: 65%;
-    margin-top: -10%;
-    margin-left:31%;
-    margin-right: 15%;
-    overflow: auto;
-    height: 500px;
 }
 
 .feed ul{
@@ -106,10 +102,6 @@ li a:hover {
     border-bottom: 3px solid;
     border-bottom-color: blue;
 }
-.post{
-    width: 100%;
-}
-
 
 .feed button{
     background-color: black;
@@ -117,20 +109,20 @@ li a:hover {
 }
 
 ::-webkit-scrollbar {
-width: 12px;
+    width: 12px;
     height: 12px;
-    }
+}
     
-    ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     border: 1px solid blue;
     border-radius: 10px;
-    }
+}
     
-    ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: blue;  
     border-radius: 10px;
-    }
+}
     
-    ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: blue;  
-    }
+}

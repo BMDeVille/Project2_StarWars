@@ -4,6 +4,10 @@ import { IUser } from '../db_models/user';
 import { IComment } from '../db_models/comment';
 import { IAllegiance } from '../db_models/allegiance';
 import { IImage } from '../db_models/image';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +15,19 @@ import { IImage } from '../db_models/image';
 export class PostService {
     comment: IComment[];
     posts: IPost[] = [];
-    user: IUser;
+    activeUser: IUser;
     allegiance: IAllegiance;
     image: IImage;
-  constructor() {
+  constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
+    this.activeUser = _userService.curr_user;
     this.image = {'iid': 1, 'image': ''};
     this.allegiance = {'aid': 1, 'allegiance': 'empire'};
     this.comment = [{'cid': 1, 'body': '... we have cookies.', 'likes': null}, {'cid': 2, 'body': 'I LOVE cookies!', 'likes': null}];
-    this.user = {'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': '',
-     'sec_ans': '', 'dob': new Date(), 'allegiance': this.allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
-      'image': this.image};
+    // this.activeUser = {'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': '',
+    //  'sec_ans': '', 'dob': new Date(), 'allegiance': this.allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
+    //   'image': this.image};
     this.posts = [{'pid': 1, 'body': 'Welcome to the Empire', 'youtube': '', 'created': new Date() ,
-     'comments': this.comment, 'likes': [this.user], 'images': null},
+     'comments': this.comment, 'likes': [this.activeUser], 'images': null},
     {'pid': 2, 'body': 'Test post', 'youtube': '', 'created': new Date() , 'comments': null, 'likes': null, 'images': null},
     {'pid': 3, 'body': 'Test post 3', 'youtube': '', 'created': new Date() , 'comments': null, 'likes': null, 'images': null},
     {'pid': 4, 'body': 'Test post 4', 'youtube': '', 'created': new Date() , 'comments': null, 'likes': null, 'images': null},
@@ -55,7 +60,9 @@ export class PostService {
   }
 
   getFeed(username: String): IPost[] {
-
+    // const _url = 'http://localhost:9005/starwar/feed.ms';
+    // const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+    // obs.subscribe(data => this.posts);
     return this.posts;
   }
 
