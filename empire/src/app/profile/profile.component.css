@@ -1,31 +1,33 @@
-.feed{
-    
-}
-
-
 .profilepageimage{
    width: 200px;
    height: 200px;
-
 }
 
 .leftColumn{
     float:left;
-    width:40%;
+    width:15%;
     clear:left;
+}
+
+.simpleBorder {
+    background: black;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    width: 150%;
+    margin: 10px;
+    height: 700px;
 }
 
 .rightColumn{
     float:right;
-    width:60%;
+    width:85%;
     clear:right;
 }
 
 .infoSection{
     background-color: black;
     color: cyan;
-    border: 3px solid;
-    border-color: blue;
 }
 
 ul {
@@ -48,6 +50,10 @@ li a {
 li a:hover {
     background-color: #555;
     color: aquamarine;
+}
+
+.push-down{
+    margin-top: 100px;
 }
 
 .button1{
@@ -73,10 +79,12 @@ li a:hover {
         border-color: blue;
 }
 
-.fileuploadbuttons{
-    
+.button1:hover, .button2:hover, .viewButton:hover {
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
 }
-
 
 .feed {
     background-color: black;
@@ -94,10 +102,6 @@ li a:hover {
     border-bottom: 3px solid;
     border-bottom-color: blue;
 }
-.post{
-    
-}
-
 
 .feed button{
     background-color: black;
