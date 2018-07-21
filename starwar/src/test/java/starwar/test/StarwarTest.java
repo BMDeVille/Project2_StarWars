@@ -7,16 +7,16 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dao.DaoService;
-import models.Allegiance;
-import models.Comment;
-import models.Post;
-import models.User;
+import com.p2.dao.DaoService;
+import com.p2.models.Allegiance;
+import com.p2.models.Comment;
+import com.p2.models.Post;
+import com.p2.models.User;
+
 
 public class StarwarTest {
 	@Autowired
