@@ -32,7 +32,7 @@ public class LoginController {
 	public LoginController() {
 	}
 	
-	//final static Logger logger = Logger.getLogger(LoginAndRegController.class);
+	final static Logger logger = Logger.getLogger(LoginController.class);
 
 	@Autowired
 	private  DaoService ds;
@@ -50,14 +50,14 @@ public class LoginController {
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
-//				logger.info("user: " + u1.getUsername() + " login ");
+				logger.info("user: " + u1.getUsername() + " login ");
 				//res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
 				return u1;
 			}	
 		}
 		else {
 			System.out.println("no existing username");
-			//logger.info("no existing username: " + username);
+			logger.info("no existing username: " + username);
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
 		}

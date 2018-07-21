@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ import com.p2.models.User;
 
 @Controller("RegisterController")
 public class RegisterController {
-
+	final static Logger logger = Logger.getLogger(RegisterController.class);
 	public RegisterController() {
 	}
 
@@ -74,7 +75,7 @@ public class RegisterController {
 		Allegiance al = new Allegiance();
 		al.setAllegiance("aa");
 		User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
-		// logger.info("user register: " + user1.getUsername() + " " + user1.getFname()
+		logger.info("user register: " + user1.getUsername() + " " + user1.getFname());
 		// + " "+ user1.getLname());
 		//ds.insertUser(user1);
 

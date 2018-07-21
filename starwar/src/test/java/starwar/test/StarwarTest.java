@@ -24,19 +24,19 @@ import com.p2.models.User;
 @Component
 public class StarwarTest {
 	@Autowired
-	private DaoService ds;
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+	private DaoService ds= context.getBean("DaoService", DaoService.class);
 
 	@Before
 	public void before() {
 		Date date = new Date();
 		Allegiance al = new Allegiance();
 		al.setAllegiance("a");
-		User u = new User("test4","l1","f1","test4@test4.com","test1",new Timestamp(date.getTime()),"secans",al);
+		ds.insertAllegiance(al);
+		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
 		Post p = new Post("post1",new Timestamp(date.getTime()));
 		Comment c = new Comment("test comment");
 		//Image i = new Image();
-		context.getBean("DaoService", DaoService.class);
 		ds.insertUser(u);
 		ds.insertPost(p);
 		ds.insertComment(c);
@@ -51,7 +51,7 @@ public class StarwarTest {
 		u1.setAbout("test2");
 		ds.updateUser(u1);
 		List<User> u2 = ds.selectAllUser();
-		assertEquals("test2",u2.get(0).getAbout());
+		assertEquals("test2",u2.get(1).getAbout());
 		assertNotNull(u2.get(0).getId());
 		assertNotNull(u2.get(0));
 		assertNotNull(ds.selectByFirstName("f1"));
@@ -96,6 +96,12 @@ public class StarwarTest {
 		ds.deletePost(p1);
 		List<Post> p3 = ds.selectAllPost();
 		assertEquals(0,p3.size());
+	}
+	@Test
+	public void returnAllegiance() {
+		List<Allegiance> pt = ds.selectAllAllegiance();
+		assertNotNull(pt);
+		assertEquals(2,pt.size());
 	}
 //	@Test
 //	public void returnImage() {

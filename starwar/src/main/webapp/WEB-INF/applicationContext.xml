@@ -18,7 +18,7 @@
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
 	<!-- aspect -->
-<!-- 	<aop:aspectj-autoproxy/> -->
+	<aop:aspectj-autoproxy/> 
 	
 
 	<!-- DATASOURCE -->
@@ -38,7 +38,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
