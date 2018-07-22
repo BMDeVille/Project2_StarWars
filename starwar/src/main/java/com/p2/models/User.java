@@ -60,7 +60,7 @@ public class User {
 	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
 	private List<Post> postList;
 	
-	@ManyToMany( fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -146,7 +146,7 @@ public class User {
 	}
 	
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, String about, Image image, List<Post> postList, List<User> followers,
+			String securityAnswer, String about, Image image, List<User> followers,
 			Allegiance allegiance, List<Comment> comments) {
 		super();
 		this.id = id;
@@ -159,7 +159,6 @@ public class User {
 		this.securityAnswer = securityAnswer;
 		this.about = about;
 		this.image = image;
-		this.postList = postList;
 		this.followers = followers;
 		this.allegiance = allegiance;
 	}
@@ -208,10 +207,6 @@ public class User {
 		return about;
 	}
 
-	public List<Post> getPostList() {
-		return postList;
-	}
-
 	public List<User> getFollowers() {
 		return followers;
 	}
@@ -258,10 +253,6 @@ public class User {
 
 	public void setAbout(String about) {
 		this.about = about;
-	}
-
-	public void setPostList(List<Post> postList) {
-		this.postList = postList;
 	}
 
 	public void setFollowers(List<User> followers) {

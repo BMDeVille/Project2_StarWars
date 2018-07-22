@@ -7,6 +7,7 @@ import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
 import { IUser } from '../db_models/user';
 import { ProfileService } from '../services/profile.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -19,7 +20,8 @@ export class FeedComponent implements OnInit {
   cp: IPost;
   toggleFlag: boolean;
   activeUser: IUser;
-  constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService) {
+  constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
+    private router: Router) {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
@@ -35,8 +37,21 @@ export class FeedComponent implements OnInit {
     this._modalService.init(PostComponent, inputs, {});
   }
 
+  setViewUser() {
+    console.log((<HTMLElement>event.target).parentElement.id);
+    // get post by id to get user
+    const post = this._postservice.getPostById(+(<HTMLElement>event.target).parentElement.id);
+    console.log(post);
+    // assign user to viewUser
+    this._profileService.setViewUser(post.owner);
+    console.log(post.owner);
+    this.router.navigateByUrl('/profile');
+  }
+
   toggleComments(event: { target: HTMLInputElement; }) {
-    if (!this.toggleFlag) {
+    console.log(event.target.parentElement.nextSibling);
+    // if (!this.toggleFlag) {
+    if (event.target.parentElement.nextSibling == null) {
     const commentId = +event.target.parentElement.id; // + casts to number
     for (let i = 0; i < this.posts.length; ++i) {
         if (this.posts[i].pid === commentId) {

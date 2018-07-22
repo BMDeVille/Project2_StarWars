@@ -33,7 +33,7 @@ public class Comment {
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
 	private User poster;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -47,27 +47,30 @@ public class Comment {
 	}
 
 	//no id no likes
-	public Comment(String body, Post post) {
+	public Comment(String body, Post post, User poster) {
 		super();
 		this.body = body;
 		this.post = post;
+		this.poster = poster;
 	}
 	
 	//no id
-	public Comment(String body, List<User> likes, Post post) {
+	public Comment(String body, List<User> likes, Post post, User poster) {
 		super();
 		this.body = body;
 		this.likes = likes;
 		this.post = post;
+		this.poster = poster;
 	}
 	
 	//all members
-	public Comment(int cid, String body, List<User> likes, Post post) {
+	public Comment(int cid, String body, List<User> likes, Post post, User poster) {
 		super();
 		this.cid = cid;
 		this.body = body;
 		this.likes = likes;
 		this.post = post;
+		this.poster = poster;
 	}
 
 	public int getId() {
