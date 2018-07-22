@@ -13,7 +13,7 @@ export class UserService {
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
 
   login() {
-    const _url = 'http://localhost:9005/starwar/login.ms';
+    const _url = 'http://localhost:9005/starwar/login.app';
     const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
       map(resp => resp as IUser)
     );
