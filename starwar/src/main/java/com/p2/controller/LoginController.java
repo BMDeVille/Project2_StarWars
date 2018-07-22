@@ -37,7 +37,7 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
-	@GetMapping(value="/login.app")
+	@PostMapping(value="/login.app")
 	public  @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
