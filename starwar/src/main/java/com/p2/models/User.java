@@ -17,6 +17,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -59,7 +60,7 @@ public class User {
 	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
 	private List<Post> postList;
 	
-	@OneToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
