@@ -26,6 +26,12 @@ export class UserService {
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
     // const options = new RequestOptions();
     // options.headers = headers;
+
+    // send username and password to controller
     return this._httpServ.post(this.url, {username: username, password: password}).pipe(map(resp => resp as IUser));
+  }
+
+  regUser(reg: any): Observable<IUser> {
+    return this._httpServ.post(this.url, {reg}).pipe(map(resp => resp as IUser));
   }
 }

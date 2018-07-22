@@ -5,6 +5,7 @@ import { IAllegiance } from './allegiance';
 export class IUser {
     id: number;
     username: string;
+    password: string;
     fname: string;
     lname: string;
     email: string;
@@ -19,6 +20,7 @@ export class IUser {
     constructor (user: IUser) {
         this.id = user.id;
         this.username = user.username;
+        this.password = user.password;
         this.fname = user.fname;
         this.lname = user.lname;
         this.email = user.email;
