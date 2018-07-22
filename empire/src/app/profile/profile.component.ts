@@ -29,14 +29,13 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService,
-    private _userService: ProfileService) {
+    private _profileService: ProfileService) {
     this.createForm();
     this.showImageChange = false;
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
-    console.log(_userService.curr_user);
-    this.activeUser = _userService.getCurrentUser();
-    this.viewUser = _userService.getViewUser();
+    this.activeUser = _profileService.getCurrentUser();
+    this.viewUser = _profileService.getViewUser();
   }
 
   initAboutModal() {
