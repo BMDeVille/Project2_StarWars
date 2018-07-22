@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   cp: IPost;
   toggleFlag: boolean;
   activeUser: IUser;
+  viewUser: IUser;
 
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService,
@@ -34,7 +35,8 @@ export class ProfileComponent implements OnInit {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
     console.log(_userService.curr_user);
-    this.activeUser = _userService.curr_user;
+    this.activeUser = _userService.getCurrentUser();
+    this.viewUser = _userService.getViewUser();
   }
 
   initAboutModal() {

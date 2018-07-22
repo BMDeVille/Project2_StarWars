@@ -48,7 +48,7 @@ public class ResetPasswordController {
 				u1.setPassword(newPass);
 				ds.updateUser(u1);
 				res.getWriter().write(new ObjectMapper().writeValueAsString("success"));
-				// logger.info(u1.getUsername() + " changed password.");
+				 logger.info(u1.getUsername() + " changed password.");
 				// return something
 			}
 		} else {

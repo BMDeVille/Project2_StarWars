@@ -7,6 +7,7 @@ export class IPost {
     body: string;
     youtube: string;
     created: Date;
+    owner: IUser;
     comments: IComment[];
     likes: IUser[];
     images: IImage[];
@@ -16,6 +17,7 @@ export class IPost {
         this.body = post.body;
         this.youtube = post.youtube;
         this.created = post.created;
+        this.owner = post.owner;
         this.comments = post.comments;
         this.likes = post.likes;
         this.images = post.images;

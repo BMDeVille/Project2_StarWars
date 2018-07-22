@@ -39,7 +39,7 @@ export class PostComponent implements OnInit {
     // need to decide how to send fileList to back end with IImage
     const newImage = {'iid': 1, 'image': ''};
     this.newPost = {'pid': 1, 'body': body, 'youtube': youtube, 'created': new Date() ,
-    'comments': null, 'likes': null, 'images': [newImage]};
+    'owner' : this.activeUser, 'comments': null, 'likes': null, 'images': [newImage]};
     this.postService.createPost(this.newPost);
     this._modalService.destroy();
   }
