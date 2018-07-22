@@ -60,7 +60,7 @@ public class User {
 	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
 	private List<Post> postList;
 	
-	@ManyToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany( fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
 	
 	@OneToOne(fetch = FetchType.LAZY)
