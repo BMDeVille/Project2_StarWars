@@ -12,6 +12,7 @@ export class ProfileService {
 
   users: IUser[] = [];
   curr_user: IUser;
+  view_user: IUser;
 
   constructor() {
     const image = {'iid': 1, 'image': ''};
@@ -19,7 +20,6 @@ export class ProfileService {
     this.curr_user = {'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': 'likes cookies',
      'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
       'image': image};
-
    }
 
   setCurrentUser(user: IUser) {
@@ -27,6 +27,10 @@ export class ProfileService {
   }
 
   getCurrentUser(): IUser {
-      return this.curr_user;
+    return this.curr_user;
+  }
+
+  getViewUser(): IUser {
+    return this.view_user;
   }
 }

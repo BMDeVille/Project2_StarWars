@@ -19,10 +19,10 @@ export class FeedComponent implements OnInit {
   cp: IPost;
   toggleFlag: boolean;
   activeUser: IUser;
-  constructor(private _modalService: ModalService, private _postservice: PostService, private _userService: ProfileService) {
+  constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService) {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
-    this.activeUser = _userService.getCurrentUser();
+    this.activeUser = _profileService.getCurrentUser();
   }
 
   ngOnInit() {

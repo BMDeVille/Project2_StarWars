@@ -5,6 +5,7 @@
 <ul *ngFor = 'let p of posts'>
   <li id='{{p.pid}}'><span>>>&nbsp;</span>{{p.body}}&nbsp;&nbsp;
     {{p.created|date:'short'}}&nbsp;&nbsp;
+    <a>{{p.owner.fname}} {{p.owner.lname}}</a>
     <button (click)="likePost($event)"><img src = 'assets/images/1485477009-like_78561.png' width = '30px' height = '30px'></button>[{{p.likes != null? p.likes.length:0}}]&nbsp;&nbsp;
     <a (click)="toggleComments($event)">comments&nbsp;</a>[{{p.comments != null? p.comments.length:0}}]
     </li>
