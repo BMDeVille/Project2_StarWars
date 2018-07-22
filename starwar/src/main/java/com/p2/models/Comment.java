@@ -33,13 +33,13 @@ public class Comment {
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY)
 	private User poster;
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
 	
-	@ManyToOne(targetEntity=Post.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity=Post.class, fetch=FetchType.LAZY)
 	private Post post;
 	
 	public Comment() {

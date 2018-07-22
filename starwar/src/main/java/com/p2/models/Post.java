@@ -42,7 +42,7 @@ public class Post {
 	@OneToMany(mappedBy="cid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
 	
 	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)

@@ -42,7 +42,6 @@ public class StarwarTest {
 	public void returnUsers() {
 		List<Allegiance> pt = ds.selectAllAllegiance();
 		User u = new User("test1","f1","l1","test1@test.com","test1",new Timestamp(date.getTime()),"secans",pt.get(0));
-		u.setId(1);
 		ds.insertUser(u);
 		List<User> ut = ds.selectAllUser();
 		assertNotNull(ut);
@@ -61,7 +60,8 @@ public class StarwarTest {
 		ds.deleteUser(u1);
 		List<User> ut1 = ds.selectAllUser();
 		assertEquals(1,ut1.size());
-
+		ds.deleteUser(ut1.get(0));
+		assertEquals(0, ds.selectAllUser().size());
 	}
 
 //	@Test

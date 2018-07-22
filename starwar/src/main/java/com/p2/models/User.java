@@ -63,7 +63,7 @@ public class User {
 	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	private Allegiance allegiance;
 	
 	//no args
