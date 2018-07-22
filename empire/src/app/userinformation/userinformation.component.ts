@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../services/modal.service';
 import { ChangeinformationComponent } from '../changeinformation/changeinformation.component';
+import { ProfileService } from '../services/profile.service';
+import { IUser } from '../db_models/user';
 
 @Component({
   selector: 'app-userinformation',
@@ -8,8 +10,10 @@ import { ChangeinformationComponent } from '../changeinformation/changeinformati
   styleUrls: ['./userinformation.component.css']
 })
 export class UserinformationComponent implements OnInit {
-
-  constructor( private _modal: ModalService) { }
+  activeUser: IUser;
+  constructor( private _modal: ModalService, private userService: ProfileService) {
+    this.activeUser = userService.getCurrentUser();
+   }
 
   ngOnInit() {
   }

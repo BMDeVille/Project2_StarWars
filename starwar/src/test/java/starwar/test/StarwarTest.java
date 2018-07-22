@@ -26,7 +26,7 @@ public class StarwarTest {
 	@Autowired
 	public static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	private DaoService ds= context.getBean("DaoService", DaoService.class);
-
+	
 	@Before
 	public void before() {
 		Date date = new Date();

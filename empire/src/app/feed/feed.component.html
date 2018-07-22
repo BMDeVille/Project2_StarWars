@@ -1,6 +1,6 @@
 
 <div class='feed'>
-  <h3>Your Galactic Feed</h3>
+  <h3>{{activeUser.fname}} {{activeUser.lname}}'s Galactic Feed</h3>
   <span style='margin-left: 80%'><button (click) = initNewPostModal()><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'>&nbsp;new post</button></span><br/>
 <ul *ngFor = 'let p of posts'>
   <li id='{{p.pid}}'><span>>>&nbsp;</span>{{p.body}}&nbsp;&nbsp;
