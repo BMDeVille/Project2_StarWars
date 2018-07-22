@@ -13,6 +13,8 @@ export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   private url = 'http://localhost:9005/starwar/login.app';
+  private urlT = 'http://localhost:9005/starwar/createAccount.app';
+
   // login() {
   //   const _url = 'http://localhost:9005/starwar/login.app';
   //   const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
@@ -32,6 +34,6 @@ export class UserService {
   }
 
   regUser(reg: any): Observable<IUser> {
-    return this._httpServ.post(this.url, {reg}).pipe(map(resp => resp as IUser));
+    return this._httpServ.post(this.urlT, {reg}).pipe(map(resp => resp as IUser));
   }
 }
