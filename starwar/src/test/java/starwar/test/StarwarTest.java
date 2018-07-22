@@ -26,24 +26,11 @@ public class StarwarTest {
 	private DaoService ds= context.getBean("DaoService", DaoService.class);
 	public static Date date = new Date();
 
-//	@Before
-//	public void before() {
-//		Allegiance al = new Allegiance();
-//		al.setAllegiance("a");
-//		ds.insertAllegiance(al);
-//		User u = new User("test1","l1","f1","test1@test1.com","test1",new Timestamp(date.getTime()),"secans",al);
-//		Post p = new Post("post1",new Timestamp(date.getTime()));
-//		Comment c = new Comment("test comment");
-//		//Image i = new Image();
-//		ds.insertUser(u);
-//		ds.insertPost(p);
-//		ds.insertComment(c);
-//	}
-	
+
 	@Test
 	public void returnUsers() {
 		List<Allegiance> pt = ds.selectAllAllegiance();
-		User u = new User("test1","f1","l1","test1@test.com","test1",new Timestamp(date.getTime()),"secans",pt.get(0));
+		User u = new User("test11","f1","l1","test11@test.com","test11",new Timestamp(date.getTime()),"secans",pt.get(0));
 		ds.insertUser(u);
 		List<User> ut = ds.selectAllUser();
 		assertNotNull(ut);
@@ -51,7 +38,7 @@ public class StarwarTest {
 		User u1 = ut.get(0);
 		u1.setAbout("test2");
 		ds.updateUser(u1);
-		ds.insertUser(new User("test3","f2","l2","test3@test.com","test3",new Timestamp(date.getTime()),"secans",pt.get(1)));
+		ds.insertUser(new User("test22","f2","l2","test22@test.com","test3",new Timestamp(date.getTime()),"secans",pt.get(1)));
 		User u2 = ds.selectByUsername("test1");
 		assertEquals("test2",u2.getAbout());
 		assertNotNull(u2.getId());
