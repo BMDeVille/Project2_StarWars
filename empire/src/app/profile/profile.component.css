@@ -1,11 +1,14 @@
 .profilepageimage{
-   width: 200px;
-   height: 200px;
+   width: 350px;
+   height: 350px;
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .leftColumn{
     float:left;
-    width:15%;
+    width:18%;
     clear:left;
 }
 
@@ -19,9 +22,12 @@
     height: 700px;
 }
 
+.lines{
+    border: solid 1px cyan;
+}
 .rightColumn{
     float:right;
-    width:85%;
+    width:82%;
     clear:right;
 }
 
@@ -62,21 +68,7 @@ li a:hover {
     border: 3px solid;
     border-color: blue;
     padding: 10px;
-}
-
-.button2{
-    background-color: black;
-    color: cyan;
-    border: 3px solid;
-    border-color: blue;
-    padding: 10px;
-}
-
-.viewButton{
-        background-color: black;
-        color: cyan;
-        border: 3px solid;
-        border-color: blue;
+    font-weight: bold;
 }
 
 .button1:hover, .button2:hover, .viewButton:hover {
@@ -86,7 +78,7 @@ li a:hover {
     border-bottom-color: blue;
 }
 
-.feed {
+/* .feed {
     background-color: black;
     color: cyan;
     border: 3px solid;
@@ -106,7 +98,7 @@ li a:hover {
 .feed button{
     background-color: black;
     border: none;
-}
+} */
 
 ::-webkit-scrollbar {
     width: 12px;

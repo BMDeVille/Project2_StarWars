@@ -1,4 +1,4 @@
-<div class='leftColumn'>
+<!-- <div class='leftColumn'>
   <div class="simpleBorder">
     <div class="push-down">
       <ul>
@@ -11,7 +11,7 @@
     </div>
     <br>
     <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
-    <button class="button2" (click)="hideOption()">Hide Option</button>
+    <button class="button2" (click)="hideOption()">Hide Option</button>&nbsp;
     <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
     <div class="form-group">
       <div *ngIf="showImageChange">
@@ -26,13 +26,24 @@
       <div class = "infoSection">
       <label>Day of Birth: {{activeUser.dob | date:'short'}}</label>
       <br/>
-      <label>Allegiance: {{activeUser.allegiance}}</label>
+      <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
       <br/>
-      <label>About: {{activeUser.about}}</label>
-      </div>
 </div>
 
 
+            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+        <hr class='lines'>
+        <label>>>&nbsp;Day of Birth: {{activeUser.dob | date:'longDate'}}</label>
+        <br/>
+        <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
+        <br/>
+        <label>>>&nbsp;About: {{activeUser.about}}</label>
+        <hr class='lines'>
+        <hr class='lines'>
+        
+    </div>
+  </div>
+</div>
 <div class='rightColumn'>
   <app-feed></app-feed>
 </div>

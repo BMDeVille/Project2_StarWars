@@ -1,11 +1,12 @@
 <div>
-<h2>_____'s Account Information</h2>
-<ul>
-    <li>Name:</li>
-    <li>Username:</li>
-    <li>Email:</li>
-    <li>Birthday:</li>
-    <li>Description:</li>
+<h2>{{activeUser.fname}} {{activeUser.lname}}'s Account Information</h2>
+<ul class='detail-list'>
+    <li>Name:  {{activeUser.fname}} {{activeUser.lname}}</li>
+    <li>Username:  {{activeUser.username}}</li>
+    <li>Email:  {{activeUser.email}}</li>
+    <li>Birthday:  {{activeUser.dob | date:'shortDate'}}</li>
+    <li>Description:  {{activeUser.description}}</li>
+    <li>Join Date:</li>
     <li>Years of Service:</li>
 
   </ul>
