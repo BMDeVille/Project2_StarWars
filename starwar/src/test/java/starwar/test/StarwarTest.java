@@ -7,6 +7,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,6 @@ import com.p2.models.Allegiance;
 import com.p2.models.Comment;
 import com.p2.models.Post;
 import com.p2.models.User;
-
 
 @Component
 public class StarwarTest {

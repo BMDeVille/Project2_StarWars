@@ -1,25 +1,40 @@
-
-<div class='leftColumn'>
-    <div class="simpleBorder">
-        <hr class='lines'>
-        <hr class='lines'>
-    <img class="profilepageimage" src='#fileInput' /><br/>
-    <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
-    <button class="button1" (click)="initAboutModal()">View Your Information</button>
-    <div class="form-group">
-        <div *ngIf="showImageChange">
-          <div class="fileuploadbuttons">
-            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
-            <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
-            <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
-              <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
-            </button>
-          </div>
-          <button class="button1" (click)="hideOption()">Hide Option</button>
-        </div>
+<<<<<<< HEAD
+=======
+<!-- <div class='leftColumn'>
+  <div class="simpleBorder">
+    <div class="push-down">
+      <ul>
+        <li>
+          <button class="viewButton" (click)="initAboutModal()">View Your Information</button>
+        </li>
+      </ul>
+      <br>
+      <img class="profilepageimage" src='#fileInput' />
     </div>
-    <div class = "infoSection">
-        <hr class='lines'>
+    <br>
+    <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
+    <button class="button2" (click)="hideOption()">Hide Option</button>&nbsp;
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
+    <div class="form-group">
+      <div *ngIf="showImageChange">
+        <div class="fileuploadbuttons">
+          <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
+          <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">Clear File</button>
+          <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit
+            <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+          </button>
+        </div>
+      </div>
+      <div class = "infoSection">
+      <label>Day of Birth: {{activeUser.dob | date:'short'}}</label>
+      <br/>
+      <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
+      <br/>
+</div>
+
+>>>>>>> 44e580947cc4621b9e359e1bf338f83185e2be1e
+
+            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
         <hr class='lines'>
         <label>>>&nbsp;Day of Birth: {{viewUser.dob | date:'longDate'}}</label>
         <br/>
