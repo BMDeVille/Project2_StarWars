@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   toggleFlag: boolean;
   activeUser: IUser;
   viewUser: IUser;
+  imageSrc: string;
 
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService,
@@ -36,6 +37,11 @@ export class ProfileComponent implements OnInit {
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
     this.viewUser = _profileService.getViewUser();
+    if (this.viewUser.image != null) {
+      this.imageSrc = this.viewUser.image.image;
+    } else {
+      this.imageSrc = 'assets/images/1.jpg';
+    }
   }
 
   initAboutModal() {

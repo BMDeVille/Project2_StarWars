@@ -1,6 +1,8 @@
 import { Component, AfterViewInit} from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { ModalService } from './services/modal.service';
+import { ProfileService } from './services/profile.service';
+import { IUser } from './db_models/user';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,17 @@ import { ModalService } from './services/modal.service';
 export class AppComponent implements AfterViewInit {
   title = 'The Cantina';
 
-  constructor(private _modalService: ModalService) {
+  faviconSrc: string;
+  constructor(private _modalService: ModalService, private _profileService: ProfileService) {
     this.CountDownTimer('12/20/2019 5:35 PM', 'newcountdown');
+    this.faviconSrc = 'http://icons.iconarchive.com/icons/sensibleworld/starwars/48/Death-Star-icon.png';
   }
 
   ngAfterViewInit() {
     setTimeout(_ => this.initLoginModal());
+  }
+
+  flipFavicon() {
   }
 
   initLoginModal() {

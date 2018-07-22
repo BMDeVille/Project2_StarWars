@@ -38,8 +38,18 @@ import { ChangeinformationComponent } from './changeinformation/changeinformatio
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'inbox', component: InboxComponent}
-    ]), HttpClientModule,
+    ]),
+     HttpClientModule,
   ],
+  // imports: [
+  //   BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
+  //     {path: '', redirectTo: 'feed', pathMatch: 'full'},
+  //     {path: 'feed', component: FeedComponent},
+  //     {path: 'profile', component: ProfileComponent},
+  //     {path: 'inbox', component: InboxComponent}
+  //   ], {onSameUrlNavigation: 'reload'}),
+  //    HttpClientModule,
+  // ],
   entryComponents: [
     LoginComponent,
     SignupComponent,

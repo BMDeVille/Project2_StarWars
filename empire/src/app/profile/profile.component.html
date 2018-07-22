@@ -1,19 +1,13 @@
-<<<<<<< HEAD
-=======
-<!-- <div class='leftColumn'>
+<div class='leftColumn'>
   <div class="simpleBorder">
-    <div class="push-down">
-      <ul>
-        <li>
-          <button class="viewButton" (click)="initAboutModal()">View Your Information</button>
-        </li>
-      </ul>
-      <br>
-      <img class="profilepageimage" src='#fileInput' />
-    </div>
+      <hr class='lines'>
+      <h3 class='profilename'>{{viewUser.fname}} {{viewUser.lname}}</h3>
+      <hr class='lines'>
+      <img class="profilepageimage" src="{{imageSrc}}"/><!--src='#fileInput'-->
     <br>
     <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
-    <button class="button2" (click)="hideOption()">Hide Option</button>&nbsp;
+    <button class="button1" (click)="initAboutModal()">View Your Information</button>&nbsp;
+    
     <form [formGroup]="form" (ngSubmit)="onSubmit()"></form>
     <div class="form-group">
       <div *ngIf="showImageChange">
@@ -24,29 +18,23 @@
             <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
           </button>
         </div>
+        <button class="button1" (click)="hideOption()">Hide Option</button>&nbsp;
       </div>
       <div class = "infoSection">
-      <label>Day of Birth: {{activeUser.dob | date:'short'}}</label>
+      <hr class='lines'>
+      <hr class='lines'>
+      <label>>>&nbsp;Day of Birth: {{viewUser.dob | date:'longDate'}}</label>
       <br/>
-      <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
+      <label>>>&nbsp;Allegiance: {{viewUser.allegiance.allegiance}}</label>
       <br/>
-</div>
-
->>>>>>> 44e580947cc4621b9e359e1bf338f83185e2be1e
-
-            <input type="file" id="profile" (change)="onFileChange($event)" #fileInput>
-        <hr class='lines'>
-        <label>>>&nbsp;Day of Birth: {{viewUser.dob | date:'longDate'}}</label>
-        <br/>
-        <label>>>&nbsp;Allegiance: {{viewUser.allegiance.allegiance}}</label>
-        <br/>
-        <label>>>&nbsp;About: {{viewUser.about}}</label>
-        <hr class='lines'>
-        <hr class='lines'>
-        
+      <label>>>&nbsp;About: {{viewUser.about}}</label>
+      <hr class='lines'>
+      <hr class='lines'>
+    </div>
     </div>
   </div>
 </div>
+
 <div class='rightColumn'>
   <app-feed></app-feed>
 </div>

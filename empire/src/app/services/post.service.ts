@@ -18,18 +18,21 @@ export class PostService {
     activeUser: IUser;
     allegiance: IAllegiance;
     image: IImage;
+    user: IUser;
   constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
+    const allegiance = {'aid': 2, 'allegiance': 'Rebel Alliance'};
+    this.user = {'id': 2, 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
+    'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
+     'image': null};
     this.activeUser = _userService.curr_user;
-    this.image = {'iid': 1, 'image': ''};
+    this.image = {'iid': 2, 'image': ''};
     this.allegiance = {'aid': 1, 'allegiance': 'empire'};
     this.comment = [{'cid': 1, 'body': '... we have cookies.', 'likes': null}, {'cid': 2, 'body': 'I LOVE cookies!', 'likes': null}];
-    // this.activeUser = {'id': 1, 'fname': 'Darth', 'lname': 'Vador', 'username': 'SithLord', 'about': '',
-    //  'sec_ans': '', 'dob': new Date(), 'allegiance': this.allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
-    //   'image': this.image};
+    const newComment = [{'cid': 3, 'body': 'Too many drinks last night Han?', 'likes': null}];
     this.posts = [{'pid': 1, 'body': 'Welcome to the Empire', 'youtube': '', 'created': new Date() ,
      'owner': this.activeUser, 'comments': this.comment, 'likes': [this.activeUser], 'images': null},
-    {'pid': 2, 'body': 'Test post', 'youtube': '', 'created': new Date() , 'owner': this.activeUser,
-     'comments': null, 'likes': null, 'images': null},
+    {'pid': 2, 'body': 'Has anyone seen the keys to the Falcon?', 'youtube': '', 'created': new Date() , 'owner': this.user,
+     'comments': newComment, 'likes': null, 'images': null},
     {'pid': 3, 'body': 'Test post', 'youtube': '', 'created': new Date() , 'owner': this.activeUser,
      'comments': null, 'likes': null, 'images': null},
     {'pid': 4, 'body': 'Test post', 'youtube': '', 'created': new Date() , 'owner': this.activeUser,
@@ -59,6 +62,9 @@ export class PostService {
     return this.posts;
   }
 
+  getPostById(id: number): IPost {
+      return this.posts[id - 1];
+  }
   createPost(post: IPost) {
 
   }
