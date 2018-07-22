@@ -1,4 +1,4 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit, OnInit} from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { ModalService } from './services/modal.service';
 import { ProfileService } from './services/profile.service';
@@ -9,20 +9,31 @@ import { IUser } from './db_models/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'The Cantina';
 
+  faviconArray: string[];
   faviconSrc: string;
   constructor(private _modalService: ModalService, private _profileService: ProfileService) {
     this.CountDownTimer('12/20/2019 5:35 PM', 'newcountdown');
-    this.faviconSrc = 'http://icons.iconarchive.com/icons/sensibleworld/starwars/48/Death-Star-icon.png';
+    this.faviconArray = ['http://icons.iconarchive.com/icons/sensibleworld/starwars/48/Death-Star-icon.png',
+                        'assets/images/rsz_1star_wars__galactic_empire_neon_logo_wp_by_morganrlewis-d9snpkl_1.png',
+                        'assets/images/rsz_star-wars-rebel-logo-wallpaper.png'];
+    this.faviconSrc = this.faviconArray[0];
+  }
+
+  ngOnInit() {
+      this._profileService.userChange.subscribe(num => this.changeFavicon(num));
   }
 
   ngAfterViewInit() {
     setTimeout(_ => this.initLoginModal());
   }
 
-  flipFavicon() {
+  changeFavicon(num: number) {
+    console.log('favicon change');
+    this.faviconSrc = this.faviconArray[num];
+    console.log((<HTMLBodyElement>document.getElementsByTagName('body')[0])); // = 'url("assets/images/Coruscant_at_night.jpg")';
   }
 
   initLoginModal() {

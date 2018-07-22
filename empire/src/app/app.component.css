@@ -11,6 +11,11 @@
     font-size: 18px;
     line-height: 20px;
 }
+
+.navbar-img img{
+    height: 50px;
+    width:50px;
+}
   
 .search-container {
     float: right;

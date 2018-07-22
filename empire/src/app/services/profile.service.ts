@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { IUser } from '../db_models/user';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,7 @@ export class ProfileService {
   users: IUser[] = [];
   curr_user: IUser;
   view_user: IUser;
+  @Output() userChange = new EventEmitter<Number>();
 
   constructor() {
     const image = {'iid': 1, 'image': 'https://static.comicvine.com/uploads/original/11121/111213005/4542373-9252677329-15219.jpg'};
@@ -25,6 +26,8 @@ export class ProfileService {
 
   setCurrentUser(user: IUser) {
     // this.curr_user = user;
+    console.log('emit change');
+    this.userChange.emit(this.curr_user.allegiance.aid);
   }
 
   setViewUser(user: IUser) {
