@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 
 import com.p2.dao.DaoService;
 import com.p2.models.Allegiance;
+import com.p2.models.Comment;
+import com.p2.models.Post;
 import com.p2.models.User;
 
 @Component
@@ -50,10 +52,10 @@ public class StarwarTest {
 		u1.setAbout("test2");
 		ds.updateUser(u1);
 		ds.insertUser(new User("test3","f2","l2","test3@test.com","test3",new Timestamp(date.getTime()),"secans",pt.get(1)));
-		List<User> u2 = ds.selectAllUser();
-		assertEquals("test2",u2.get(1).getAbout());
-		assertNotNull(u2.get(0).getId());
-		assertNotNull(u2.get(0));
+		User u2 = ds.selectByUsername("test1");
+		assertEquals("test2",u2.getAbout());
+		assertNotNull(u2.getId());
+		assertNotNull(u2);
 		assertNotNull(ds.selectByFirstName("f1"));
 		assertNotNull(ds.selectByLastName("l1"));
 		assertNotNull(ds.selectByUsername("test1"));
@@ -64,46 +66,60 @@ public class StarwarTest {
 		assertEquals(0, ds.selectAllUser().size());
 	}
 
-//	@Test
-//	public void returnComment() {
-//		Comment c = new Comment("test comment");
-//		ds.insertComment(c);
-//		List<Comment> ct = ds.selectAllComment();
-//		assertNotNull(ct);
-//		assertEquals(1,ct.size());
-//		Comment c1 = ct.get(0);
-//		c.setBody("comment2");
-//		ds.insertComment(c1);
-//		List<Comment> c2 = ds.selectAllComment();
-//		assertEquals("comment2",c2.get(0).getBody());
-//		assertNotNull(c2.get(0).getId());
-//		assertNotNull(c2.get(0));
-//		ds.deleteComment(c);
-//		List<Comment> c3 = ds.selectAllComment();
-//		assertEquals(0,c3.size());
-//		
-//	}
+	@Test
+	public void returnComment() {
+		List<Allegiance> pt = ds.selectAllAllegiance();
+		User u = new User("test1","f1","l1","test1@test.com","test1",new Timestamp(date.getTime()),"secans",pt.get(0));
+		ds.insertUser(u);
+		Post p = new Post("post1",new Timestamp(date.getTime()),u);
+		ds.insertPost(p);
+		Comment c = new Comment("Test comment", p, u);
+		ds.insertComment(c);
+		List<Comment> ct = ds.selectAllComment();
+		assertNotNull(ct);
+		assertEquals(1,ct.size());
+		Comment c1 = ct.get(0);
+		c1.setBody("comment2");
+		ds.updateComment(c1);
+		List<Comment> c2 = ds.selectAllComment();
+		assertEquals("comment2",c2.get(0).getBody());
+		assertNotNull(c2.get(0).getId());
+		assertNotNull(c2.get(0));
+		ds.deleteComment(c);
+		List<Comment> c3 = ds.selectAllComment();
+		assertEquals(0,c3.size());
+		ds.deletePost(p);
+		ds.deleteUser(u);
+		
+	}
 	
-//	@Test
-//	public void returnPost() {
-//		Post p = new Post("post1",new Timestamp(date.getTime()));
-//		ds.insertPost(p);
-//		List<Post> pt = ds.selectAllPost();
-//		assertNotNull(pt);
-//		assertEquals(1,pt.size());
-//		Post p1 = pt.get(0);
-//		p1.setBody("post2");
-//		ds.insertPost(p1);
-//		List<Post>p2 = ds.selectAllPost();
-//		assertEquals("post2",p2.get(0).getBody());
-//		assertNotNull(p2.get(0).getId());
-//		assertNotNull(p2.get(0));
-//		ds.deletePost(p1);
-//		List<Post> p3 = ds.selectAllPost();
-//		assertEquals(0,p3.size());
-//	}
+	@Test
+	public void returnPost() {
+		List<Allegiance> at = ds.selectAllAllegiance();
+		User u = new User("test1","f1","l1","test1@test.com","test1",new Timestamp(date.getTime()),"secans",at.get(0));
+		ds.insertUser(u);
+		Post p = new Post("post1",new Timestamp(date.getTime()),u);
+		ds.insertPost(p);
+		List<Post> pt = ds.selectAllPost();
+		assertNotNull(pt);
+		assertEquals(1,pt.size());
+		Post p1 = pt.get(0);
+		p1.setBody("post2");
+		ds.updatePost(p1);
+		List<Post>p2 = ds.selectAllPost();
+		assertEquals("post2",p2.get(0).getBody());
+		assertNotNull(p2.get(0).getPid());
+		assertNotNull(p2.get(0));
+		ds.deletePost(p1);
+		List<Post> p3 = ds.selectAllPost();
+		assertEquals(0,p3.size());
+		ds.deleteUser(u);
+	}
+	
 	@Test
 	public void returnAllegiance() {
+//		ds.insertAllegiance(new Allegiance(1, "Rebel Alliance"));
+//		ds.insertAllegiance(new Allegiance(2, "Galactic Empire"));
 		List<Allegiance> pt = ds.selectAllAllegiance();
 		assertNotNull(pt);
 		assertEquals(2,pt.size());

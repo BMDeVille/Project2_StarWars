@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,8 +40,8 @@ public class Post {
 	@Column(name="CREATED_DATE", nullable= false)
 	private Timestamp created;
 	
-	@OneToMany(mappedBy="cid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Comment> comments;
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
+	private User creator;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
@@ -53,47 +54,60 @@ public class Post {
 		
 	}
 	//no id no like no comments no images no youtube
-	public Post(String body, Timestamp created) {
+	public Post(String body, Timestamp created, User creator) {
 		super();
 		this.body = body;
 		this.created = created;
+		this.creator = creator;
 	}
 	//no id no like no comments no images
-	public Post(String body, String youtube, Timestamp created) {
+	public Post(String body, String youtube, Timestamp created, User creator) {
 		super();
 		this.body = body;
 		this.youtube = youtube;
 		this.created = created;
+		this.creator = creator;
 	}
 	//no id no like no comments no youtube
-	public Post(String body, Timestamp created, List<Image> images) {
+	public Post(String body, Timestamp created, List<Image> images, User creator) {
 		super();
 		this.body = body;
 		this.created = created;
 		this.images = images;
+		this.creator = creator;
 	}
 	//no id no likes, no comments
-	public Post(String body, String youtube, Timestamp created, List<Image> images) {
+	public Post(String body, String youtube, Timestamp created, List<Image> images, User creator) {
 		super();
 		this.body = body;
 		this.youtube = youtube;
 		this.created = created;
 		this.images = images;
+		this.creator = creator;
 	}
 	//all members
-	public Post(int pid, String body, String youtube, Timestamp created, List<Comment> comments, List<User> likes,
-			List<Image> images) {
+	public Post(int pid, String body, String youtube, Timestamp created, List<User> likes,
+			List<Image> images, User creator) {
 		super();
 		this.pid = pid;
 		this.body = body;
 		this.youtube = youtube;
 		this.created = created;
-		this.comments = comments;
 		this.likes = likes;
 		this.images = images;
+		this.creator = creator;
 	}
-	public int getId() {
+	public int getPid() {
 		return pid;
+	}
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+	public User getCreator() {
+		return creator;
+	}
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 	public String getBody() {
 		return body;
@@ -104,9 +118,7 @@ public class Post {
 	public Timestamp getCreated() {
 		return created;
 	}
-	public List<Comment> getComments() {
-		return comments;
-	}
+	
 	public List<User> getLikes() {
 		return likes;
 	}
@@ -125,9 +137,6 @@ public class Post {
 	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
@@ -136,8 +145,7 @@ public class Post {
 	}
 	@Override
 	public String toString() {
-		return "Post [id=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", comments="
-				+ comments + ", likes=" + likes + ", images=" + images + "]";
+		return "Post [id=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", likes=" + likes + ", images=" + images + "]";
 	}
 	
 }

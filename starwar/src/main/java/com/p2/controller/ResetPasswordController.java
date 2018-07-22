@@ -9,12 +9,11 @@ import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2.dao.DaoService;
-import com.p2.dao.DaoServiceImpl;
 import com.p2.models.User;
 
 @Controller("ResetPasswordController")
@@ -27,7 +26,7 @@ public class ResetPasswordController {
 	public ResetPasswordController() {
 	}
 
-	@GetMapping(value = "/reset.app")
+	@PostMapping(value = "/reset.app")
 	public void reset(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in reset cont");
