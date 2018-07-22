@@ -16,7 +16,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,32 +33,41 @@ public class Comment {
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@OneToMany(mappedBy="id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY)
+	private User poster;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
+	
+	@ManyToOne(targetEntity=Post.class, fetch=FetchType.LAZY)
+	private Post post;
 	
 	public Comment() {
 		
 	}
 
 	//no id no likes
-	public Comment(String body) {
+	public Comment(String body, Post post) {
 		super();
 		this.body = body;
+		this.post = post;
 	}
 	
 	//no id
-	public Comment(String body, List<User> likes) {
+	public Comment(String body, List<User> likes, Post post) {
 		super();
 		this.body = body;
 		this.likes = likes;
+		this.post = post;
 	}
 	
 	//all members
-	public Comment(int cid, String body, List<User> likes) {
+	public Comment(int cid, String body, List<User> likes, Post post) {
 		super();
 		this.cid = cid;
 		this.body = body;
 		this.likes = likes;
+		this.post = post;
 	}
 
 	public int getId() {
@@ -77,6 +88,22 @@ public class Comment {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public void setLikes(List<User> likes) {

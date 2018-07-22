@@ -33,53 +33,6 @@ public class DaoServiceImpl implements DaoService {
 		System.out.println("in dao service");
 	}
 
-//	@Autowired
-//	public DaoServiceImpl(CommentDAO cd) {
-//		this.cd = cd;
-//	}
-//	@Autowired
-//	public DaoServiceImpl(ImageDAO id) {
-//		this.id = id;
-//	}
-//	@Autowired
-//	public DaoServiceImpl(PostDAO pd) {
-//		this.pd = pd;
-//	}
-//	@Autowired
-//	public DaoServiceImpl(UserDAO ud) {
-//		this.ud = ud;
-//	}
-//	@Autowired
-//	public DaoServiceImpl(AllegianceDAO ad) {
-//		this.ad = ad;
-//	}
-
-
-//	@Autowired
-//	public void setCd(CommentDAO cd) {
-//		this.cd = cd;
-//	}
-//
-//	@Autowired
-//	public void setId(ImageDAO id) {
-//		this.id = id;
-//	}
-//
-//	@Autowired
-//	public void setPd(PostDAO pd) {
-//		this.pd = pd;
-//	}
-//
-//	@Autowired
-//	public void setUd(UserDAO ud) {
-//		this.ud = ud;
-//	}
-//
-//	@Autowired
-//	public void setAd(AllegianceDAO ad) {
-//		this.ad = ad;
-//	}
-
 
 	//comment dao
 	public void insertComment(Comment c) {

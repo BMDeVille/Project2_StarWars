@@ -54,15 +54,15 @@ public class UserDAOImpl implements UserDAO {
 
 	public User selectByUsername(String username) {
 		//since username should be unique, there will be only one result
-		return sesFact.getCurrentSession().createQuery("from User", User.class).list().get(0);
+		return (User) sesFact.getCurrentSession().createQuery("from User where username='"+username+"'").list().get(0);
 	}
 
 	public List<User> selectByFirstName(String fname) {
-		return sesFact.getCurrentSession().createQuery("from User where fname="+fname, User.class).list();
+		return sesFact.getCurrentSession().createQuery("from User where first_name='"+fname+"'", User.class).list();
 	}
 
 	public List<User> selectByLastName(String lname) {
-		return sesFact.getCurrentSession().createQuery("from User where lname="+lname, User.class).list();
+		return sesFact.getCurrentSession().createQuery("from User where last_name='"+lname+"'", User.class).list();
 	}
 
 	public void update(User u) {

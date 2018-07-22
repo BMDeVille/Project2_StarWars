@@ -13,7 +13,6 @@ import javax.persistence.Table;
 public class Allegiance {
 	@Id
 	@Column(name="AID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int aid;
 	
 	@Column(name="ALLEGIANCE", unique= true, nullable= false)
@@ -22,12 +21,6 @@ public class Allegiance {
 	//no args
 	public Allegiance() {
 		
-	}
-
-	//no id
-	public Allegiance(String allegiance) {
-		super();
-		this.allegiance = allegiance;
 	}
 	
 	//all members

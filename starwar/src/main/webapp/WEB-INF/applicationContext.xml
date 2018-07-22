@@ -12,14 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:annotation-config />
-<<<<<<< HEAD
-	<context:component-scan base-package="dao" />
-	<context:component-scan base-package="serlvet" />
-	<context:component-scan base-package = "starwar.test"/>
-=======
 	<context:component-scan base-package="com.p2" />
-<!-- 	<context:component-scan base-package="com.p2.controller" /> -->
->>>>>>> b8e1dede65fe101e6feaa03e979101d50f6c34b3
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
@@ -44,7 +37,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
@@ -52,10 +45,6 @@
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
-	<bean name = "UserDao" class = "dao.UserDAOImpl" autowire = "byName"/>
-	
-	
+	</bean>	
 </beans>
 
