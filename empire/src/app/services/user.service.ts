@@ -23,6 +23,10 @@ export class UserService {
   //   obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
   }
 
+  getAllUsers(): IUser[] {
+    return null;
+  }
+
   getUser(username: string, password: string): Observable<IUser> {
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
