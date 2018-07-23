@@ -38,15 +38,7 @@ public class RegisterController {
 	public  @ResponseBody User createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("You are creating a user");
-//		Date d = new Date();
-//		Allegiance al1 = new Allegiance();
-//		al1.setAllegiance("a");
-//		System.out.println("check1");
-//		User test = new User("test11","l1","f1","test2@test2.com","test11",new Timestamp(d.getTime()),"secans",al1);
-//		System.out.println("check2");
-//		ds.insertUser(test);
-//		System.out.println("check3");
-
+		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
@@ -93,13 +85,9 @@ public class RegisterController {
 		// pulling back the object from the database.
 		User user = ds.selectByUsername(username);
 		System.out.println("check get by username");
-//		String userListString = null;
-//		ObjectMapper mapper = new ObjectMapper();
-//
-//		userListString = mapper.writeValueAsString(user);// map reimbursement array to json
 
-		//return userListString;
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 		return user;
 
 	}

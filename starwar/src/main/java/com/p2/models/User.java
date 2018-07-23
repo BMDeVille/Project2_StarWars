@@ -61,10 +61,10 @@ public class User {
 	@OneToMany(mappedBy = "pid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Post> postList;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<User> followers;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Allegiance allegiance;
 
 	// no args
@@ -83,6 +83,9 @@ public class User {
 		this.dob = dob;
 		this.securityAnswer = securityAnswer;
 		this.allegiance = allegiance;
+	}
+	public User(String username) {
+		this.username=username;
 	}
 
 	//no id no about no iamge no sec_ans
@@ -279,7 +282,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
 				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
-				+ image + ", allegiance=" + allegiance.getAllegiance() + ", about=" + about + "]";
+				+ image + ", about=" + about + "]";
 	}
 
 }

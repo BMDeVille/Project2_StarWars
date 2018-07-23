@@ -42,7 +42,8 @@ import { LostPassComponent } from './lost-pass/lost-pass.component';
       {path: '', redirectTo: 'feed', pathMatch: 'full'},
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'inbox', component: InboxComponent}
+      {path: 'inbox', component: InboxComponent},
+      {path: 'search', component: SearchComponent}
     ]),
      HttpClientModule,
   ],
