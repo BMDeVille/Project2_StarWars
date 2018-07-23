@@ -12,17 +12,12 @@ import { IUser } from '../db_models/user';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9005/starwar/login.app';
+  // private url = 'http://localhost:9005/starwar/login.app';
+  private url = 'http://ec2-18-222-198-157.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
   private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlR = 'http://localhost:9005/starwar/reset.app';
 
-  // login() {
-  //   const _url = 'http://localhost:9005/starwar/login.app';
-  //   const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
-  //     map(resp => resp as IUser)
-  //   );
-  //   obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
-  // }
+
  httpOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
   }),
@@ -49,18 +44,11 @@ export class UserService {
     }
   }
   getUser(username: string, password: string): Observable<IUser> {
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    // const options = new RequestOptions();
-    // options.headers = headers;
-
-
     // send username and password to controller
     // then receive json User object
     return this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
   }
-
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {
@@ -69,7 +57,5 @@ export class UserService {
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type , this.httpOptions).pipe(map(resp => resp as IUser));
   }
 
-  login() {
 
-  }
 }
