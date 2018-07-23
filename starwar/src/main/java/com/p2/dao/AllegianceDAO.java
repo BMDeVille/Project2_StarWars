@@ -12,6 +12,7 @@ public interface AllegianceDAO {
 	//read
 	public List<Allegiance> selectAll();
 	public List<Allegiance> selectByAllegiance(Allegiance a);
+	public Allegiance selectByAid(int id);
 	//update
 	public void update(Allegiance a);
 	//delete
