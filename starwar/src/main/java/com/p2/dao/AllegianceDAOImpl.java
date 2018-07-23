@@ -36,6 +36,9 @@ public class AllegianceDAOImpl implements AllegianceDAO{
 	public List<Allegiance> selectByAllegiance(Allegiance a) {
 		return sesFact.getCurrentSession().createQuery("from Allegiance where aid=" + a.getAid(), Allegiance.class).list();
 	}
+	public Allegiance selectByAid(int id) {
+		return sesFact.getCurrentSession().createQuery("from Allegiance where aid=" + id, Allegiance.class).list().get(0);
+	}
 
 	public void update(Allegiance a) {
 		sesFact.getCurrentSession().update(a);

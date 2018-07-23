@@ -19,6 +19,8 @@ import { SignupComponent } from './signup/signup.component';
 import { UserinformationComponent } from './userinformation/userinformation.component';
 import { ChangeinformationComponent } from './changeinformation/changeinformation.component';
 import { ImagesComponent } from './images/images.component';
+import { SearchComponent } from './search/search.component';
+import { LostPassComponent } from './lost-pass/lost-pass.component';
 
 import { UploadService } from './services/upload.service';
 
@@ -33,33 +35,28 @@ import { UploadService } from './services/upload.service';
     SignupComponent,
     UserinformationComponent,
     ChangeinformationComponent,
-    ImagesComponent
+    ImagesComponent,
+    SearchComponent,
+    LostPassComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
       {path: '', redirectTo: 'feed', pathMatch: 'full'},
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'inbox', component: InboxComponent}
+      {path: 'inbox', component: InboxComponent},
+      {path: 'search', component: SearchComponent}
     ]),
      HttpClientModule,
   ],
-  // imports: [
-  //   BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
-  //     {path: '', redirectTo: 'feed', pathMatch: 'full'},
-  //     {path: 'feed', component: FeedComponent},
-  //     {path: 'profile', component: ProfileComponent},
-  //     {path: 'inbox', component: InboxComponent}
-  //   ], {onSameUrlNavigation: 'reload'}),
-  //    HttpClientModule,
-  // ],
   entryComponents: [
     LoginComponent,
     SignupComponent,
     UserinformationComponent,
     PostComponent,
     ChangeinformationComponent,
-    ImagesComponent
+    ImagesComponent,
+    LostPassComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService, UploadService],
   bootstrap: [AppComponent]

@@ -13,6 +13,10 @@ import { ProfileService } from './profile.service';
   providedIn: 'root'
 })
 export class PostService {
+    // actually need
+    activePost: IPost;
+
+    // mostly needed for hardwiring of values
     comment: IComment[];
     posts: IPost[] = [];
     activeUser: IUser;
@@ -56,6 +60,8 @@ export class PostService {
      'comments': null, 'likes': null, 'images': null}
   ];
   console.log(this.posts);
+  this.activePost = {'pid': 1, 'body': 'Welcome to the Empire', 'youtube': '', 'created': new Date() ,
+  'owner': this.activeUser, 'comments': this.comment, 'likes': [this.activeUser], 'images': [this.image1, this.image2]};
   }
 
   getFeed(username: String): IPost[] {
@@ -68,7 +74,41 @@ export class PostService {
   getPostById(id: number): IPost {
       return this.posts[id - 1];
   }
+
+  getCommentByIdAndPostId(cid: number, pid: number): IComment {
+    const cpost = this.getPostById(pid);
+    let com;
+    for (let i = 0; i < cpost.comments.length; ++i) {
+      if (cid === cpost.comments[i].cid) {
+        com = cpost.comments[i];
+        break;
+      }
+    }
+    return com;
+  }
+
   createPost(post: IPost) {
 
   }
+
+  updatePost(post: IPost) {
+
+  }
+
+  createComment(com: IComment) {
+
+  }
+
+  updateComment(com: IComment) {
+
+  }
+  getActivePost(): IPost {
+    return this.activePost;
+  }
+
+  setActivePost(post: IPost) {
+    this.activePost = post;
+  }
+
+
 }

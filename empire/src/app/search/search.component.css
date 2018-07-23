@@ -1,0 +1,32 @@
+.feed {
+    background-color: black;
+    color: cyan;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    margin: 10px;
+    width: 70%;
+    margin-left:15%;
+    margin-right: 15%;
+    overflow: auto;
+    height: 700px;
+}
+
+hr {
+    border: solid 1px blue;
+}
+h3 {
+     text-align: center;
+ }
+.feed ul{
+    list-style-type: none;
+}
+
+li, p {
+    color: cyan;
+    font-weight: bold;
+    padding-bottom: 10px;
+    /*border-bottom: 3px solid;
+    border-bottom-color: blue;
+    */  
+}

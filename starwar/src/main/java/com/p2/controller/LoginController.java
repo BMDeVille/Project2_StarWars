@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +25,7 @@ import com.p2.models.User;
 
 
 @Controller("LoginController")
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
 public class LoginController {
 	public LoginController() {
 	}
@@ -37,21 +35,28 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
+	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value="/login.app")
-	public  @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
+	public @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
+		res.setContentType("application/json");
+
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		System.out.println(username);
 		System.out.println(password);
 		
 		User u1 = ds.selectByUsername(username);
+		System.out.println(u1);
+		res.setHeader("Access-Control-Allow-Credentials", "true");
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
+				System.out.println("matched");
 				logger.info("user: " + u1.getUsername() + " login ");
-				//res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
+				
+				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
 				return u1;
 			}	
 		}

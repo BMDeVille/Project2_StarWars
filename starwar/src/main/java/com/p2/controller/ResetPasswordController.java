@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +19,7 @@ import com.p2.dao.DaoService;
 import com.p2.models.User;
 
 @Controller("ResetPasswordController")
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
 public class ResetPasswordController {
 	final static Logger logger = Logger.getLogger(ResetPasswordController.class);
 
@@ -28,8 +29,9 @@ public class ResetPasswordController {
 	public ResetPasswordController() {
 	}
 
+	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/reset.app")
-	public void reset(HttpServletRequest req, HttpServletResponse res)
+	public  @ResponseBody User reset(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in reset cont");
 
@@ -49,7 +51,8 @@ public class ResetPasswordController {
 				u1.setPassword(newPass);
 				ds.updateUser(u1);
 				res.getWriter().write(new ObjectMapper().writeValueAsString("success"));
-				 logger.info(u1.getUsername() + " changed password.");
+				logger.info(u1.getUsername() + " changed password.");
+				return u1;
 				// return something
 			}
 		} else {
@@ -57,7 +60,7 @@ public class ResetPasswordController {
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			// return;
 		}
-		return;
+		return u1;
 
 	}
 }

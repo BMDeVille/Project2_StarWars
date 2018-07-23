@@ -39,10 +39,17 @@ export class FeedComponent implements OnInit {
     this._modalService.init(PostComponent, inputs, {});
   }
 
+  submitNewComment(event: { target: HTMLInputElement; }) {
+    console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
+    const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
+    const newCom = {'cid': 1, 'body': body, 'likes': null};
+    this._postservice.createComment(newCom);
+  }
+
   displayImages(event: { target: HTMLInputElement; }) {
-    const commentId = +event.target.parentElement.id + 1;
-    console.log(commentId);
-    this._imageService.setImages(this._postservice.getPostById(commentId).images);
+    const postId = +event.target.parentElement.id + 1;
+    console.log(postId);
+    this._imageService.setImages(this._postservice.getPostById(postId).images);
     const inputs = {
       isMobile: false
     };
@@ -60,34 +67,76 @@ export class FeedComponent implements OnInit {
   }
 
   toggleComments(event: { target: HTMLInputElement; }) {
-    console.log(event.target.parentElement.nextSibling);
-    // if (!this.toggleFlag) {
-    if (event.target.parentElement.nextSibling == null) {
-    const commentId = +event.target.parentElement.id; // + casts to number
-    for (let i = 0; i < this.posts.length; ++i) {
-        if (this.posts[i].pid === commentId) {
-          this.cp = this.posts[i];
+    console.log(event.target.parentElement.parentElement.children);
+    const coms = (<HTMLUListElement>event.target.parentElement.parentElement.children[1]);
+    if (coms.style.display === 'none') {
+      coms.style.display = 'block';
+    } else {
+      coms.style.display = 'none';
+    }
+  }
+
+  likeComment(event: {target: HTMLInputElement}) {
+    console.log(event.target.parentElement.parentElement);
+    const commentId = +event.target.parentElement.parentElement.id;
+    console.log(event.target.parentElement.parentElement.parentElement.parentElement.children[0]);
+    const postId = +event.target.parentElement.parentElement.parentElement.parentElement.children[0].id;
+    const com = this._postservice.getCommentByIdAndPostId(commentId, postId);
+    let found = false;
+    let newlikes;
+    // check if likes
+    if (com.likes != null) {
+      newlikes = com.likes;
+      for ( let i = 0; i < newlikes.length; ++i) {
+        if (this.activeUser.id === newlikes[i].id) {
+          // remove like
+          newlikes.splice(newlikes[i].id);
+          found = true;
           break;
         }
+      }
+      if (!found) {
+        // add like
+        newlikes.push(this.activeUser);
+      }
+    // first like
+    } else {
+      newlikes = [this.activeUser];
     }
-    const ul = document.createElement('ul');
-    // ul.className = 'Feed';
-    for (let i = 0; i < this.cp.comments.length; ++i) {
-      const li = document.createElement('li');
-      li.innerHTML = '<< ' + this.cp.comments[i].body
-       + '<button style="border: none; background-color: black" (click)="likeComment">'
-       + '<img src = "assets/images/1485477009-like_78561.png" width = "30px" height = "30px"></button>['
-        + (this.cp.comments[i].likes != null ? this.cp.comments[i].likes.length : 0 ) + ']';
-        ul.appendChild(li);
-    }
-    event.target.parentElement.parentElement.appendChild(ul);
-  } else {
-    event.target.parentElement.parentElement.removeChild(event.target.parentElement.nextSibling);
-  }
-  this.toggleFlag = !this.toggleFlag;
+    // update likes
+    com.likes = newlikes;
+    this._postservice.updateComment(com);
+    // now need to refresh component
   }
 
-  likeComment(c: IComment) {
-
+  likePost(event: { target: HTMLInputElement; }) {
+    let found = false;
+    const postId = +event.target.parentElement.id;
+    const clickedPost = this._postservice.getPostById(postId);
+    let newlikes;
+    // check if likes
+    if (clickedPost.likes != null) {
+      newlikes = clickedPost.likes;
+      for ( let i = 0; i < newlikes.length; ++i) {
+        if (this.activeUser.id === newlikes[i].id) {
+          // remove like
+          newlikes.splice(newlikes[i].id);
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        // add like
+        newlikes.push(this.activeUser);
+      }
+    // first like
+    } else {
+      newlikes = [this.activeUser];
+    }
+    // update likes
+    clickedPost.likes = newlikes;
+    this._postservice.updatePost(clickedPost);
+    // now need to refresh component
   }
+
 }

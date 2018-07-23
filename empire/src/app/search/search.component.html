@@ -1,0 +1,14 @@
+<div class='feed'>
+<h3>User Matches</h3>
+<hr>
+<div *ngIf = 'userSearch.length > 0'>
+<ul>
+  <li *ngFor = 'let u of userSearch' id ='{{u.id}}'>
+    >>&nbsp;&nbsp;<a (click) = 'setViewUser()'>{{u.fname}} {{u.lname}}</a>
+  </li>
+</ul>
+</div>
+<div *ngIf = 'userSearch.length == 0'>
+  <p>>>&nbsp;&nbsp;Sorry, no matches found</p>
+</div>
+</div>

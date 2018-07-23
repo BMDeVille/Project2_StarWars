@@ -7,6 +7,7 @@
  */
 
 package com.p2.models;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -23,56 +24,56 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
 	@Id
-	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name="USERNAME", unique= true, nullable= false)
+
+	@Column(name = "USERNAME", unique = true, nullable = false)
 	private String username;
-	
-	@Column(name="FIRST_NAME", nullable= false)
+
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String fname;
-	
-	@Column(name="LAST_NAME", nullable= false)
+
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lname;
-	
-	@Column(name="EMAIL", unique= true, nullable= false)
+
+	@Column(name = "EMAIL", unique = true, nullable = false)
 	private String email;
-	
-	@Column(name="PASSWORD", nullable= false)
+
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-	
-	@Column(name="DOB")
+
+	@Column(name = "DOB")
 	private Timestamp dob;
-	
-	@Column(name="SEC_ANS", nullable = false)
+
+	@Column(name = "SEC_ANS", nullable = false)
 	private String securityAnswer;
-	
-	@Column(name="ABOUT")
+
+	@Column(name = "ABOUT")
 	private String about;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Image image;
-	
-	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
+
+	@OneToMany(mappedBy = "pid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Post> postList;
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<User> followers;
-	
-	@OneToOne(fetch = FetchType.LAZY)
+
+	@OneToOne(fetch = FetchType.EAGER)
 	private Allegiance allegiance;
-	
-	//no args
+
+	// no args
 	public User() {
 	}
-	
-	//no id no about no image
+
+	// no id no about no image
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, Allegiance allegiance) {
+			String securityAnswer, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -83,10 +84,26 @@ public class User {
 		this.securityAnswer = securityAnswer;
 		this.allegiance = allegiance;
 	}
-	
-	//no id no about
+	public User(String username) {
+		this.username=username;
+	}
+
+	//no id no about no iamge no sec_ans
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, Image image, Allegiance allegiance) {
+			 Allegiance allegiance) {
+		super();
+		this.username = username;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.allegiance = allegiance;
+	}
+
+	// no id no about
+	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
+			String securityAnswer, Image image, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -98,10 +115,10 @@ public class User {
 		this.image = image;
 		this.allegiance = allegiance;
 	}
-	
-	//no id no image
+
+	// no id no image
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-					String securityAnswer, Allegiance allegiance, String about) {
+			String securityAnswer, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -113,9 +130,10 @@ public class User {
 		this.allegiance = allegiance;
 		this.about = about;
 	}
-	//no id
+
+	// no id
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-				String securityAnswer, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, Image image, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -128,7 +146,8 @@ public class User {
 		this.allegiance = allegiance;
 		this.about = about;
 	}
-	//all members
+
+	// all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
 			String securityAnswer, Image image, Allegiance allegiance, String about) {
 		super();
@@ -144,10 +163,10 @@ public class User {
 		this.allegiance = allegiance;
 		this.about = about;
 	}
-	
+
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, String about, Image image, List<User> followers,
-			Allegiance allegiance, List<Comment> comments) {
+			String securityAnswer, String about, Image image, List<User> followers, Allegiance allegiance,
+			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -263,9 +282,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
 				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
-				+ image + ", allegiance=" + allegiance.getAllegiance() + ", about=" + about + "]";
+				+ image + ", about=" + about + "]";
 	}
-	
-	
-}
 
+}
