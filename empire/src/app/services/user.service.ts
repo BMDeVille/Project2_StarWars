@@ -37,11 +37,14 @@ export class UserService {
 
 
     // send username and password to controller
+    // then receive json User object
     return this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
 
   }
 
+  // send register information object to controller
+  // receive user object back
   regUser(reg: any): Observable<IUser> {
     return this._httpServ.post(this.urlT, 'username=' + reg.username + '&password=' + reg.password
     + '&firstname=' + reg.firstName + '&lastname=' + reg.lastName + '&email='

@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   // when click register button
   register() {
-    // call user service and send register detail
+    // call user service and send register information
     this._userService.regUser(this.reg).subscribe(data => console.log(data));
     console.log(this.reg);
   }

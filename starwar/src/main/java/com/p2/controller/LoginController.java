@@ -52,6 +52,7 @@ public class LoginController {
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
+				System.out.println("matched");
 				logger.info("user: " + u1.getUsername() + " login ");
 				//res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
 				return u1;
