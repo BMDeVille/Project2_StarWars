@@ -4,7 +4,7 @@
   <h3>Galactic Feed</h3>
   <span style='margin-left: 80%'><button (click) = initNewPostModal()><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'>&nbsp;new post</button></span><br/>
 <ul *ngFor = 'let p of posts'>
-  <li id='{{p.pid}}'><span>>>&nbsp;</span>{{p.body}}&nbsp;&nbsp;
+  <li id='{{p.pid}}' class='li-post'><span>>>&nbsp;</span>{{p.body}}&nbsp;&nbsp;
     <span *ngIf = 'p.images != null'><a (click)="displayImages($event)">images&nbsp;</a>[{{p.images.length}}]&nbsp;&nbsp;</span>
     {{p.created|date:'short'}}&nbsp;&nbsp;
     <a (click)="setViewUser()">{{p.owner.fname}} {{p.owner.lname}}</a>
@@ -12,5 +12,12 @@
     <a (click)="toggleComments($event)">comments&nbsp;</a>[{{p.comments != null? p.comments.length:0}}]
     <br/>
     </li>
+    <ul id='{{p.pid}}' style= "display:none">
+      <li *ngFor = "let c of p.comments" id = '{{c.cid}}' class='li-comment'>
+        <span><<&nbsp;</span>{{c.body}}&nbsp;&nbsp;
+        <button (click)="likeComment($event)"><img src = 'assets/images/1485477009-like_78561.png' width = '30px' height = '30px'>
+          </button>[{{c.likes != null? c.likes.length:0}}]
+      </li>
+    </ul>
 </ul>
 </div>

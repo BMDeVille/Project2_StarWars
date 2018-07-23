@@ -12,14 +12,23 @@
     height: 700px;
 }
 
+.li-comment{
+    border: none;
+}
 .feed ul{
     list-style-type: none;
 }
+
+.li-post {
+    border-bottom: 3px solid;
+    border-bottom-color: blue;  
+}
+/*
 .feed li{
     border-bottom: 3px solid;
     border-bottom-color: blue;
 }
-
+*/
 .feed button{
     background-color: black;
     border: none;

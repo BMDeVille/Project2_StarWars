@@ -13,6 +13,10 @@ import { ProfileService } from './profile.service';
   providedIn: 'root'
 })
 export class PostService {
+    // actually need
+    activePost: IPost;
+
+    // mostly needed for hardwiring of values
     comment: IComment[];
     posts: IPost[] = [];
     activeUser: IUser;
@@ -22,7 +26,7 @@ export class PostService {
     user: IUser;
   constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
     const allegiance = {'aid': 2, 'allegiance': 'Rebel Alliance'};
-    this.user = {'id': 2, 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
+    this.user = {'id': 2, 'password': '123asd', 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
     'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
      'image': null};
     this.activeUser = _userService.curr_user;
@@ -55,6 +59,8 @@ export class PostService {
      'comments': null, 'likes': null, 'images': null}
   ];
   console.log(this.posts);
+  this.activePost = {'pid': 1, 'body': 'Welcome to the Empire', 'youtube': '', 'created': new Date() ,
+  'owner': this.activeUser, 'comments': this.comment, 'likes': [this.activeUser], 'images': [this.image1, this.image2]};
   }
 
   getFeed(username: String): IPost[] {
@@ -67,7 +73,37 @@ export class PostService {
   getPostById(id: number): IPost {
       return this.posts[id - 1];
   }
+
+  getCommentByIdAndPostId(cid: number, pid: number): IComment {
+    const cpost = this.getPostById(pid);
+    let com;
+    for (let i = 0; i < cpost.comments.length; ++i) {
+      if (cid === cpost.comments[i].cid) {
+        com = cpost.comments[i];
+        break;
+      }
+    }
+    return com;
+  }
+
   createPost(post: IPost) {
 
   }
+
+  updatePost(post: IPost) {
+
+  }
+
+  updateComment(com: IComment) {
+
+  }
+  getActivePost(): IPost {
+    return this.activePost;
+  }
+
+  setActivePost(post: IPost) {
+    this.activePost = post;
+  }
+
+
 }

@@ -15,13 +15,13 @@ export class UserService {
   private url = 'http://localhost:9005/starwar/login.app';
   private urlT = 'http://localhost:9005/starwar/createAccount.app';
 
-  // login() {
+  login() {
   //   const _url = 'http://localhost:9005/starwar/login.app';
   //   const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
   //     map(resp => resp as IUser)
   //   );
   //   obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
-  // }
+  }
 
   getUser(username: string, password: string): Observable<IUser> {
     // const headers = new Headers();
