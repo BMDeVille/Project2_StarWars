@@ -14,6 +14,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +24,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2.dao.DaoService;
 import com.p2.dao.DaoServiceImpl;
 import com.p2.models.User;
-//
-//@Controller
-//@RequestMapping("user")
-//@CrossOrigin(origins= {"http://localhost:4200"});
+
+
 @Controller("LoginController")
+@CrossOrigin(origins="http://localhost:4200")
 public class LoginController {
 	public LoginController() {
 	}
@@ -37,7 +37,7 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
-	@GetMapping(value="/login.app")
+	@PostMapping(value="/login.app")
 	public  @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");

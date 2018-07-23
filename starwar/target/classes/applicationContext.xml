@@ -12,8 +12,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.p2" />
-<!-- 	<context:component-scan base-package="com.p2.controller" /> -->
+	<context:component-scan base-package="com.p2.dao" />
+	<context:component-scan base-package="com.p2.controller" />
+	<context:component-scan base-package="com.p2.main" />
+	<context:component-scan base-package="com.p2.aspect" />
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven />

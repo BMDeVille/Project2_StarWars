@@ -57,6 +57,9 @@ public class User {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Image image;
 	
+	@OneToMany(mappedBy="pid", fetch=FetchType.LAZY, cascade = CascadeType.ALL) 
+	private List<Post> postList;
+	
 	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> followers;
 	
