@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProfileService } from './profile.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Headers, RequestOptions} from '@angular/http';
 import { IUser } from '../db_models/user';
 
 @Injectable({

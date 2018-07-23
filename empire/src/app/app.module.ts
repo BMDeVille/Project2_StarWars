@@ -22,6 +22,8 @@ import { ImagesComponent } from './images/images.component';
 import { SearchComponent } from './search/search.component';
 import { LostPassComponent } from './lost-pass/lost-pass.component';
 
+import { UploadService } from './services/upload.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,7 @@ import { LostPassComponent } from './lost-pass/lost-pass.component';
     ImagesComponent,
     LostPassComponent
   ],
-  providers: [PostService, ProfileService, ModalService, DomService],
+  providers: [PostService, ProfileService, ModalService, DomService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

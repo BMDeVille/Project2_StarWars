@@ -19,7 +19,7 @@ export class InboxComponent implements OnInit {
   constructor(private _notify: UserService) { }
 
   ngOnInit() {
-    //this._notify
+    // this._notify
   }
 
 }
