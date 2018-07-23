@@ -13,6 +13,7 @@ import { ProfileService } from '../services/profile.service';
 
 export class LoginComponent implements OnInit, AfterViewInit {
 
+  // create variable to hold username and password
   username: string;
   password: string;
   constructor(private _modalService: ModalService, private _userService: UserService, private _profileService: ProfileService) { }
@@ -37,10 +38,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // login() {
   //   this._userService.login();
   // }
+
+  // when click login this function will call getUser method in user service
   login() {
-    this._userService.getUser(this.username, this.password).subscribe(data => console.log(data));
     console.log('login');
     console.log(this.username);
+    this._userService.getUser(this.username, this.password).subscribe(data => console.log(data));
     // console.log(this._profileService.getCurrentUser());
     // this._profileService.setCurrentUser(this._profileService.getCurrentUser());
     // // this._userService.login();

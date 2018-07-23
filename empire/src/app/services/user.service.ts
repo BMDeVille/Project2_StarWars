@@ -44,7 +44,6 @@ export class UserService {
     // then receive json User object
     return this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
-
   }
 
   // send register information object to controller

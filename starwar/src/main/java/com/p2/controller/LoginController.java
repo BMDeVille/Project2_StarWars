@@ -39,22 +39,26 @@ public class LoginController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value="/login.app")
-	public  @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
+	public @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
+		res.setContentType("application/json");
+
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		System.out.println(username);
 		System.out.println(password);
 		
 		User u1 = ds.selectByUsername(username);
+		System.out.println(u1);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
 				System.out.println("matched");
 				logger.info("user: " + u1.getUsername() + " login ");
-				//res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
+				
+				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
 				return u1;
 			}	
 		}
