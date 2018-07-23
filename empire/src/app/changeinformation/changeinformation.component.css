@@ -6,6 +6,10 @@ div{
     text-align: center;
 }
 
+.datechangeinfo{
+    width: 177px;
+}
+
 table{
     padding: 50px;
     background-color: black;

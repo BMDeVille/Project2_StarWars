@@ -10,6 +10,7 @@ import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
 import { ProfileService } from '../services/profile.service';
 import { IUser } from '../db_models/user';
+import { UploadService } from '../services/upload.service';
 
 @Component({
   selector: 'app-profile',
@@ -27,10 +28,12 @@ export class ProfileComponent implements OnInit {
   activeUser: IUser;
   viewUser: IUser;
   imageSrc: string;
+  selectedFiles: FileList;
+
 
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService,
-    private _profileService: ProfileService) {
+    private _profileService: ProfileService, private _upload: UploadService) {
     this.createForm();
     this.showImageChange = false;
     this.posts = _postservice.getFeed('');
@@ -66,40 +69,6 @@ export class ProfileComponent implements OnInit {
     this.showImageChange = false;
   }
 
-  onSubmit() {
-    const formModel = this.form.value;
-    this.loading = true;
-    // In a real-world app you'd have a http request / service call here like
-    // this.http.post('apiUrl', formModel)
-    setTimeout(() => {
-      console.log(formModel);
-      alert('Your image has been uploaded.');
-      this.loading = false;
-    }, 1000);
-    this.fileInput.nativeElement.value = '';
-
-  }
-
-  clearFile() {
-    this.form.get('profile').setValue(null);
-    this.fileInput.nativeElement.value = '';
-  }
-
-  onFileChange(event) {
-    const read = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      read.readAsDataURL(file);
-      read.onload = () => {
-        this.form.get('profile').setValue({
-          filename: file.name,
-          filetype: file.type,
-          value: read.result.split(',')[1]
-        });
-      };
-    }
-  }
-
   ngOnInit() {
   }
 
@@ -109,34 +78,50 @@ export class ProfileComponent implements OnInit {
     };
     this._modalService.init(PostComponent, inputs, {});
   }
-
-  // toggleComments(event: { target: HTMLInputElement; }) {
-  //   if (!this.toggleFlag) {
-  //   const commentId = +event.target.parentElement.id; // + casts to number
-  //   for (let i = 0; i < this.posts.length; ++i) {
-  //       if (this.posts[i].pid === commentId) {
-  //         this.cp = this.posts[i];
-  //         break;
-  //       }
-  //   }
-  //   const ul = document.createElement('ul');
-  //   // ul.className = 'Feed';
-  //   for (let i = 0; i < this.cp.comments.length; ++i) {
-  //     const li = document.createElement('li');
-  //     li.innerHTML = '<< ' + this.cp.comments[i].body
-  //      + '<button style="border: none; background-color: black" (click)="likeComment">'
-  //      + '<img src = "assets/images/1485477009-like_78561.png" width = "30px" height = "30px"></button>['
-  //       + (this.cp.comments[i].likes != null ? this.cp.comments[i].likes.length : 0 ) + ']';
-  //       ul.appendChild(li);
-  //   }
-  //   event.target.parentElement.parentElement.appendChild(ul);
-  // } else {
-  //   event.target.parentElement.parentElement.removeChild(event.target.parentElement.nextSibling);
-  // }
-  // this.toggleFlag = !this.toggleFlag;
-  // }
-
   likeComment(c: IComment) {
 
   }
+
+upload() {
+  const file = this.selectedFiles.item(0);
+  this._upload.uploadfile(file);
 }
+
+selectFile(event) {
+  this.selectedFiles = event.target.files;
+}
+}
+
+  // onSubmit() {
+  //   const formModel = this.form.value;
+  //   this.loading = true;
+  //   // In a real-world app you'd have a http request / service call here like
+  //   // this.http.post('apiUrl', formModel)
+  //   setTimeout(() => {
+  //     console.log(formModel);
+  //     alert('Your image has been uploaded.');
+  //     this.loading = false;
+  //   }, 1000);
+  //   this.fileInput.nativeElement.value = '';
+
+  // }
+
+  // clearFile() {
+  //   this.form.get('profile').setValue(null);
+  //   this.fileInput.nativeElement.value = '';
+  // }
+
+  // onFileChange(event) {
+  //   const read = new FileReader();
+  //   if (event.target.files && event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     read.readAsDataURL(file);
+  //     read.onload = () => {
+  //       this.form.get('profile').setValue({
+  //         filename: file.name,
+  //         filetype: file.type,
+  //         value: read.result.split(',')[1]
+  //       });
+  //     };
+  //   }
+  // }

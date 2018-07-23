@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +25,7 @@ import com.p2.models.User;
 
 
 @Controller("LoginController")
-//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")
 public class LoginController {
 	public LoginController() {
 	}
@@ -37,11 +35,13 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
-	@CrossOrigin(origins="http://localhost:4200")
+//	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value="/login.app")
 	public @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in login cont");
+		//manually set response type to json
+		//for some reason annotation @ResponseBody won't work
 		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
@@ -68,7 +68,8 @@ public class LoginController {
 			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 			//return;
 		}
-		return u1;
+		//if not found, return empty user
+		return new User();
 
 	}
 	

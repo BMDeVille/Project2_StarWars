@@ -84,9 +84,6 @@ public class User {
 		this.securityAnswer = securityAnswer;
 		this.allegiance = allegiance;
 	}
-	public User(String username) {
-		this.username=username;
-	}
 
 	//no id no about no iamge no sec_ans
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,

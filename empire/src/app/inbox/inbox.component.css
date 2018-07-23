@@ -1,5 +1,14 @@
 body{padding:15px}
 
+.inbox {
+    background: black;
+    border: 3px solid;
+    border-color: blue;
+    padding: 10px;
+    width: 150%;
+    margin: 10px;
+    height: 500px;
+}
 .inbox-list, .n-user-list {
     list-style: outside none none;
     margin: 0;
