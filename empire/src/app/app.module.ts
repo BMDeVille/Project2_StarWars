@@ -19,6 +19,7 @@ import { DomService } from './services/dom.service';
 import { SignupComponent } from './signup/signup.component';
 import { UserinformationComponent } from './userinformation/userinformation.component';
 import { ChangeinformationComponent } from './changeinformation/changeinformation.component';
+import { ImagesComponent } from './images/images.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChangeinformationComponent } from './changeinformation/changeinformatio
     InboxComponent,
     SignupComponent,
     UserinformationComponent,
-    ChangeinformationComponent
+    ChangeinformationComponent,
+    ImagesComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -55,7 +57,8 @@ import { ChangeinformationComponent } from './changeinformation/changeinformatio
     SignupComponent,
     UserinformationComponent,
     PostComponent,
-    ChangeinformationComponent
+    ChangeinformationComponent,
+    ImagesComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]

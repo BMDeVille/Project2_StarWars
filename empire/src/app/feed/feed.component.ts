@@ -7,7 +7,9 @@ import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
 import { IUser } from '../db_models/user';
 import { ProfileService } from '../services/profile.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
+import { ImagesComponent } from '../images/images.component';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-feed',
@@ -21,7 +23,7 @@ export class FeedComponent implements OnInit {
   toggleFlag: boolean;
   activeUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
-    private router: Router) {
+    private router: Router, private _imageService: ImageService) {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
@@ -37,6 +39,15 @@ export class FeedComponent implements OnInit {
     this._modalService.init(PostComponent, inputs, {});
   }
 
+  displayImages(event: { target: HTMLInputElement; }) {
+    const commentId = +event.target.parentElement.id + 1;
+    console.log(commentId);
+    this._imageService.setImages(this._postservice.getPostById(commentId).images);
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.init(ImagesComponent, inputs, {});
+  }
   setViewUser() {
     console.log((<HTMLElement>event.target).parentElement.id);
     // get post by id to get user
