@@ -7,7 +7,16 @@
     size: 50%;
 }
 
-.login input[type="text"], .login input[type="password"]
+.login {   
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: yellow;
+}
+
+.login input[type="email"]
 {
     width: 60%;
     margin: 0;
@@ -45,23 +54,6 @@
 .login input[type="submit"]:hover, .login input[type="button"]:hover
 {
     background-color: black;
-}
-
-button
-{
-    width: 30%;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-top: 16px;
-    outline: 0;
-    cursor: pointer;
-    letter-spacing: 1px;
-    background-color: transparent;
-    color: yellow;
-    border: 3px solid;
-    border-color: gold;
-    border-radius: 5px;
 }
 
 ::placeholder {

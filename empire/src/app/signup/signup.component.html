@@ -8,10 +8,10 @@
     <input type="text" name="lastName" placeholder="Enter your last name" [(ngModel)]="reg.lastName"/> <br>
     <input type="email" name="email" placeholder="Enter your email" [(ngModel)]="reg.email"/> <br> <br>
     Enter Date: <input type="date" id="DOB" name="dateOfBirth" [(ngModel)]="reg.DOB"/> <br> <br>
-    <select id="inputState" name="type" [(ngModel)]="reg.type">
-      <option selected>Choose your side.</option>
-      <option value="1">The Empire</option>
-      <option value="2">The Rebel Alliance</option>
+    <select id="inputState" name="type">
+      <option selected>Choose your side</option>
+      <option value="1" [(ngModel)]="reg.type">The Empire</option>
+      <option value="2" [(ngModel)]="reg.type">The Rebel Alliance</option>
     </select><br>
     <input type="submit" value="Register" (click)="register()" /> <br>
     <input type="button" value="Return" (click)="initLoginModal()"/>

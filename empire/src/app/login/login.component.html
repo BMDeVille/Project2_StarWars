@@ -6,6 +6,8 @@
     <input type="password" name="password" placeholder="Password" [(ngModel)] ="password"/> <br>
     <input type="submit" value="Log In" (click)="login()" /> &nbsp;
     <input type="button" value="Sign Up" (click)="initSignupModal()"/>
+    <br>
+    <button class="buton2" (click)="initLostPassModal()">Forgot Password?</button>
   </div>
   <br><br>
   <button (click)="close()">

@@ -4,6 +4,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { UserService } from '../services/user.service';
 import { IUser } from '../db_models/user';
 import { ProfileService } from '../services/profile.service';
+import { LostPassComponent } from '../lost-pass/lost-pass.component';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
       isMobile: false
     };
     this._modalService.reInit(SignupComponent, inputs, {});
+  }
+
+  initLostPassModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this._modalService.reInit(LostPassComponent, inputs, {});
   }
 
   // login() {
