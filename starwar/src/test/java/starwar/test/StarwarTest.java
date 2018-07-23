@@ -77,7 +77,6 @@ public class StarwarTest {
 		assertEquals(0,c3.size());
 		ds.deletePost(p);
 		ds.deleteUser(u);
-		
 	}
 	
 	@Test
