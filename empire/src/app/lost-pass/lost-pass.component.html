@@ -1,0 +1,15 @@
+<div class="star-back">
+  <img src="http://www.gamingface.com/wp-content/uploads/2013/03/swtorlogo.png">
+  <br>
+  <div id="login-form" class="login">
+    Please enter your email <br>
+    <input type="email" name="email" placeholder="example@text.com" [(ngModel)]="email" /> <br>
+    <input type="submit" value="Submit" (click)="login()" /> &nbsp;
+    <input type="button" value="Return" (click)="initLoginModal()"/>
+  </div>
+  <br><br>
+  <button (click)="close()">
+    Close Modal
+  </button>
+  <br><br>
+</div>

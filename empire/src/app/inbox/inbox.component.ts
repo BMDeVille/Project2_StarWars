@@ -20,9 +20,4 @@ export class InboxComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-  showNotify() {
-    this._notify.login();
-  }
 }
