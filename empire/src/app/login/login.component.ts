@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this._userService.getUser(this.username, this.password).subscribe(data => console.log(data));
     console.log('login');
     console.log(this.username);
-    console.log(this._profileService.getCurrentUser());
+    // console.log(this._profileService.getCurrentUser());
     // this._profileService.setCurrentUser(this._profileService.getCurrentUser());
     // // this._userService.login();
     // this.close();
