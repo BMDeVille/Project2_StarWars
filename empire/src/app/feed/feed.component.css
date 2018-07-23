@@ -19,6 +19,11 @@
     list-style-type: none;
 }
 
+.new-com {
+    background-color: black;
+    border-bottom: 3px solid;
+    border-bottom-color: blue;
+}
 .li-post {
     border-bottom: 3px solid;
     border-bottom-color: blue;  

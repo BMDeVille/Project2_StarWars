@@ -18,6 +18,9 @@
         <button (click)="likeComment($event)"><img src = 'assets/images/1485477009-like_78561.png' width = '30px' height = '30px'>
           </button>[{{c.likes != null? c.likes.length:0}}]
       </li>
+      <li>
+        <span><<&nbsp;</span><input class='new-com' type='text' size = '80px'>&nbsp;<button (click) = "submitNewComment($event)"><img src = 'assets/images/plus-256.png' width = '20px' height = '20px'></button>
+      </li>
     </ul>
 </ul>
 </div>

@@ -94,6 +94,10 @@ export class PostService {
 
   }
 
+  createComment(com: IComment) {
+
+  }
+
   updateComment(com: IComment) {
 
   }

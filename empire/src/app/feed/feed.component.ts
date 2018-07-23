@@ -39,6 +39,13 @@ export class FeedComponent implements OnInit {
     this._modalService.init(PostComponent, inputs, {});
   }
 
+  submitNewComment(event: { target: HTMLInputElement; }) {
+    console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
+    const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
+    const newCom = {'cid': 1, 'body': body, 'likes': null};
+    this._postservice.createComment(newCom);
+  }
+
   displayImages(event: { target: HTMLInputElement; }) {
     const postId = +event.target.parentElement.id + 1;
     console.log(postId);
@@ -129,7 +136,7 @@ export class FeedComponent implements OnInit {
     // update likes
     clickedPost.likes = newlikes;
     this._postservice.updatePost(clickedPost);
+    // now need to refresh component
   }
-  // now need to refresh component
 
 }
