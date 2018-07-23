@@ -19,6 +19,7 @@ import { SignupComponent } from './signup/signup.component';
 import { UserinformationComponent } from './userinformation/userinformation.component';
 import { ChangeinformationComponent } from './changeinformation/changeinformation.component';
 import { ImagesComponent } from './images/images.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ImagesComponent } from './images/images.component';
     SignupComponent,
     UserinformationComponent,
     ChangeinformationComponent,
-    ImagesComponent
+    ImagesComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([

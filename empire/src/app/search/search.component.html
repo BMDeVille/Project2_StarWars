@@ -1,0 +1,11 @@
+<h3>User Matches</h3>
+<div *ngIf = 'userSearch != null'>
+<ul>
+  <li *ngFor = 'let u of userSearch'>
+    <a>{{u.fname}} {{u.lname}}</a>
+  </li>
+</ul>
+</div>
+<div *ngIf = 'userSearch == null'>
+  <p>Sorry, no matches found</p>
+</div>
