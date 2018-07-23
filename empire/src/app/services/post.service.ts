@@ -20,9 +20,10 @@ export class PostService {
     image1: IImage;
     image2: IImage;
     user: IUser;
+
   constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
     const allegiance = {'aid': 2, 'allegiance': 'Rebel Alliance'};
-    this.user = {'id': 2, 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
+    this.user = {'id': 2, 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'password': 'pass', 'about': 'Never tell me the odds',
     'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
      'image': null};
     this.activeUser = _userService.curr_user;
@@ -58,9 +59,9 @@ export class PostService {
   }
 
   getFeed(username: String): IPost[] {
-    // const _url = 'http://localhost:9005/starwar/feed.ms';
-    // const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
-    // obs.subscribe(data => this.posts);
+     const _url = 'http://localhost:9005/starwar/feed.ms';
+     const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+     obs.subscribe(data => this.posts);
     return this.posts;
   }
 

@@ -15,19 +15,19 @@ export class UserService {
   private url = 'http://localhost:9005/starwar/login.app';
   private urlT = 'http://localhost:9005/starwar/createAccount.app';
 
-  // login() {
-  //   const _url = 'http://localhost:9005/starwar/login.app';
-  //   const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
-  //     map(resp => resp as IUser)
-  //   );
-  //   obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
-  // }
+  login() {
+    const _url = 'http://localhost:9005/starwar/login.app';
+    const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
+      map(resp => resp as IUser)
+    );
+    obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
+  }
 
   getUser(username: string, password: string): Observable<IUser> {
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    // const options = new RequestOptions();
-    // options.headers = headers;
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    const options = new RequestOptions();
+    options.headers = headers;
 
     // send username and password to controller
     return this._httpServ.post(this.url, {username: username, password: password}).pipe(map(resp => resp as IUser));

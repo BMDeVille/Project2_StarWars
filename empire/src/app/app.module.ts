@@ -20,6 +20,8 @@ import { UserinformationComponent } from './userinformation/userinformation.comp
 import { ChangeinformationComponent } from './changeinformation/changeinformation.component';
 import { ImagesComponent } from './images/images.component';
 
+import { UploadService } from './services/upload.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,7 @@ import { ImagesComponent } from './images/images.component';
     ChangeinformationComponent,
     ImagesComponent
   ],
-  providers: [PostService, ProfileService, ModalService, DomService],
+  providers: [PostService, ProfileService, ModalService, DomService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

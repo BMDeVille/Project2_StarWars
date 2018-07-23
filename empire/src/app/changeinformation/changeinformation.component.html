@@ -6,16 +6,25 @@
         <label>Username: </label>
       </td>
       <td>
-        <input type="text" placeholder="Username" />
+        <input type="text" placeholder="Username" value = "{{changeUser.username}}"/>
       </td>
     </tr>
 
     <tr>
       <td>
-        <label>Name: </label>
+        <label>First Name: </label>
       </td>
       <td>
-        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="First Name" value = "{{changeUser.fname}}"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label>Last Name: </label>
+      </td>
+      <td>
+        <input type="text" placeholder="First Name" value = "{{changeUser.lname}}"/>
       </td>
     </tr>
 
@@ -24,16 +33,16 @@
         <label>Email: </label>
       </td>
       <td>
-        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Email" value = "{{changeUser.email}}"/>
       </td>
     </tr>
 
     <tr>
       <td>
-        <label>Description: </label>
+        <label>About: </label>
       </td>
       <td>
-        <input type="text" placeholder="Description" />
+        <input type="text" placeholder="Description" value = "{{changeUser.about}}"/>
       </td>
     </tr>
 
@@ -42,7 +51,7 @@
         <label>Day of Birth: </label>
       </td>
       <td>
-        <input type="text" placeholder="Day of Birth" />
+        <input class = "datechangeinfo" type="date" placeholder="Day of Birth" value = "{{changeUser.dob}}"/>
       </td>
     </tr>
   </table>

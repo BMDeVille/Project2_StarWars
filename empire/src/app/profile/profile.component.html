@@ -23,6 +23,13 @@
       <div class = "infoSection">
       <hr class='lines'>
       <hr class='lines'>
+
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)">
+      </label>
+       
+      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+      
       <label>>>&nbsp;Day of Birth: {{viewUser.dob | date:'longDate'}}</label>
       <br/>
       <label>>>&nbsp;Allegiance: {{viewUser.allegiance.allegiance}}</label>
@@ -38,3 +45,5 @@
 <div class='rightColumn'>
   <app-feed></app-feed>
 </div>
+
+
