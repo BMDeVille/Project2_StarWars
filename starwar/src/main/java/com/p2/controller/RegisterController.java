@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -65,34 +66,40 @@ public class RegisterController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Date:" + date);
 		Timestamp dob1 = new Timestamp(date.getTime());
 		// ------------------------------------
+		System.out.println("Date:" + dob1);
 
 		//String securityAnswer = req.getParameter("securityAnswer");
 		int allegiance = Integer.parseInt(req.getParameter("type"));
 		String about = req.getParameter("about");
 		Allegiance al = ds.selectByAid(allegiance);
+		String securityAnswer = "test";
 
 		/// creating the user object with the no id, about, and image constructor
 		//User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
-		User user1 = new User(username, firstName, lastName, email, password, dob1, al);
+		
+		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
+		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, al);
 
 		logger.info("user register: " + user1.getUsername() + " " + user1.getFname());
-		// + " "+ user1.getLname());
-		//ds.insertUser(user1);
+		
 
 		// confirming the account is made throught the console
 		System.out.println(user1);
 
+		ds.insertUser(user1);
+		System.out.println("check insert");
 		// pulling back the object from the database.
 		User user = ds.selectByUsername(username);
-		String userListString = null;
-		ObjectMapper mapper = new ObjectMapper();
-
-		userListString = mapper.writeValueAsString(user);// map reimbursement array to json
+		System.out.println("check get by username");
+//		String userListString = null;
+//		ObjectMapper mapper = new ObjectMapper();
+//
+//		userListString = mapper.writeValueAsString(user);// map reimbursement array to json
 
 		//return userListString;
+		res.setHeader("Access-Control-Allow-Credentials", "true");
 		return user;
 
 	}

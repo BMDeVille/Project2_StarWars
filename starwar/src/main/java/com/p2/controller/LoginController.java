@@ -48,6 +48,7 @@ public class LoginController {
 		System.out.println(password);
 		
 		User u1 = ds.selectByUsername(username);
+		res.setHeader("Access-Control-Allow-Credentials", "true");
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {

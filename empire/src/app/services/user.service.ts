@@ -36,7 +36,6 @@ export class UserService {
 
 
     // send username and password to controller
-    // return this._httpServ.post(this.url, {username: username, password: password}, this.httpOptions).pipe(map(resp => resp as IUser));
     return this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
 
