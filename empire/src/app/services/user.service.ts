@@ -30,9 +30,24 @@ export class UserService {
 };
 
   getAllUsers(): IUser[] {
-    return null;
+    const allegiance = {'aid': 1, 'allegiance': 'Galactic Empire'};
+    const users = [{'id': 1, 'password': '123asd', 'fname': 'Darth', 'lname': 'Vader', 'username': 'SithLord', 'about': 'likes cookies',
+     'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
+      'image': null},
+      {'id': 2, 'password': '123asd', 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
+      'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
+       'image': null}];
+    return users;
   }
 
+  getUserById(num: number): IUser {
+    const alluser = this.getAllUsers();
+    for (let i = 0; i < alluser.length; ++i) {
+      if (alluser[i].id === num) {
+        return alluser[i];
+      }
+    }
+  }
   getUser(username: string, password: string): Observable<IUser> {
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -52,5 +67,9 @@ export class UserService {
     return this._httpServ.post(this.urlT, 'username=' + reg.username + '&password=' + reg.password
     + '&firstname=' + reg.firstName + '&lastname=' + reg.lastName + '&email='
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type , this.httpOptions).pipe(map(resp => resp as IUser));
+  }
+
+  login() {
+
   }
 }
