@@ -23,7 +23,7 @@ import com.p2.models.Allegiance;
 import com.p2.models.User;
 
 @Controller("RegisterController")
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin
 public class RegisterController {
 	final static Logger logger = Logger.getLogger(RegisterController.class);
 	public RegisterController() {
@@ -32,30 +32,31 @@ public class RegisterController {
 	@Autowired
 	private DaoService ds;
 
-
+	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/createAccount.app")
-	public  @ResponseBody String createAccount(HttpServletRequest req, HttpServletResponse res)
+	public  @ResponseBody User createAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("You are creating a user");
-		Date d = new Date();
-		Allegiance al1 = new Allegiance();
-		al1.setAllegiance("a");
-		System.out.println("check1");
-		User test = new User("test11","l1","f1","test2@test2.com","test11",new Timestamp(d.getTime()),"secans",al1);
-		System.out.println("check2");
-		ds.insertUser(test);
-		System.out.println("check3");
+//		Date d = new Date();
+//		Allegiance al1 = new Allegiance();
+//		al1.setAllegiance("a");
+//		System.out.println("check1");
+//		User test = new User("test11","l1","f1","test2@test2.com","test11",new Timestamp(d.getTime()),"secans",al1);
+//		System.out.println("check2");
+//		ds.insertUser(test);
+//		System.out.println("check3");
 
 
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		String firstName = req.getParameter("firstName");
-		String lastName = req.getParameter("lastName");
+		String firstName = req.getParameter("firstname");
+		String lastName = req.getParameter("lastname");
 		String email = req.getParameter("email");
-
 		// DOB Section
-		String dob = req.getParameter("dob");
-		String pattern = "dd-MMM-yyyy";
+		String dob = req.getParameter("date");
+		String pattern = "dd-MM-yyyy";
+		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
+		System.out.println(dob + " ");
 		System.out.println("check5");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
@@ -68,15 +69,15 @@ public class RegisterController {
 		Timestamp dob1 = new Timestamp(date.getTime());
 		// ------------------------------------
 
-		String securityAnswer = req.getParameter("securityAnswer");
-		String allegiance = req.getParameter("allegiance");
-		int allegiance1 = Integer.parseInt(allegiance);
+		//String securityAnswer = req.getParameter("securityAnswer");
+		int allegiance = Integer.parseInt(req.getParameter("type"));
 		String about = req.getParameter("about");
+		Allegiance al = ds.selectByAid(allegiance);
 
 		/// creating the user object with the no id, about, and image constructor
-		Allegiance al = new Allegiance();
-		al.setAllegiance("aa");
-		User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
+		//User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
+		User user1 = new User(username, firstName, lastName, email, password, dob1, al);
+
 		logger.info("user register: " + user1.getUsername() + " " + user1.getFname());
 		// + " "+ user1.getLname());
 		//ds.insertUser(user1);
@@ -91,7 +92,8 @@ public class RegisterController {
 
 		userListString = mapper.writeValueAsString(user);// map reimbursement array to json
 
-		return userListString;
+		//return userListString;
+		return user;
 
 	}
 	// String image = request.getParameter("image");

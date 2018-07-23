@@ -61,6 +61,7 @@ public interface DaoService {
 		//read
 		public List<Allegiance> selectAllAllegiance();
 		public List<Allegiance> selectByAllByAllegiance(Allegiance u);
+		public Allegiance selectByAid(int id);
 		//update
 		public void updateAllegiance(Allegiance u);
 		//delete

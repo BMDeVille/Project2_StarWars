@@ -136,6 +136,9 @@ public class DaoServiceImpl implements DaoService {
 	public List<Allegiance> selectAllAllegiance() {
 		return ad.selectAll();
 	}
+	public Allegiance selectByAid(int id) {
+		return ad.selectByAid(id);
+	}
 	public List<Allegiance> selectByAllByAllegiance(Allegiance u) {
 		return ad.selectByAllegiance(u);
 	}
