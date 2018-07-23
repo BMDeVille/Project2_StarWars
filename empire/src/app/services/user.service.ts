@@ -16,18 +16,11 @@ export class UserService {
   private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlR = 'http://localhost:9005/starwar/reset.app';
 
-  // login() {
-  //   const _url = 'http://localhost:9005/starwar/login.app';
-  //   const obs: Observable<IUser> = this._httpServ.get(_url).pipe(
-  //     map(resp => resp as IUser)
-  //   );
-  //   obs.subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
-  // }
  httpOptions = { headers: new HttpHeaders({
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }),
-  withCredentials: true
-};
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }),
+    withCredentials: true
+  };
 
   getAllUsers(): IUser[] {
     const allegiance = {'aid': 1, 'allegiance': 'Galactic Empire'};
@@ -67,9 +60,5 @@ export class UserService {
     return this._httpServ.post(this.urlT, 'username=' + reg.username + '&password=' + reg.password
     + '&firstname=' + reg.firstName + '&lastname=' + reg.lastName + '&email='
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type , this.httpOptions).pipe(map(resp => resp as IUser));
-  }
-
-  login() {
-
   }
 }
