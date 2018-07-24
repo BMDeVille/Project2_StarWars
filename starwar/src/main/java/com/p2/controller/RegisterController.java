@@ -47,7 +47,7 @@ public class RegisterController {
 		String email = req.getParameter("email");
 		// DOB Section
 		String dob = req.getParameter("date");
-		String pattern = "dd-MM-yyyy";
+		String pattern = "dd-MMM-yyyy";
 		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
 		System.out.println(dob + " ");
 		System.out.println("check5");

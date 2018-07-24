@@ -30,10 +30,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this._modalService.reInit(LoginComponent, inputs, {});
   }
 
+  selectType(event: any) {
+    this.reg.type = event.target.value;
+  }
   // when click register button
   register() {
     // call user service and send register information
     this._userService.regUser(this.reg).subscribe(data => console.log(data));
     console.log(this.reg);
+    this.initLoginModal();
   }
 }

@@ -13,11 +13,11 @@ export class UserService {
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   // private url = 'http://localhost:9005/starwar/login.app';
   private url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
-  // private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlT = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
   private urlR = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
+  public curr_user: Observable<IUser>;
 
- httpOptions = { headers: new HttpHeaders({
+  httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     }),
     withCredentials: true
@@ -45,8 +45,10 @@ export class UserService {
   getUser(username: string, password: string): Observable<IUser> {
     // send username and password to controller
     // then receive json User object
-    return this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
+    this.curr_user =  this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
+    console.log(this.curr_user);
+    return this.curr_user;
   }
   // send register information object to controller
   // receive user object back

@@ -65,7 +65,7 @@ export class PostService {
   }
 
   getFeed(username: String): IPost[] {
-     const _url = 'http://localhost:9005/starwar/feed.ms';
+     const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/feed.app';
      const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.posts);
     return this.posts;
