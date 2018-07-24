@@ -10,6 +10,7 @@ import com.p2.models.Allegiance;
 import com.p2.models.Comment;
 import com.p2.models.Image;
 import com.p2.models.Post;
+import com.p2.models.SecurityQ;
 import com.p2.models.User;
 
 
@@ -27,6 +28,8 @@ public class DaoServiceImpl implements DaoService {
 	private UserDAO ud;
 	@Autowired
 	private AllegianceDAO ad;
+	@Autowired
+	private SecQuesDao sd;
 	
 	
 	public DaoServiceImpl() {
@@ -142,11 +145,10 @@ public class DaoServiceImpl implements DaoService {
 	public List<Allegiance> selectByAllByAllegiance(Allegiance u) {
 		return ad.selectByAllegiance(u);
 	}
-	public void updateAllegiance(Allegiance u) {
-		ad.update(u);
-	}
-	public void deleteAllegiance(Allegiance u) {
-		ad.delete(u);
+
+	//Security Question
+	public void insertSecQues(SecurityQ sq) {
+		sd.insertQues(sq);
 	}
 	
 	

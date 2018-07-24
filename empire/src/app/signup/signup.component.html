@@ -12,7 +12,17 @@
       <option selected>Choose your side</option>
       <option value="1">The Empire</option>
       <option value="2">The Rebel Alliance</option>
+    </select><br><br>
+    <select id="inputState2" name="security" [(ngModel)]="reg.sec_ques">
+      <option value="1">Name of your favorite star ship.</option>
+      <option value="2">Name of your first acquired droid.</option>
+      <option value="3">Planet your parents met on.</option>
+      <option value="4">Your favorite meal</option>
+      <option value="5">Mother''s maiden name.</option>
+      <option value="6">Academy you attended as a youngling.</option>
+      <option value="7">Name of your first mentor.</option>
     </select><br>
+    <input type="text" name="sec_ans" [(ngModel)]="reg.sec_ans"/> <br>
     <input type="submit" value="Register" (click)="register()" /> <br>
     <input type="button" value="Return" (click)="initLoginModal()"/>
   </form>

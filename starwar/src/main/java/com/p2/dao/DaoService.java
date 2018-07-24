@@ -6,6 +6,7 @@ import com.p2.models.Allegiance;
 import com.p2.models.Comment;
 import com.p2.models.Image;
 import com.p2.models.Post;
+import com.p2.models.SecurityQ;
 import com.p2.models.User;
 
 public interface DaoService {
@@ -62,8 +63,7 @@ public interface DaoService {
 		public List<Allegiance> selectAllAllegiance();
 		public List<Allegiance> selectByAllByAllegiance(Allegiance u);
 		public Allegiance selectByAid(int id);
-		//update
-		public void updateAllegiance(Allegiance u);
-		//delete
-		public void deleteAllegiance(Allegiance u);
+		
+		//Security Question Service
+		public void insertSecQues(SecurityQ sq);
 }
