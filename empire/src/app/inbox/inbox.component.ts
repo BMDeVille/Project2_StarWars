@@ -17,12 +17,10 @@ export class InboxComponent implements OnInit {
   curr_user: IUser;
   newLike: IPost;
   constructor(private _notify: UserService) {
-    _notify.curr_user.subscribe(data => this.curr_user = data);
-    console.log(this.curr_user);
   }
 
   ngOnInit() {
-    // this._notify
-  }
-
+   // this._notify.curr_user.subscribe(data => this.curr_user = data);
+    console.log(this.curr_user);
+   }
 }
