@@ -23,6 +23,7 @@ import { SearchComponent } from './search/search.component';
 import { LostPassComponent } from './lost-pass/lost-pass.component';
 
 import { UploadService } from './services/upload.service';
+import { SuccessfulUploadComponent } from './successful-upload/successful-upload.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UploadService } from './services/upload.service';
     ChangeinformationComponent,
     ImagesComponent,
     SearchComponent,
-    LostPassComponent
+    LostPassComponent,
+    SuccessfulUploadComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -57,7 +59,8 @@ import { UploadService } from './services/upload.service';
     PostComponent,
     ChangeinformationComponent,
     ImagesComponent,
-    LostPassComponent
+    LostPassComponent,
+    SuccessfulUploadComponent
   ],
   providers: [PostService, ProfileService, ModalService, DomService, UploadService],
   bootstrap: [AppComponent]

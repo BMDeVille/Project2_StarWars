@@ -20,7 +20,11 @@ export class InboxComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.curr_user = this._notify.curr_user.subscribe(data => this.curr_user);
+   this._notify.curr_user.subscribe(data => this.setUser(new IUser(data)));
     console.log(this.curr_user);
+   }
+
+   setUser(user: IUser) {
+     this.curr_user = user;
    }
 }

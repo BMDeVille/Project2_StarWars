@@ -35,7 +35,7 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
-//	@CrossOrigin(origins="http://localhost:4200")
+	//@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value="/login.app")
 	public @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {

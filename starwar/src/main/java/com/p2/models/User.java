@@ -169,7 +169,7 @@ public class User {
 
 	// all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, SecurityQ sec_ques, Image image, Allegiance allegiance, String about) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -179,6 +179,7 @@ public class User {
 		this.password = password;
 		this.dob = dob;
 		this.securityAnswer = securityAnswer;
+		this.sec_ques = sec_ques;
 		this.image = image;
 		this.allegiance = allegiance;
 		this.about = about;
