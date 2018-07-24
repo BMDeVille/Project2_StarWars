@@ -14,7 +14,6 @@ export class UserService {
   // private url = 'http://localhost:9005/starwar/login.app';
   private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
   private urlT = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
-  // private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
   public curr_user: Observable<IUser>;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
