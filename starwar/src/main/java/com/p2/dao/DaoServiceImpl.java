@@ -150,6 +150,9 @@ public class DaoServiceImpl implements DaoService {
 	public void insertSecQues(SecurityQ sq) {
 		sd.insertQues(sq);
 	}
+	public List<SecurityQ> selectAll(){
+		return sd.selectAll();
+	}
 	public SecurityQ getBySqid(int id) {
 		return sd.selectById(id);
 	}
