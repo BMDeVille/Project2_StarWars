@@ -17,12 +17,11 @@ export class UserService {
   private urlT = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
   private urlR = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
 
-
  httpOptions = { headers: new HttpHeaders({
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }),
-  withCredentials: true
-};
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }),
+    withCredentials: true
+  };
 
   getAllUsers(): IUser[] {
     const allegiance = {'aid': 1, 'allegiance': 'Galactic Empire'};
