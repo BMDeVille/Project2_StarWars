@@ -42,7 +42,7 @@ export class FeedComponent implements OnInit {
   submitNewComment(event: { target: HTMLInputElement; }) {
     console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
-    const newCom = {'cid': 1, 'body': body, 'likes': null};
+    const newCom = {'cid': 1, 'body': body, 'likes': null, 'ownerid': this.activeUser.id, 'postid': this.cp.pid};
     this._postservice.createComment(newCom);
   }
 
