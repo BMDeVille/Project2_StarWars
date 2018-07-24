@@ -67,7 +67,8 @@ export class UserService {
   regUser(reg: any): Observable<IUser> {
     return this._httpServ.post(this.urlT, 'username=' + reg.username + '&password=' + reg.password
     + '&firstname=' + reg.firstName + '&lastname=' + reg.lastName + '&email='
-    + reg.email + '&date=' + reg.DOB + '&type=' + reg.type , this.httpOptions).pipe(map(resp => resp as IUser));
+    + reg.email + '&date=' + reg.DOB + '&type=' + reg.type + '&ques=' + reg.sec_ques
+    + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));
   }
 
 

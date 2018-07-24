@@ -33,6 +33,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
   selectType(event: any) {
     this.reg.type = event.target.value;
   }
+  selectSecurity(event: any) {
+    this.reg.sec_ques = event.target.value;
+  }
   // when click register button
   register() {
     // call user service and send register information
