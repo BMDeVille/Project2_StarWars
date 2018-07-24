@@ -17,6 +17,7 @@ export class UserService {
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
   public curr_user: Observable<IUser>;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
+  private urlUS = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -38,6 +39,17 @@ export class UserService {
     // }
     const url = 'url for get by id';
     return this._httpServ.post(url, 'id=' + num, this.httpOptions).pipe(map(resp => resp as IUser));
+  }
+
+  getUserByFirstName(name: string): Observable<IUser> {
+    // const alluser = this.getAllUsers();
+    // for (let i = 0; i < alluser.length; ++i) {
+    //   if (alluser[i].id === num) {
+    //     return alluser[i];
+    //   }
+    // }
+    const url = 'url for get by id';
+    return this._httpServ.post(url, 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser));
   }
 
   getSecQues(): string {

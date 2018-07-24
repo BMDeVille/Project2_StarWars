@@ -11,6 +11,7 @@ import { PostComponent } from '../post/post.component';
 import { ProfileService } from '../services/profile.service';
 import { IUser } from '../db_models/user';
 import { UploadService } from '../services/upload.service';
+import { SuccessfulUploadComponent } from '../successful-upload/successful-upload.component';
 
 @Component({
   selector: 'app-profile',
@@ -85,11 +86,21 @@ export class ProfileComponent implements OnInit {
 upload() {
   const file = this.selectedFiles.item(0);
   this._upload.uploadfile(file);
+
+  const inputs = {
+    isMobile: false
+  };
+  this._modalService.init(SuccessfulUploadComponent, inputs, {});
 }
 
 selectFile(event) {
+  {
   this.selectedFiles = event.target.files;
 }
+  this.fileInput.nativeElement.value = '';
+
+}
+
 }
 
   // onSubmit() {
