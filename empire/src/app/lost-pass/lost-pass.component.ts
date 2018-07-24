@@ -10,12 +10,10 @@ import { UserService } from '../services/user.service';
 })
 export class LostPassComponent implements OnInit {
   email: string;
-  sec_ans: string;
 
   constructor(private _modalService: ModalService, private _userService: UserService) { }
 
   ngOnInit() {
-    document.getElementById('security').innerHTML = this._userService.getSecQues();
   }
 
   initLoginModal() {
@@ -26,7 +24,7 @@ export class LostPassComponent implements OnInit {
   }
 
   submitForgottenPass() {
-    this._userService.forgotPassword(this.email, this.sec_ans);
+    this._userService.forgotPassword(this.email);
   }
 
 }

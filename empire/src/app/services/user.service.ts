@@ -41,13 +41,8 @@ export class UserService {
     return this._httpServ.post(url, 'id=' + num, this.httpOptions).pipe(map(resp => resp as IUser));
   }
 
-  getSecQues(): string {
-    return this._profileService.curr_user.sec_ques;
-  }
-
-  forgotPassword(email: string, sec_ans: string) {
-    if (this._profileService.curr_user.email === email
-        && this._profileService.curr_user.sec_ans === sec_ans) {
+  forgotPassword(email: string) {
+    if (this._profileService.curr_user.email === email) {
       // Send email to user, with link to password reset page
     }
   }
