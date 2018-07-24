@@ -20,12 +20,10 @@ export class FeedComponent implements OnInit {
 
   posts: IPost[] = [];
   cp: IPost;
-  toggleFlag: boolean;
   activeUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
     private router: Router, private _imageService: ImageService) {
     this.posts = _postservice.getFeed('');
-    this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
   }
 
