@@ -48,6 +48,9 @@ public class User {
 
 	@Column(name = "DOB")
 	private Timestamp dob;
+	
+	@Column(name = "JOIN_DATE")
+	private Timestamp joined;
 
 	@Column(name = "SEC_ANS", nullable = false)
 	private String securityAnswer;
@@ -66,6 +69,9 @@ public class User {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Allegiance allegiance;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	private SecurityQ sec_ques;
 
 	// no args
 	public User() {
@@ -98,6 +104,8 @@ public class User {
 		this.allegiance = allegiance;
 	}
 
+	
+	
 	// no id no about
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
 			String securityAnswer, Image image, Allegiance allegiance) {
@@ -109,6 +117,21 @@ public class User {
 		this.password = password;
 		this.dob = dob;
 		this.securityAnswer = securityAnswer;
+		this.image = image;
+		this.allegiance = allegiance;
+	}
+	
+	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
+			String securityAnswer, SecurityQ sec_ques, Allegiance allegiance) {
+		super();
+		this.username = username;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.securityAnswer = securityAnswer;
+		this.sec_ques = sec_ques;
 		this.image = image;
 		this.allegiance = allegiance;
 	}

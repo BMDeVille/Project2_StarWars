@@ -11,7 +11,7 @@ export class IUser {
     email: string;
     dob: Date;
     join: Date;
-    sec_ques: number;
+    sec_ques: string;
     sec_ans: string;
     about: string;
     image: IImage;

@@ -12,7 +12,7 @@ import { IUser } from '../db_models/user';
 export class UserinformationComponent implements OnInit {
   activeUser: IUser;
   constructor( private _modal: ModalService, private userService: ProfileService) {
-    this.activeUser = userService.getCurrentUser();
+     this.activeUser = userService.getCurrentUser();
    }
 
   ngOnInit() {

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2.dao.DaoService;
 import com.p2.models.Allegiance;
+import com.p2.models.SecurityQ;
 import com.p2.models.User;
 
 @Controller("RegisterController")
@@ -48,9 +49,6 @@ public class RegisterController {
 		// DOB Section
 		String dob = req.getParameter("date");
 		String pattern = "dd-MM-yyyy";
-		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
-		System.out.println(dob + " ");
-		System.out.println("check5");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
 		try {
@@ -66,11 +64,15 @@ public class RegisterController {
 		int allegiance = Integer.parseInt(req.getParameter("type"));
 		//String about = req.getParameter("about");
 		Allegiance al = ds.selectByAid(allegiance);
-		String securityAnswer = "test";
+		int sec_ques = Integer.parseInt(req.getParameter("ques"));
+		SecurityQ sq = ds.getBySqid(sec_ques);
+		String securityAnswer = req.getParameter("ans");
 
+		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
+		System.out.println(dob + " " + allegiance  + " " + sec_ques + " " + securityAnswer);
 		
 		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
-		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, al);
+		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, sq, al);
 
 		logger.info("user register: " + user1.getUsername() + " " + user1.getFname());
 		
