@@ -1,10 +1,14 @@
 package com.p2.dao;
 
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.p2.models.SecurityQ;
-
+@Repository("SecQuesDao")
+@Transactional
 public class SecQuesDaoImpl implements SecQuesDao {
 	
 	@Autowired
