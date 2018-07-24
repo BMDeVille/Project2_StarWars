@@ -45,7 +45,8 @@ import { UploadService } from './services/upload.service';
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'inbox', component: InboxComponent},
-      {path: 'search', component: SearchComponent}
+      {path: 'search', component: SearchComponent},
+       {path: 'login', component: LoginComponent}
     ]),
      HttpClientModule,
   ],

@@ -64,12 +64,10 @@ public class RegisterController {
 
 		//String securityAnswer = req.getParameter("securityAnswer");
 		int allegiance = Integer.parseInt(req.getParameter("type"));
-		String about = req.getParameter("about");
+		//String about = req.getParameter("about");
 		Allegiance al = ds.selectByAid(allegiance);
 		String securityAnswer = "test";
 
-		/// creating the user object with the no id, about, and image constructor
-		//User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
 		
 		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
 		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, al);
@@ -87,6 +85,7 @@ public class RegisterController {
 		System.out.println("check get by username");
 
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 		return user;
 
