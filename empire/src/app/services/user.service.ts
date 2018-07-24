@@ -11,7 +11,7 @@ import { IUser } from '../db_models/user';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  // private url = 'http://localhost:9005/starwar/login.app';
+  // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
   private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
   private urlT = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
