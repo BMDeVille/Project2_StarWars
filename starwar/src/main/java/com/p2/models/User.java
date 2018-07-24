@@ -48,6 +48,9 @@ public class User {
 
 	@Column(name = "DOB")
 	private Timestamp dob;
+	
+	@Column(name = "JOIN_DATE")
+	private Timestamp joined;
 
 	@Column(name = "SEC_ANS", nullable = false)
 	private String securityAnswer;
@@ -66,6 +69,9 @@ public class User {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Allegiance allegiance;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	private SecurityQ sec_ques;
 
 	// no args
 	public User() {

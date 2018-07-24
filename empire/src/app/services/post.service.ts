@@ -28,7 +28,7 @@ export class PostService {
   constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
     const allegiance = {'aid': 2, 'allegiance': 'Rebel Alliance'};
     this.user = {'id': 2, 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'password': 'pass', 'about': 'Never tell me the odds',
-    'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
+    'sec_ans': '', 'sec_ques': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
      'image': null};
     this.activeUser = _userService.curr_user;
     this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};

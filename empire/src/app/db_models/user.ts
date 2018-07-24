@@ -11,6 +11,7 @@ export class IUser {
     email: string;
     dob: Date;
     sec_ans: string;
+    sec_ques: string;
     about: string;
     image: IImage;
     posts: IPost[];
@@ -25,7 +26,8 @@ export class IUser {
         this.lname = user.lname;
         this.email = user.email;
         this.dob = user.dob;
-        this.sec_ans = this.sec_ans;
+        this.sec_ans = user.sec_ans;
+        this.sec_ques = user.sec_ques;
         this.about = user.about;
         this.image = user.image;
         this.posts = user.posts;

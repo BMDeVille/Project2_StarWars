@@ -16,6 +16,7 @@ export class UserService {
   // private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlT = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
   private urlR = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
+  private urlFP = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
 
  httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -26,12 +27,23 @@ export class UserService {
   getAllUsers(): IUser[] {
     const allegiance = {'aid': 1, 'allegiance': 'Galactic Empire'};
     const users = [{'id': 1, 'password': '123asd', 'fname': 'Darth', 'lname': 'Vader', 'username': 'SithLord', 'about': 'likes cookies',
-     'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'd.vador@empire.gov', 'followers': null, 'posts': null,
-      'image': null},
+     'sec_ans': 'No.', 'sec_ques': 'Is there any escape?', 'dob': new Date(), 'allegiance': allegiance, 'email': 'd.vador@empire.gov',
+     'followers': null, 'posts': null, 'image': null},
       {'id': 2, 'password': '123asd', 'fname': 'Han', 'lname': 'Solo', 'username': 'Scoundrel', 'about': 'Never tell me the odds',
-      'sec_ans': '', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org', 'followers': null, 'posts': null,
-       'image': null}];
+      'sec_ans': '???', 'sec_ques': 'Why do we breathe?', 'dob': new Date(), 'allegiance': allegiance, 'email': 'h.solo@reb.org',
+      'followers': null, 'posts': null, 'image': null}];
     return users;
+  }
+
+  getSecQues(): string {
+    return this._profileService.curr_user.sec_ques;
+  }
+
+  forgotPassword(email: string, sec_ans: string) {
+    if (this._profileService.curr_user.email === email
+        && this._profileService.curr_user.sec_ans === sec_ans) {
+      // Send email to user, with link to password reset page
+    }
   }
 
   getUserById(num: number): IUser {
