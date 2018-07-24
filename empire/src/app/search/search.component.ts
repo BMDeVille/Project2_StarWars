@@ -39,10 +39,10 @@ export class SearchComponent implements OnInit {
   setViewUser() {
     console.log((<HTMLElement>event.target).parentElement.id);
     // get user by id
-    const id = +(<HTMLElement>event.target).parentElement.id;
-    const user = this._userService.getUserById(id);
+    const id = (<HTMLElement>event.target).parentElement.id;
+    const user = this._userService.getUserByFirstName(id);
     // assign user to viewUser
-    this._profileService.setViewUser(user);
+    user.subscribe(data => this._profileService.setViewUser(new IUser(data)));
     this.router.navigateByUrl('/profile');
   }
 }

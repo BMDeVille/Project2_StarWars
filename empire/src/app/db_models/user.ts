@@ -10,6 +10,8 @@ export class IUser {
     lname: string;
     email: string;
     dob: Date;
+    join: Date;
+    sec_ques: string;
     sec_ans: string;
     about: string;
     image: IImage;
@@ -25,7 +27,9 @@ export class IUser {
         this.lname = user.lname;
         this.email = user.email;
         this.dob = user.dob;
-        this.sec_ans = this.sec_ans;
+        this.join = user.join;
+        this.sec_ques = user.sec_ques;
+        this.sec_ans = user.sec_ans;
         this.about = user.about;
         this.image = user.image;
         this.posts = user.posts;

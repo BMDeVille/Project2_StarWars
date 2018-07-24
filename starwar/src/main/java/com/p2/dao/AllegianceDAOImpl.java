@@ -40,15 +40,4 @@ public class AllegianceDAOImpl implements AllegianceDAO{
 		return sesFact.getCurrentSession().createQuery("from Allegiance where aid=" + id, Allegiance.class).list().get(0);
 	}
 
-	public void update(Allegiance a) {
-		sesFact.getCurrentSession().update(a);
-		
-	}
-
-	public void delete(Allegiance a) {
-		sesFact.getCurrentSession().delete(a);
-	}
-
-
-
 }

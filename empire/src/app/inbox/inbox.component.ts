@@ -16,13 +16,15 @@ export class InboxComponent implements OnInit {
   newFollower: IUser;
   curr_user: IUser;
   newLike: IPost;
-  constructor(private _notify: UserService) { }
-
-  ngOnInit() {
+  constructor(private _notify: UserService) {
   }
 
+  ngOnInit() {
+   this._notify.curr_user.subscribe(data => this.setUser(new IUser(data)));
+    console.log(this.curr_user);
+   }
 
-  // showNotify() {
-  //   this._notify.getUser();
-  // }
+   setUser(user: IUser) {
+     this.curr_user = user;
+   }
 }

@@ -34,6 +34,8 @@ public class ResetPasswordController {
 	public  @ResponseBody User reset(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in reset cont");
+		
+		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
 		// current password
