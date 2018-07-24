@@ -12,9 +12,10 @@ export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   // private url = 'http://localhost:9005/starwar/login.app';
-  private url = 'http://ec2-18-222-198-157.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
-  private urlT = 'http://localhost:9005/starwar/createAccount.app';
-  private urlR = 'http://localhost:9005/starwar/reset.app';
+  private url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
+  // private urlT = 'http://localhost:9005/starwar/createAccount.app';
+  private urlT = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
+  private urlR = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
 
 
  httpOptions = { headers: new HttpHeaders({

@@ -85,6 +85,7 @@ public class RegisterController {
 		System.out.println("check get by username");
 
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 		return user;
 

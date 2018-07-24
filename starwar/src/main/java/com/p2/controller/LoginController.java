@@ -52,6 +52,7 @@ public class LoginController {
 		User u1 = ds.selectByUsername(username);
 		System.out.println(u1);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+		//res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
