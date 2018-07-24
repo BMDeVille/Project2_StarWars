@@ -48,10 +48,7 @@ public class RegisterController {
 		String email = req.getParameter("email");
 		// DOB Section
 		String dob = req.getParameter("date");
-		String pattern = "dd-MMM-yyyy";
-		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
-		System.out.println(dob + " ");
-		System.out.println("check5");
+		String pattern = "dd-MM-yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
 		try {
@@ -71,6 +68,8 @@ public class RegisterController {
 		SecurityQ sq = ds.getBySqid(sec_ques);
 		String securityAnswer = req.getParameter("ans");
 
+		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
+		System.out.println(dob + " " + allegiance  + " " + sec_ques + " " + securityAnswer);
 		
 		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
 		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, sq, al);
@@ -88,7 +87,7 @@ public class RegisterController {
 		System.out.println("check get by username");
 
 		res.setHeader("Access-Control-Allow-Credentials", "true");
-		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		//res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 		return user;
 

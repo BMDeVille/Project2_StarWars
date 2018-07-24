@@ -66,5 +66,6 @@ public interface DaoService {
 		
 		//Security Question Service
 		public void insertSecQues(SecurityQ sq);
+		public List<SecurityQ> selectAll();
 		public SecurityQ getBySqid(int id);
 }

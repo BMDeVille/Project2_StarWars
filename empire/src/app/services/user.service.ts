@@ -14,6 +14,7 @@ export class UserService {
   // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
   private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
   private urlT = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
+  // private urlT = 'http://localhost:9005/starwar/createAccount.app';
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
   public curr_user: Observable<IUser>;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
@@ -54,7 +55,7 @@ export class UserService {
       }
     }
   }
-  getUser(username: string, password: string) {
+  getUser(username: string, password: string): Observable<IUser> {
     // send username and password to controller
     // then receive json User object
     this.curr_user = this._httpServ.post(this.url, 'username=' + username + '&password=' + password, this.httpOptions)
@@ -68,8 +69,7 @@ export class UserService {
     return this._httpServ.post(this.urlT, 'username=' + reg.username + '&password=' + reg.password
     + '&firstname=' + reg.firstName + '&lastname=' + reg.lastName + '&email='
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type + '&ques=' + reg.sec_ques
-    + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));
-  }
+    + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));  }
 
 
 }
