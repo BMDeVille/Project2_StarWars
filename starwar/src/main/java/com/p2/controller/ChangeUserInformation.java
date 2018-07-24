@@ -36,8 +36,6 @@ public class ChangeUserInformation {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/updateAccount.app")
-	
-	
 	public  @ResponseBody User updateAccount(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("You are updating a user");

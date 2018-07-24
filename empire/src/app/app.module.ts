@@ -10,7 +10,6 @@ import { PostComponent } from './post/post.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { LoginComponent } from './login/login.component';
 
-
 import { PostService } from './services/post.service';
 import { ProfileService } from './services/profile.service';
 import { ModalService } from './services/modal.service';
@@ -38,8 +37,7 @@ import { SuccessfulUploadComponent } from './successful-upload/successful-upload
     ChangeinformationComponent,
     ImagesComponent,
     SearchComponent,
-    LostPassComponent,
-    SuccessfulUploadComponent
+    LostPassComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -47,8 +45,7 @@ import { SuccessfulUploadComponent } from './successful-upload/successful-upload
       {path: 'feed', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'inbox', component: InboxComponent},
-      {path: 'search', component: SearchComponent},
-       {path: 'login', component: LoginComponent}
+      {path: 'search', component: SearchComponent}
     ]),
      HttpClientModule,
   ],
@@ -59,10 +56,9 @@ import { SuccessfulUploadComponent } from './successful-upload/successful-upload
     PostComponent,
     ChangeinformationComponent,
     ImagesComponent,
-    LostPassComponent,
-    SuccessfulUploadComponent
+    LostPassComponent
   ],
-  providers: [PostService, ProfileService, ModalService, DomService, UploadService],
+  providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

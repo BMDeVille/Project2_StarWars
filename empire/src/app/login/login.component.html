@@ -1,15 +1,24 @@
 <div class="star-back">
   <img src="http://www.gamingface.com/wp-content/uploads/2013/03/swtorlogo.png">
   <br>
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
   <div id="login-form" class="login">
-    <input type="text" name="username" placeholder="Username" [(ngModel)]="username" /> <br>
-    <input type="password" name="password" placeholder="Password" [(ngModel)] ="password"/> <br>
-    <input type="submit" value="Log In" (click)="login()" /> &nbsp;
+    <input type="text" name="username" placeholder="Username" formControlName="username"/> <br>
+    <div *ngIf="loginForm.get('username').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'">
+        Username Required.
+    </div>
+    <input type="password" name="password" placeholder="Password" formControlName="password"/> <br>
+    <div *ngIf="loginForm.get('password').hasError('required') && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass] = "'error'">
+      Password Required.
+  </div>
+  <!-- (click)="login()"  [disabled]="!loginForm.valid"-->
+    <input type="submit" value="Log In" /> &nbsp;
     <input type="button" value="Sign Up" (click)="initSignupModal()"/>
     <br>
     <button class="buton2" (click)="initLostPassModal()">Forgot Password?</button>
   </div>
   <br><br>
+</form>
   <button (click)="close()">
     Close Modal
   </button>
