@@ -10,7 +10,6 @@ import { PostComponent } from './post/post.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { LoginComponent } from './login/login.component';
 
-
 import { PostService } from './services/post.service';
 import { ProfileService } from './services/profile.service';
 import { ModalService } from './services/modal.service';
@@ -62,10 +61,9 @@ import { ResetPassComponent } from './reset-pass/reset-pass.component';
     PostComponent,
     ChangeinformationComponent,
     ImagesComponent,
-    LostPassComponent,
-    SuccessfulUploadComponent
+    LostPassComponent
   ],
-  providers: [PostService, ProfileService, ModalService, DomService, UploadService],
+  providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

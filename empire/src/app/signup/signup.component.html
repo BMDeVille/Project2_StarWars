@@ -1,35 +1,76 @@
 <div class="star-back">
   <img src="http://www.gamingface.com/wp-content/uploads/2013/03/swtorlogo.png">
   <br>
-  <div class="login">
-    <input type="text" name="username" placeholder="Enter username" [(ngModel)]="reg.username"/> <br>
-    <input type="password" name="password" placeholder="Enter password" [(ngModel)]="reg.password"/> <br>
-    <input type="text" name="firstName" placeholder="Enter your first name" [(ngModel)]="reg.firstName"/> <br>
-    <input type="text" name="lastName" placeholder="Enter your last name" [(ngModel)]="reg.lastName"/> <br>
-    <input type="email" name="email" placeholder="Enter your email" [(ngModel)]="reg.email"/> <br> <br>
-    Enter Date: <input type="date" id="DOB" name="dateOfBirth" [(ngModel)]="reg.DOB"/> <br> <br>
-    <select id="inputState" name="type" (change)="selectType($event)">
-      <option selected>Choose your side</option>
-      <option value="1">The Empire</option>
-      <option value="2">The Rebel Alliance</option>
-    </select><br><br>
-    <select id="inputState2" name="ques" (change)="selectSecurity($event)">
-      <option selected>Select...</option>
-      <option value="1">Name of your favorite star ship.</option>
-      <option value="2">Name of your first acquired droid.</option>
-      <option value="3">Planet your parents met on.</option>
-      <option value="4">Your favorite meal</option>
-      <option value="5">Mother''s maiden name.</option>
-      <option value="6">Academy you attended as a youngling.</option>
-      <option value="7">Name of your first mentor.</option>
-    </select><br>
-    <input type="text" name="sec_ans" [(ngModel)]="reg.sec_ans"/> <br>
-    <input type="submit" value="Register" (click)="register()" /> <br>
-    <input type="button" value="Return" (click)="initLoginModal()"/>
-  </div>
-  <br>
+  <form [formGroup]="regForm" (ngSubmit)="onFormSubmit()">
+    <div class="login">
+      <input type="text" name="username" placeholder="Enter username" formControlName="username" />   <br>
+      <div *ngIf="regForm.get('username').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Username Required.
+      </div>
+      <input type="password" name="password" placeholder="Enter password" formControlName="password" /> <br>
+      <div *ngIf="regForm.get('password').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Password Required.
+      </div>
+      <input type="text" name="firstName" placeholder="Enter your first name" formControlName="firstName" /> <br>
+      <div *ngIf="regForm.get('firstName').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        FirstName Required.
+      </div>
+      <input type="text" name="lastName" placeholder="Enter your last name" formControlName="lastName" /> <br>
+      <div *ngIf="regForm.get('lastName').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Lastname Required.
+      </div>
+      <input type="email" name="email" placeholder="Enter your email" formControlName="email" /> <br>
+      <div *ngIf="regForm.get('email').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Email Required.
+      </div>
+      <div *ngIf="regForm.get('email').hasError('email')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Must be a valid email address
+      </div>
+      <br>
+      Enter Date:
+      <input type="date" id="DOB" name="dateOfBirth" formControlName="DOB" /> <br>
+      <div *ngIf="regForm.get('DOB').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        DOB Required.
+      </div>
+      <br>
+      <select id="inputState" name="type" (change)="selectType($event)"> <br>
+        <option selected>Choose your side</option>
+        <option value="1">The Empire</option>
+        <option value="2">The Rebel Alliance</option>
+      </select>
+      <br>
+      <br>
+      <!-- <div *ngIf="regForm.get('type').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Side Required.
+      </div> -->
+      <!-- formControlName="sec_ques" -->
+      <select id="inputState2" name="security" (change)="selectSecurity($event)" > <br>
+        <option selected>Select...</option>
+        <option value="1" >Name of your favorite star ship.</option>
+        <option value="2">Name of your first acquired droid.</option>
+        <option value="3">Planet your parents met on.</option>
+        <option value="4">Your favorite meal</option>
+        <option value="5">Mother''s maiden name.</option>
+        <option value="6">Academy you attended as a youngling.</option>
+        <option value="7">Name of your first mentor.</option>
+      </select>
+      <!-- <div *ngIf="regForm.get('sec_ques').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Security Question Required.
+      </div> -->
+      <input type="text" name="sec_ans" formControlName="sec_ans" /> <br>
+      <div *ngIf="regForm.get('sec_ans').hasError('required')  && isValidFormSubmitted != null && !isValidFormSubmitted" [ngClass]="'error'">
+        Security Answer Required.
+      </div>
+      <br>
+      <input type="submit" value="Register" />
+      <br>
+      <input type="button" value="Return" (click)="initLoginModal()" />
+    </div>
+    <br>
+  </form>
   <button (click)="close()">
     Close Modal
   </button>
-  <br><br>
+  <br>
+  <br>
 </div>

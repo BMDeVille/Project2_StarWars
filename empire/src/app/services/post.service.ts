@@ -36,9 +36,12 @@ export class PostService {
   withCredentials: true
 };
   getFeed(username: String): IPost[] {
-     const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/feed.app';
+    console.log('getting feed');
+     const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
      const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
-     obs.subscribe(data => this.posts);
+     // obs.subscribe(data => this.posts);
+     obs.subscribe(data => console.log(data));
+     console.log(this.posts);
     return this.posts;
   }
 

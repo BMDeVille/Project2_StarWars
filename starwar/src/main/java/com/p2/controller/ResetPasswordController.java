@@ -35,7 +35,7 @@ public class ResetPasswordController {
 	public void forgotPassword(HttpServletRequest req, HttpServletResponse res) 
 			throws IOException {
 		String toEmail = req.getParameter("email");
-		User u = ds.selectByEmailAddress(toEmail);
+		User u = ds.selectByEmail(toEmail);
 		if(u != null) {
 			Email.sendEmail(toEmail, u.getFname(), u.getLname(), u.getUsername(), 
 					u.getAllegiance().getAid(), "http://localhost:4200/reset/", "/", "Lost Password");

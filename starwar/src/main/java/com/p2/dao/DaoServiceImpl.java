@@ -114,6 +114,11 @@ public class DaoServiceImpl implements DaoService {
 	public User selectByUsername(String username) {
 		return ud.selectByUsername(username);
 	}
+	
+	public User selectByEmail(String email) {
+		return ud.selectByEmail(email);
+	}
+
 
 	public List<User> selectByFirstName(String fname) {
 		return ud.selectByFirstName(fname);
@@ -121,10 +126,6 @@ public class DaoServiceImpl implements DaoService {
 
 	public List<User> selectByLastName(String lname) {
 		return ud.selectByLastName(lname);
-	}
-	
-	public User selectByEmailAddress(String email) {
-		return ud.selectByEmail(email);
 	}
 
 	public void updateUser(User u) {
