@@ -69,11 +69,6 @@ export class UserService {
       this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
     .subscribe(data => this._profileService.setCurrentUser(data));
-    // .pipe(map(resp => Response)).subscribe(data => this.curr_user = JSON.stringify(data));
-    // console.log(this.curr_user);
-    // return this.curr_user;
-    //  return this._httpServ.post<IUser>(this.url + 'login.app', 'username=' + user.username
-    //  + '&password=' + user.password, this.httpOptions);
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {
