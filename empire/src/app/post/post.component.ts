@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   files: FileList;
   constructor(private _modalService: ModalService, private userService: ProfileService, private postService: PostService) {
     this.activeUser = userService.getCurrentUser();
+    console.log(this.activeUser.email);
   }
 
   ngOnInit() {

@@ -15,6 +15,8 @@ export class UserService {
   // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
   private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
+  private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
+  private urlUU = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
