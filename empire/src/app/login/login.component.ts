@@ -42,13 +42,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isValidFormSubmitted = true;
     console.log(this.loginForm.value);
     this.user = this.loginForm.value;
-<<<<<<< HEAD
     this._userService.setCurrUser(this.user);
-=======
-     this._userService.getUser(this.user).subscribe(data => this._profileService.setCurrentUser(data));
-     console.log(this._profileService.getCurrentUser());
-    this.close();
->>>>>>> ba3589c1dbcd16d96d52538e58e848c9421ea9d2
   }
 
   public close() {

@@ -62,6 +62,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
+
   showOption() {
     this.showImageChange = true;
   }
