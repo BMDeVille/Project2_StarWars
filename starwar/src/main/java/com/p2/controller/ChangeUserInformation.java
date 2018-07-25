@@ -54,7 +54,7 @@ public class ChangeUserInformation {
 		System.out.println("check5");
 		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
-		date = dob
+		//date = dob
 //		try {
 //			date = (Date) simpleDateFormat.parse(dob);
 //		} catch (ParseException e) {
