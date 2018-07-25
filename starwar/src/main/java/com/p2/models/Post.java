@@ -40,7 +40,7 @@ public class Post {
 	@Column(name="CREATED_DATE", nullable= false)
 	private Timestamp created;
 	
-	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER)
 	private User creator;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -143,10 +143,17 @@ public class Post {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
+//	@Override
+//	public String toString() {
+//		return "Post [id=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", likes=" + likes + ", images=" + images + "]";
+//	}
 	@Override
 	public String toString() {
-		return "Post [id=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", likes=" + likes + ", images=" + images + "]";
+		return "Post [pid=" + pid + ", body=" + body + ", youtube=" + youtube + ", created=" + created + ", creator="
+				+ creator + ", likes=" + likes + ", images=" + images + "]";
 	}
+	
+	
 	
 }
 

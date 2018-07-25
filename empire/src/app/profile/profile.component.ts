@@ -41,11 +41,11 @@ export class ProfileComponent implements OnInit {
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
     this.viewUser = _profileService.getViewUser();
-    if (this.viewUser.image != null) {
-      this.imageSrc = this.viewUser.image.image;
-    } else {
-      this.imageSrc = 'assets/images/1.jpg';
-    }
+    // if (this.viewUser.image != null) {
+    //   this.imageSrc = this.viewUser.image.image;
+    // } else {
+    //   this.imageSrc = 'assets/images/1.jpg';
+    // }
   }
 
   initAboutModal() {

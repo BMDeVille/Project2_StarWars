@@ -10,12 +10,11 @@ export class IUser {
     lname: string;
     email: string;
     dob: Date;
-    join: Date;
+    joined: Date;
     sec_ques: string;
-    sec_ans: string;
+    securityAnswer: string;
     about: string;
     image: IImage;
-    posts: IPost[];
     followers: IUser[];
     allegiance: IAllegiance;
 
@@ -27,12 +26,11 @@ export class IUser {
         this.lname = user.lname;
         this.email = user.email;
         this.dob = user.dob;
-        this.join = user.join;
+        this.joined = user.joined;
         this.sec_ques = user.sec_ques;
-        this.sec_ans = user.sec_ans;
+        this.securityAnswer = user.securityAnswer;
         this.about = user.about;
         this.image = user.image;
-        this.posts = user.posts;
         this.followers = user.followers;
         this.allegiance = user.allegiance;
     }
