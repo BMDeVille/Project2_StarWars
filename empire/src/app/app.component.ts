@@ -5,7 +5,6 @@ import { ProfileService } from './services/profile.service';
 import { IUser } from './db_models/user';
 import { SearchService } from './services/search.service';
 import { Router } from '@angular/router';
-import { LogoutService } from './services/logout.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   faviconArray: string[];
   faviconSrc: string;
   constructor(private _modalService: ModalService, private _profileService: ProfileService,
-     private _searchService: SearchService, private router: Router, private auth: LogoutService) {
+     private _searchService: SearchService, private router: Router) {
     this.CountDownTimer('12/20/2019 5:35 PM', 'newcountdown');
     this.faviconArray = ['http://icons.iconarchive.com/icons/sensibleworld/starwars/48/Death-Star-icon.png',
                         'assets/images/rsz_1star_wars__galactic_empire_neon_logo_wp_by_morganrlewis-d9snpkl_1.png',
@@ -34,10 +33,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     setTimeout(_ => this.initLoginModal());
   }
 
-  logout() {
-    this.auth.userLogout();
-    this.initLoginModal();
-  }
+
 
   search() {
     console.log('in search');
