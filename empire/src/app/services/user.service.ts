@@ -18,7 +18,7 @@ export class UserService {
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
   public curr_user: Observable<IUser>;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
-  private urlUS = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
+  private urlUU = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -80,5 +80,10 @@ export class UserService {
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type + '&ques=' + reg.sec_ques
     + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));  }
 
-
+    // updating the user information
+    updateUser(up: any): Observable<IUser> {
+      return this._httpServ.post(this.urlUU, 'username=' + up.username + '&firstname=' + up.firstName
+      + '&lastname' + up.lastName + '&email' + up.email + '&about' + up.about + '&dob' + up.dob,
+      this.httpOptions).pipe(map(resp => resp as IUser));
+    }
 }

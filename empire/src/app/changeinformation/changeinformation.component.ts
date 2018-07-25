@@ -12,8 +12,11 @@ import { IUser } from '../db_models/user';
 })
 export class ChangeinformationComponent implements OnInit {
   changeUser: IUser;
-  constructor(private _modalService: ModalService, private _userService: ProfileService) {
-  this.changeUser = _userService.getCurrentUser();
+  up: any = {};
+
+  constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService) {
+
+  this.changeUser = _profileService.getCurrentUser();
   }
 
 
@@ -30,6 +33,12 @@ export class ChangeinformationComponent implements OnInit {
       isMobile: false,
     };
     this._modalService.reInit(UserinformationComponent, inputs, {});
+  }
+
+  submitInfoChange() {
+    this._userService.updateUser(this.up).subscribe(data => console.log(data));
+    this.initAboutModal();
+
   }
 
 }
