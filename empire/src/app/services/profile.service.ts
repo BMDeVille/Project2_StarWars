@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { IUser } from '../db_models/user';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +16,20 @@ export class ProfileService {
   view_user: IUser;
   @Output() userChange = new EventEmitter<Number>();
 
-  constructor() {
+  constructor(private _userService: UserService) {
    }
 
   setCurrentUser(user: IUser) {
-    // this.curr_user = user;
-    console.log('emit change');
     this.curr_user = user;
-    console.log(this.curr_user);
-    console.log(this.curr_user.allegiance);
-    this.userChange.emit(this.curr_user.allegiance.aid);
+    this.setViewUser(user);
+    this._userService.setCurrUser(user);
   }
 
   setViewUser(user: IUser) {
     this.view_user = user;
   }
+
   getCurrentUser(): IUser {
-    console.log(this.curr_user);
     return this.curr_user;
   }
 

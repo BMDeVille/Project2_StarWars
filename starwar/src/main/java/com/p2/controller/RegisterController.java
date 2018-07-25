@@ -42,6 +42,8 @@ public class RegisterController {
 			throws JsonProcessingException, IOException, ParseException {
 		System.out.println("You are creating a user");
 		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 
 		String username = req.getParameter("username");
 //		if(ds.selectByUsername(username) == null) {

@@ -50,11 +50,12 @@ public class LoginController {
 		System.out.println(password);
 		
 		User u1 = ds.selectByUsername(username);
-		System.out.println(u1);
+		System.out.println("User grabbed: " + u1);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u1 !=null) {
 			//check if password match to database 
+			String pw = BCrypt.hashpw(password, BCrypt.gensalt());
 			if(BCrypt.checkpw(password, u1.getPassword())) {
 				System.out.println("matched");
 				logger.info("user: " + u1.getUsername() + " login ");
