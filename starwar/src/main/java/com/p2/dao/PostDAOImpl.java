@@ -42,7 +42,6 @@ public class PostDAOImpl implements PostDAO {
 
 	public List<Post> selectAll() {
 		System.out.println("in get all post dao");
-		System.out.println("from dao: " + sesFact.getCurrentSession().createQuery("from Post", Post.class).list());
 		return sesFact.getCurrentSession().createQuery("from Post", Post.class).list();
 	}
 

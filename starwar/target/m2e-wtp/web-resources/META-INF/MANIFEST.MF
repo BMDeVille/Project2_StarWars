@@ -1,5 +1,15 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: qconlon
 Build-Jdk: 1.8.0_171
+=======
+<<<<<<< HEAD
+Built-By: Jeffrey
+Build-Jdk: 1.8.0_171
+=======
+Built-By: jialingchen
+Build-Jdk: 1.8.0_172
+>>>>>>> a5af1f97ebd195ae79f02a9469b26fd470693fe3
+>>>>>>> b8f5168354ff1cfb0b44124d8857a8501369bdee
 Created-By: Maven Integration for Eclipse
 
