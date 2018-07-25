@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.user = this.loginForm.value;
      this._userService.getUser(this.user).subscribe(data => this._profileService.setCurrentUser(data));
     console.log(this._profileService.getCurrentUser());
+    this.close();
   }
 
   public close() {

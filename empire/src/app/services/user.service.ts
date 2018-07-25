@@ -29,6 +29,10 @@ export class UserService {
     return null;
   }
 
+  setCurrUser(user: IUser) {
+    this.curr_user = user;
+  }
+
   getUserById(num: number): Observable<IUser> {
     // const alluser = this.getAllUsers();
     // for (let i = 0; i < alluser.length; ++i) {
@@ -51,13 +55,18 @@ export class UserService {
   }
 
   forgotPassword(email: string) {
-    if (this._profileService.curr_user.email === email) {
-      // Send email to user, with link to password reset page
-      this._httpServ.get(this.urlFP, this.httpOptions);
-    }
+    const user: any = this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
+                      .pipe(map(resp => resp as IUser));
+    this.curr_user = user.subscribe(data => this.getUser(new IUser(data)));
+    console.log(this.curr_user);
+    // if (this.curr_user.email !== null) {
+    //   // Send email to user, with link to password reset page
+    //   this._httpServ.get(this.url + 'email.app', this.httpOptions);
+    // }
+    // this.curr_user = null;
   }
 
-  getUser(user: IUser): Observable<IUser> {
+  getUser(user: IUser) {
     // send username and password to controller
     // then receive json User object
      return this._httpServ.post(this.url + 'login.app', 'username=' + user.username
@@ -78,7 +87,7 @@ export class UserService {
 
     // updating the user information
     updateUser(up: any): Observable<IUser> {
-      return this._httpServ.post(this.urlUU, 'username=' + up.username + '&firstname=' + up.firstName
+      return this._httpServ.post(this.url + 'updateUser.app', 'username=' + up.username + '&firstname=' + up.firstName
       + '&lastname' + up.lastName + '&email' + up.email + '&about' + up.about + '&dob' + up.dob,
       this.httpOptions).pipe(map(resp => resp as IUser));
     }
