@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
-  private url = 'http://ec2-18-220-74-86.us-east-2.compute.amazonaws.com:8080/cantina/';
-  public curr_user: Observable<IUser>;
+  private url = 'http://ec2-18-188-25-160.us-east-2.compute.amazonaws.com:8080/cantina/';
+  public curr_user: IUser;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
   private urlUU = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
@@ -60,11 +60,13 @@ export class UserService {
   getUser(user: IUser): Observable<IUser> {
     // send username and password to controller
     // then receive json User object
-    this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
-    + '&password=' + user.password, this.httpOptions)
-    .pipe(map(resp => resp as IUser));
-    console.log(this.curr_user);
-    return this.curr_user;
+     return this._httpServ.post(this.url + 'login.app', 'username=' + user.username
+    + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser));
+    // .pipe(map(resp => Response)).subscribe(data => this.curr_user = JSON.stringify(data));
+    // console.log(this.curr_user);
+    // return this.curr_user;
+    //  return this._httpServ.post<IUser>(this.url + 'login.app', 'username=' + user.username
+    //  + '&password=' + user.password, this.httpOptions);
   }
   // send register information object to controller
   // receive user object back

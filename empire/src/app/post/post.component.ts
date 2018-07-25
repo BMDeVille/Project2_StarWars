@@ -7,7 +7,7 @@ import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html'
+  templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   files: FileList;
   constructor(private _modalService: ModalService, private userService: ProfileService, private postService: PostService) {
     this.activeUser = userService.getCurrentUser();
+    console.log(this.activeUser.email);
   }
 
   ngOnInit() {
