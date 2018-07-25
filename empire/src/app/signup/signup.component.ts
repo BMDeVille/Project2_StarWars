@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.reg.sec_ques = this.theType.sec_ques;
     console.log(this.reg);
     this._userService.regUser(this.reg).subscribe(data => console.log(data));
+    this.regForm.reset();
   }
 
   ngAfterViewInit() {

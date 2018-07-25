@@ -12,9 +12,11 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9001/starwar/';
-  // private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  // private url = 'http://localhost:9001/starwar/';
+  private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
+
+
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -29,6 +31,9 @@ export class UserService {
 
   setCurrUser(user: IUser) {
     this.curr_user = user;
+  }
+  getCurrUser() {
+    return this.curr_user;
   }
 
   getUserByUsername(username: string) {
@@ -58,20 +63,24 @@ export class UserService {
     user.subscribe(data => this.forgotPassword(new IUser(data), email));
   }
 
-  forgotPassword(user: IUser, email: string) {
+  getUser(user: IUser) {
+    // send username and password to controller
+    // then receive json User object
+      this._httpServ.post(this.url + 'login.app', 'username=' + user.username
+    + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
+    .subscribe(data => this._profileService.setCurrentUser(data));
+    // .pipe(map(resp => Response)).subscribe(data => this.curr_user = JSON.stringify(data));
+    // console.log(this.curr_user);
+    // return this.curr_user;
+    //  return this._httpServ.post<IUser>(this.url + 'login.app', 'username=' + user.username
+    //  + '&password=' + user.password, this.httpOptions);
+  }
+    forgotPassword(user: IUser, email: string) {
     if (user !== null) {
       console.log(user);
       // Send email to user, with link to password reset page
       this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions);
     }
-  }
-
-  getUser(cred: any) {
-    // send username and password to controller
-    // then receive json User object
-    this._httpServ.post(this.url + 'login.app', 'username=' + cred.username
-    + '&password=' + cred.password, this.httpOptions).pipe(map(resp => resp as IUser))
-    .subscribe(data => this._profileService.setCurrentUser(new IUser(data)));
   }
 
   // send register information object to controller

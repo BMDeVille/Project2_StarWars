@@ -1,7 +1,7 @@
 <div class='leftColumn'>
   <div class="simpleBorder">
       <hr class='lines'>
-      <h3 class='profilename'>{{activeUser.fname}} {{activeUser.lname}}</h3>
+      <h3 class='profilename'>{{viewUser.fname}} {{viewUser.lname}}</h3>
       <hr class='lines'>
       <img class="profilepageimage" src="{{imageSrc}}"/><!--src='#fileInput'-->
     <br>
@@ -29,11 +29,11 @@
 
       
       
-      <label>>>&nbsp;Day of Birth: {{activeUser.dob | date:'longDate'}}</label>
+      <label>>>&nbsp;Day of Birth: {{viewUser.dob + 86000000 | date:'yyyy-MM-dd'}}</label>
       <br/>
-      <label>>>&nbsp;Allegiance: {{activeUser.allegiance.allegiance}}</label>
+      <label>>>&nbsp;Allegiance: {{viewUser.allegiance.allegiance}}</label>
       <br/>
-      <label>>>&nbsp;About: {{activeUser.about}}</label>
+      <label>>>&nbsp;About: {{viewUser.about}}</label>
       <hr class='lines'>
       <hr class='lines'>
     </div>

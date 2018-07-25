@@ -16,13 +16,12 @@ export class ProfileService {
   view_user: IUser;
   @Output() userChange = new EventEmitter<Number>();
 
-  constructor(private _userService: UserService) {
+  constructor(/* private _userService: UserService */) {
    }
 
   setCurrentUser(user: IUser) {
     this.curr_user = user;
     this.setViewUser(user);
-    this._userService.setCurrUser(user);
   }
 
   setViewUser(user: IUser) {

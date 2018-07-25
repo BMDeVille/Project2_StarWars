@@ -9,6 +9,10 @@
 
 .error {
     color: red;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 .login input[type="text"], .login input[type="password"]
 {

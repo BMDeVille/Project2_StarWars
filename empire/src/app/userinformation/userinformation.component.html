@@ -4,7 +4,7 @@
     <li>Name:  {{activeUser.fname}} {{activeUser.lname}}</li>
     <li>Username:  {{activeUser.username}}</li>
     <li>Email:  {{activeUser.email}}</li>
-    <li>Birthday:  {{activeUser.dob | date:'shortDate'}}</li>
+    <li>Birthday:  {{activeUser.dob + 86000000 | date:'yyyy-MM-dd'}}</li>
     <li>Description:  {{activeUser.description}}</li>
     <li>Join Date:</li>
     <li>Years of Service:</li>

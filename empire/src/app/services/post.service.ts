@@ -25,8 +25,8 @@ export class PostService {
     image2: IImage;
     user: IUser;
 
-  constructor(private _httpServ: HttpClient, private _userService: ProfileService) {
-    this.activeUser = _userService.curr_user;
+  constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
+    this.activeUser = _profileService.getCurrentUser();
     this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};
     this.image2 = {'iid': 3, 'image': 'assets/images/5924290001_a49dc23687_b.jpg'};
   }
@@ -35,15 +35,17 @@ export class PostService {
   }),
   withCredentials: true
 };
-  getFeed(username: String): IPost[] {
+  getFeed(): IPost[] {
+    if (this.activeUser !== null) {
+      const _url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
+      // const _url = 'http://localhost:9005/starwar/allFeed.app';
+      const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+      obs.subscribe(data => this.observableMapper(data));
+      // obs.subscribe(data => console.log(data));
+      console.log(this.posts);
+    }
     console.log('getting feed');
     this.posts = [];
-     // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
-    const _url = 'http://localhost:9005/starwar/allFeed.app';
-    const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
-     obs.subscribe(data => this.observableMapper(data));
-     // obs.subscribe(data => console.log(data));
-     console.log(this.posts);
     return this.posts;
   }
 
