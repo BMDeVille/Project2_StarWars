@@ -37,14 +37,21 @@ export class PostService {
 };
   getFeed(username: String): IPost[] {
     console.log('getting feed');
-     const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
-     const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
-     // obs.subscribe(data => this.posts);
-     obs.subscribe(data => console.log(data));
+    this.posts = [];
+     // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
+    const _url = 'http://localhost:9005/starwar/allFeed.app';
+    const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+     obs.subscribe(data => this.observableMapper(data));
+     // obs.subscribe(data => console.log(data));
      console.log(this.posts);
     return this.posts;
   }
 
+  observableMapper(obs: IPost[]) {
+    for (const ob of obs) {
+      this.posts.push(new IPost(ob));
+    }
+  }
   getPostById(id: number): IPost {
 
       return null;
@@ -65,7 +72,7 @@ export class PostService {
 
   createPost(post: IPost): Observable<IPost>  {
     const url = 'url for create post';
-    return this._httpServ.post(url, 'body=' + post.body + '&owner=' + post.owner +
+    return this._httpServ.post(url, 'body=' + post.body + '&owner=' + post.creator +
     '&youtube=' + post.youtube + '&images=' + post.images, this.httpOptions).pipe(map(resp => resp as IPost));
   }
 
