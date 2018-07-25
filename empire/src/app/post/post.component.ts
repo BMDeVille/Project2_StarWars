@@ -7,7 +7,7 @@ import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
+  templateUrl: './post.component.html'
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
@@ -39,7 +39,7 @@ export class PostComponent implements OnInit {
     // need to decide how to send fileList to back end with IImage
     const newImage = {'iid': 1, 'image': ''};
     this.newPost = {'pid': 1, 'body': body, 'youtube': youtube, 'created': new Date() ,
-    'owner' : this.activeUser, 'comments': null, 'likes': null, 'images': [newImage]};
+    'creator' : this.activeUser, 'comments': null, 'likes': null, 'images': [newImage]};
     this.postService.createPost(this.newPost);
     this._modalService.destroy();
   }

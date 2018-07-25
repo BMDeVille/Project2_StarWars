@@ -81,5 +81,10 @@ export class UserService {
     + reg.email + '&date=' + reg.DOB + '&type=' + reg.type + '&ques=' + reg.sec_ques
     + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));  }
 
-
+    // updating the user information
+    updateUser(up: any): Observable<IUser> {
+      return this._httpServ.post(this.url + 'updateUser.app', 'username=' + up.username + '&firstname=' + up.firstName
+      + '&lastname' + up.lastName + '&email' + up.email + '&about' + up.about + '&dob' + up.dob,
+      this.httpOptions).pipe(map(resp => resp as IUser));
+    }
 }

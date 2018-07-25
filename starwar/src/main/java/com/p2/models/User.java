@@ -318,8 +318,18 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
-				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
-				+ image + ", about=" + about + "]";
+				+ email + ", password=" + password + ", dob=" + dob + ", joined=" + joined + ", securityAnswer="
+				+ securityAnswer + ", about=" + about + ", image=" + image + ", followers="
+				+ followers + ", allegiance=" + allegiance + ", sec_ques=" + sec_ques + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
+//				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
+//				+ image + ", about=" + about + "]";
+//	}
+	
+	
 
 }

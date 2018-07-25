@@ -54,6 +54,8 @@ public class ChangeUserInformation {
 		System.out.println(dob + " ");
 		System.out.println("check5");
 		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date date = null;
+		//date = dob
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		//Date d = new Date(Integer.parseInt(split[0]), Integer.parseInt(split[1]),Integer.parseInt(split[2]));
 		Date date = df.parse(dob);
