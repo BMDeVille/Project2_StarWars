@@ -1,10 +1,6 @@
 package com.p2.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.p2.dao.DaoService;
-import com.p2.dao.DaoServiceImpl;
 import com.p2.models.User;
 
 
@@ -50,11 +45,12 @@ public class LoginController {
 		System.out.println(password);
 		
 		User u1 = ds.selectByUsername(username);
-		System.out.println(u1);
+		System.out.println("User grabbed: " + u1);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u1 !=null) {
 			//check if password match to database 
+			String pw = BCrypt.hashpw(password, BCrypt.gensalt());
 			if(BCrypt.checkpw(password, u1.getPassword())) {
 				System.out.println("matched");
 				logger.info("user: " + u1.getUsername() + " login ");
@@ -67,7 +63,9 @@ public class LoginController {
 		else {
 			System.out.println("no existing username");
 			logger.info("no existing username: " + username);
-			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
+			//res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
+			res.getWriter().write(new ObjectMapper().writeValueAsString(new User()));
+			
 			//return;
 		}
 		//if not found, return empty user

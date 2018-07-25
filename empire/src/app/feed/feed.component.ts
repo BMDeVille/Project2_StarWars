@@ -24,7 +24,7 @@ export class FeedComponent implements OnInit {
   activeUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
     private router: Router, private _imageService: ImageService) {
-    this.posts = _postservice.getFeed('');
+    this.posts = _postservice.getFeed();
     // this.comments = _postservice.getComments();
     this.activeUser = _profileService.getCurrentUser();
   }

@@ -33,6 +33,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     setTimeout(_ => this.initLoginModal());
   }
 
+
+
   search() {
     console.log('in search');
     const str = (<HTMLInputElement>document.getElementById('txtSearch')).value;

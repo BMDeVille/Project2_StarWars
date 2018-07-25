@@ -24,11 +24,13 @@ export class LostPassComponent implements OnInit {
   }
 
   submitForgottenPass() {
-    this._userService.forgotPassword(this.email);
+    console.log(this.email);
+    this._userService.getUserByEmail(this.email);
   }
 
   public close() {
-    this._modalService.destroy();
+    console.log(this._userService.curr_user);
+    // this._modalService.destroy();
   }
 
 }

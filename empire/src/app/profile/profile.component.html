@@ -5,7 +5,10 @@
       <hr class='lines'>
       <img class="profilepageimage" src="{{imageSrc}}"/><!--src='#fileInput'-->
     <br>
+    
+    <!-- <div *ngIf = "activeUser.id == viewUser.id"> -->
     <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
+    <!-- </div> -->
     <button class="button1" (click)="initAboutModal()">View Your Information</button>&nbsp;
     
     
@@ -29,7 +32,7 @@
 
       
       
-      <label>>>&nbsp;Day of Birth: {{viewUser.dob | date:'longDate'}}</label>
+      <label>>>&nbsp;Day of Birth: {{viewUser.dob + 86000000 | date:'yyyy-MM-dd'}}</label>
       <br/>
       <label>>>&nbsp;Allegiance: {{viewUser.allegiance.allegiance}}</label>
       <br/>
