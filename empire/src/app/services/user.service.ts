@@ -12,9 +12,9 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9005/starwar/';
+  // private url = 'http://localhost:9005/starwar/';
   // use this url and add the uri at the end
-  // private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: Observable<IUser>;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
   private urlUS = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
@@ -64,7 +64,7 @@ export class UserService {
   getUser(user: IUser): Observable<IUser> {
     // send username and password to controller
     // then receive json User object
-    this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username 
+    this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions)
     .pipe(map(resp => resp as IUser));
     console.log(this.curr_user);
