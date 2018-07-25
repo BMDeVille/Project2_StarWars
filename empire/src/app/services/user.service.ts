@@ -13,12 +13,8 @@ export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
-  private url = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/login.app';
-  private urlT = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
-  private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
-  public curr_user: Observable<IUser>;
-  private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
-  private urlUS = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
+  private url = 'http://ec2-18-220-74-86.us-east-2.compute.amazonaws.com:8080/cantina/';
+  public curr_user: IUser;
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -29,6 +25,10 @@ export class UserService {
   getAllUsers(): IUser[] {
 
     return null;
+  }
+
+  setCurrUser(user: IUser) {
+    this.curr_user = user;
   }
 
   getUserById(num: number): Observable<IUser> {
@@ -53,19 +53,24 @@ export class UserService {
   }
 
   forgotPassword(email: string) {
-    if (this._profileService.curr_user.email === email) {
-      // Send email to user, with link to password reset page
-      this._httpServ.get(this.urlFP, this.httpOptions);
-    }
+    const user: any = this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
+                      .pipe(map(resp => resp as IUser));
+    this.curr_user = user.subscribe(data => this.getUser(new IUser(data)));
+    console.log(user);
+    // if (this.curr_user.email !== null) {
+    //   // Send email to user, with link to password reset page
+    //   this._httpServ.get(this.url + 'email.app', this.httpOptions);
+    // }
+    // this.curr_user = null;
   }
 
-  getUser(user: IUser): Observable<IUser> {
+  getUser(user: IUser): IUser {
     // send username and password to controller
     // then receive json User object
-    this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
-    + '&password=' + user.password, this.httpOptions)
-    .pipe(map(resp => resp as IUser));
-    console.log(this.curr_user);
+    // this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
+    // + '&password=' + user.password, this.httpOptions)
+    // .pipe(map(resp => resp as IUser));
+    // console.log(this.curr_user);
     return this.curr_user;
   }
   // send register information object to controller
