@@ -29,6 +29,8 @@ public class UserController {
 			throws JsonProcessingException, IOException {
 		String email = req.getParameter("email");
 		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		return ds.selectByEmail(email);
 	}
 }

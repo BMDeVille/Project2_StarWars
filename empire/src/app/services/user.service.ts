@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
   // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
-  private url = 'http://ec2-18-220-74-86.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private url = 'http://ec2-18-188-25-160.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
   httpOptions = { headers: new HttpHeaders({
@@ -56,7 +56,7 @@ export class UserService {
     const user: any = this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
                       .pipe(map(resp => resp as IUser));
     this.curr_user = user.subscribe(data => this.getUser(new IUser(data)));
-    console.log(user);
+    console.log(this.curr_user);
     // if (this.curr_user.email !== null) {
     //   // Send email to user, with link to password reset page
     //   this._httpServ.get(this.url + 'email.app', this.httpOptions);
@@ -64,14 +64,14 @@ export class UserService {
     // this.curr_user = null;
   }
 
-  getUser(user: IUser): IUser {
+  getUser(user: IUser) {
     // send username and password to controller
     // then receive json User object
-    // this.curr_user = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
+    // u: any = this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     // + '&password=' + user.password, this.httpOptions)
     // .pipe(map(resp => resp as IUser));
     // console.log(this.curr_user);
-    return this.curr_user;
+    this.curr_user = user;
   }
   // send register information object to controller
   // receive user object back
