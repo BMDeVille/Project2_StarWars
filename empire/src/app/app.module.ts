@@ -24,7 +24,6 @@ import { LostPassComponent } from './lost-pass/lost-pass.component';
 import { UploadService } from './services/upload.service';
 import { SuccessfulUploadComponent } from './successful-upload/successful-upload.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
-import { LogoutService } from './services/logout.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,7 @@ import { LogoutService } from './services/logout.service';
     ImagesComponent,
     LostPassComponent
   ],
-  providers: [PostService, ProfileService, ModalService, DomService, LogoutService],
+  providers: [PostService, ProfileService, ModalService, DomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
