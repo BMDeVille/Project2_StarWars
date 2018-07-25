@@ -16,7 +16,7 @@ export class UserService {
   private urlT = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/createAccount.app';
   private urlR = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/reset.app';
   public curr_user: Observable<IUser>;
-  private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/forgotPassword.app';
+  private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
   private urlUS = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
   httpOptions = { headers: new HttpHeaders({
@@ -55,6 +55,7 @@ export class UserService {
   forgotPassword(email: string) {
     if (this._profileService.curr_user.email === email) {
       // Send email to user, with link to password reset page
+      this._httpServ.get(this.urlFP, this.httpOptions);
     }
   }
 

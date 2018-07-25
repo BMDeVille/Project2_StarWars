@@ -27,4 +27,8 @@ export class LostPassComponent implements OnInit {
     this._userService.forgotPassword(this.email);
   }
 
+  public close() {
+    this._modalService.destroy();
+  }
+
 }

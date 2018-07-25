@@ -52,6 +52,7 @@ public interface DaoService {
 		public User selectByUsername(String username);
 		public List<User> selectByFirstName(String fname);
 		public List<User> selectByLastName(String lname);
+		public User selectByEmailAddress(String email);
 		//update
 		public void updateUser(User u);
 		//delete

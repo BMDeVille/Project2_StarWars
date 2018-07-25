@@ -1,0 +1,53 @@
+.reset_password{
+    background-color: black;
+    border: 3px solid blue;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.reset_password input[type="text"], .reset_password input[type="password"]{
+    width: 40%;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border: 2px solid blue;
+    outline: 0;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: cyan;
+    outline: 0;
+}
+
+.reset_password input[type="button"]{
+    background-color:black;
+    color: cyan;
+    border: 3px solid;
+    border-bottom-color: blue;
+    width: 150px;
+    font-weight: bold;
+    width: 22%;
+    margin-left: 39%;
+    margin-right: 39%;
+}
+
+.reset_password input[type="button"]:hover{
+    color:black;
+    border-color: grey;
+    background-color:cyan;
+    border-bottom-color: blue;
+}
+
+.reset_password p{
+    color: cyan;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.input-arr {
+    margin-left: 20%;
+}
+
+.sec_ques {
+    text-align: center;
+}

@@ -24,6 +24,7 @@ import { LostPassComponent } from './lost-pass/lost-pass.component';
 
 import { UploadService } from './services/upload.service';
 import { SuccessfulUploadComponent } from './successful-upload/successful-upload.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SuccessfulUploadComponent } from './successful-upload/successful-upload
     ImagesComponent,
     SearchComponent,
     LostPassComponent,
-    SuccessfulUploadComponent
+    SuccessfulUploadComponent,
+    ResetPassComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot([
@@ -48,7 +50,8 @@ import { SuccessfulUploadComponent } from './successful-upload/successful-upload
       {path: 'profile', component: ProfileComponent},
       {path: 'inbox', component: InboxComponent},
       {path: 'search', component: SearchComponent},
-       {path: 'login', component: LoginComponent}
+       {path: 'login', component: LoginComponent},
+       {path: 'reset/:username', component: ResetPassComponent}
     ]),
      HttpClientModule,
   ],

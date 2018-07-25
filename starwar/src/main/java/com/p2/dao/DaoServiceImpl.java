@@ -122,6 +122,10 @@ public class DaoServiceImpl implements DaoService {
 	public List<User> selectByLastName(String lname) {
 		return ud.selectByLastName(lname);
 	}
+	
+	public User selectByEmailAddress(String email) {
+		return ud.selectByEmail(email);
+	}
 
 	public void updateUser(User u) {
 		ud.update(u);

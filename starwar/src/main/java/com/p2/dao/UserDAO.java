@@ -20,6 +20,7 @@ public interface UserDAO {
 	public User selectByUsername(String username);
 	public List<User> selectByFirstName(String fname);
 	public List<User> selectByLastName(String lname);
+	public User selectByEmail(String email);
 	//update
 	public void update(User u);
 	//delete

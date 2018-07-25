@@ -64,6 +64,10 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> selectByLastName(String lname) {
 		return sesFact.getCurrentSession().createQuery("from User where last_name='"+lname+"'", User.class).list();
 	}
+	
+	public User selectByEmail(String email) {
+		return sesFact.getCurrentSession().createQuery("from User where email='"+email+"'", User.class).list().get(0);
+	}
 
 	public void update(User u) {
 		sesFact.getCurrentSession().update(u);
