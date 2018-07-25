@@ -18,7 +18,7 @@ export class IPost {
         this.youtube = post.youtube;
         this.created = post.created;
         this.creator = new IUser(post.creator);
-        this.comments = post.comments;
+        this.comments = [];
         this.likes = post.likes;
         this.images = post.images;
     }

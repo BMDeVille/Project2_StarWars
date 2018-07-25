@@ -19,13 +19,16 @@ import { ImageService } from '../services/image.service';
 export class FeedComponent implements OnInit {
 
   posts: IPost[] = [];
+  comments: IComment[];
   cp: IPost;
   activeUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
     private router: Router, private _imageService: ImageService) {
     this.posts = _postservice.getFeed('');
+    // this.comments = _postservice.getComments();
     this.activeUser = _profileService.getCurrentUser();
   }
+
 
   ngOnInit() {
   }
@@ -40,7 +43,7 @@ export class FeedComponent implements OnInit {
   submitNewComment(event: { target: HTMLInputElement; }) {
     console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
-    const newCom = {'cid': 1, 'body': body, 'likes': null, 'ownerid': this.activeUser.id, 'postid': this.cp.pid};
+    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this.activeUser, 'post': this.cp};
     this._postservice.createComment(newCom);
   }
 
@@ -53,7 +56,7 @@ export class FeedComponent implements OnInit {
     };
     this._modalService.init(ImagesComponent, inputs, {});
   }
-  setViewUser() {
+  setPostViewUser() {
     console.log((<HTMLElement>event.target).parentElement.id);
     // get post by id to get user
     const post = this._postservice.getPostById(+(<HTMLElement>event.target).parentElement.id);
@@ -61,6 +64,17 @@ export class FeedComponent implements OnInit {
     // assign user to viewUser
     this._profileService.setViewUser(post.creator);
     console.log(post.creator);
+    this.router.navigateByUrl('/profile');
+  }
+
+  setComViewUser() {
+    console.log((<HTMLElement>event.target).parentElement);
+
+    const com = this._postservice.getCommentById(+(<HTMLElement>event.target).parentElement.id);
+    console.log(com);
+    // assign user to viewUser
+    this._profileService.setViewUser(com.poster);
+    console.log(com.poster);
     this.router.navigateByUrl('/profile');
   }
 
@@ -79,7 +93,7 @@ export class FeedComponent implements OnInit {
     const commentId = +event.target.parentElement.parentElement.id;
     console.log(event.target.parentElement.parentElement.parentElement.parentElement.children[0]);
     const postId = +event.target.parentElement.parentElement.parentElement.parentElement.children[0].id;
-    const com = this._postservice.getCommentByIdAndPostId(commentId, postId);
+    const com = this._postservice.getCommentById(commentId);
     let found = false;
     let newlikes;
     // check if likes

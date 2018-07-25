@@ -17,7 +17,7 @@ export class PostService {
     activePost: IPost;
 
     // mostly needed for hardwiring of values
-    comment: IComment[];
+    comments: IComment[];
     posts: IPost[] = [];
     activeUser: IUser;
     allegiance: IAllegiance;
@@ -41,29 +41,69 @@ export class PostService {
      // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
     const _url = 'http://localhost:9005/starwar/allFeed.app';
     const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
-     obs.subscribe(data => this.observableMapper(data));
+     obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
-     console.log(this.posts);
+     console.log('length in get feed' + this.posts.length);
+     // this.getComments();
+     // this.mapCommentToPost();
     return this.posts;
   }
 
-  observableMapper(obs: IPost[]) {
+  getComments() {
+    console.log('getting comments');
+    this.comments = [];
+    const _url = 'http://localhost:9005/starwar/allComments.app';
+    const obs: Observable<IComment[]> = this._httpServ.get(_url).pipe(map(resp => resp as IComment[]));
+     obs.subscribe(data => this.commentMapper(data));
+     // obs.subscribe(data => console.log(data));
+     console.log(this.comments);
+     return null;
+  }
+  postMapper(obs: IPost[]) {
     for (const ob of obs) {
       this.posts.push(new IPost(ob));
     }
+    this.getComments();
+  }
+
+  commentMapper(obs: IComment[]) {
+    for (const ob of obs) {
+      this.comments.push(new IComment(ob));
+    }
+    this.mapCommentToPost();
+  }
+
+  mapCommentToPost() {
+    console.log('mapping comments to posts');
+    console.log('length in mapping' + this.posts.length);
+    for (let i = 0; i < this.posts.length; ++i) {
+      this.posts[i].comments = [];
+      for (let j = 0; j < this.comments.length; ++j) {
+        console.log('post id: ' + this.posts[i].pid);
+        console.log('comment post id: ' + this.comments[j].post.pid);
+        if (this.posts[i].pid === this.comments[j].post.pid) {
+            this.posts[i].comments.push(this.comments[j]);
+            console.log(this.posts[i].comments);
+        }
+      }
+    }
+    return null;
   }
   getPostById(id: number): IPost {
-
-      return null;
-      // return this.posts[id - 1];
+      let post;
+      for (let i = 0; i < this.posts.length; ++i) {
+        if (id === this.posts[i].pid) {
+          post = this.posts[i];
+        }
+      }
+      return post;
   }
 
-  getCommentByIdAndPostId(cid: number, pid: number): IComment {
-    const cpost = this.getPostById(pid);
+  getCommentById(cid: number): IComment {
     let com;
-    for (let i = 0; i < cpost.comments.length; ++i) {
-      if (cid === cpost.comments[i].cid) {
-        com = cpost.comments[i];
+    for (let i = 0; i < this.comments.length; ++i) {
+      if (cid === this.comments[i].cid) {
+        com = this.comments[i];
         break;
       }
     }
@@ -82,8 +122,8 @@ export class PostService {
 
   createComment(com: IComment): Observable<IComment> {
     const url = 'url for create comment';
-    return this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.postid +
-     '&ownerid=' + com.ownerid, this.httpOptions).pipe(map(resp => resp as IComment));
+    return this._httpServ.post(url, 'body=' + com.body + '&post=' + com.post +
+     '&poster=' + com.poster, this.httpOptions).pipe(map(resp => resp as IComment));
   }
 
   updateComment(com: IComment) {

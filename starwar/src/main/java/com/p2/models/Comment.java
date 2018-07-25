@@ -33,13 +33,13 @@ public class Comment {
 	@Column(name="BODY", nullable= false)
 	private String body;
 	
-	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER)
 	private User poster;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
 	
-	@ManyToOne(targetEntity=Post.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=Post.class, fetch=FetchType.EAGER)
 	private Post post;
 	
 	public Comment() {
@@ -73,7 +73,9 @@ public class Comment {
 		this.poster = poster;
 	}
 
-	public int getId() {
+	
+
+	public int getCid() {
 		return cid;
 	}
 
@@ -81,11 +83,19 @@ public class Comment {
 		return body;
 	}
 
+	public User getPoster() {
+		return poster;
+	}
+
 	public List<User> getLikes() {
 		return likes;
 	}
 
-	public void setId(int cid) {
+	public Post getPost() {
+		return post;
+	}
+
+	public void setCid(int cid) {
 		this.cid = cid;
 	}
 
@@ -93,30 +103,29 @@ public class Comment {
 		this.body = body;
 	}
 
-	public int getCid() {
-		return cid;
-	}
-
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
-
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
+	public void setPoster(User poster) {
+		this.poster = poster;
 	}
 
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
 
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
 	@Override
 	public String toString() {
-		return "Comment [id=" + cid + ", body=" + body + ", likes=" + likes + "]";
+		return "Comment [cid=" + cid + ", body=" + body + ", poster=" + poster + ", post=" + post + ", likes=" + likes + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Comment [id=" + cid + ", body=" + body + ", likes=" + likes + "]";
+//	}
+	
+	
 	
 	
 }
