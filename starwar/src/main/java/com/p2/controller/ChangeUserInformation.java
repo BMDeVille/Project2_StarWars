@@ -52,13 +52,14 @@ public class ChangeUserInformation {
 		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
 		System.out.println(dob + " ");
 		System.out.println("check5");
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
-		try {
-			date = (Date) simpleDateFormat.parse(dob);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		date = dob
+//		try {
+//			date = (Date) simpleDateFormat.parse(dob);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		Timestamp dob1 = new Timestamp(date.getTime());
 		// ------------------------------------
 		System.out.println("Date:" + dob1);

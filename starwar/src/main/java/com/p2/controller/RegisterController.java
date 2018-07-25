@@ -2,12 +2,14 @@ package com.p2.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
@@ -37,28 +39,37 @@ public class RegisterController {
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/createAccount.app")
 	public  @ResponseBody User createAccount(HttpServletRequest req, HttpServletResponse res)
-			throws JsonProcessingException, IOException {
+			throws JsonProcessingException, IOException, ParseException {
 		System.out.println("You are creating a user");
 		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
+//		if(ds.selectByUsername(username) == null) {
+//			res.getWriter().write(new ObjectMapper().writeValueAsString("exist username"));
+//			return new User();
+//		}
 		String password = req.getParameter("password");
 		String firstName = req.getParameter("firstname");
 		String lastName = req.getParameter("lastname");
 		String email = req.getParameter("email");
+//		if(ds.selectByEmail(email) == null) {
+//			res.getWriter().write(new ObjectMapper().writeValueAsString("exist email"));
+//			return new User();
+//		}
 		// DOB Section
 		String dob = req.getParameter("date");
-		String pattern = "dd-MM-yyyy";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		Date date = null;
-		try {
-			date = (Date) simpleDateFormat.parse(dob);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		Timestamp dob1 = new Timestamp(date.getTime());
+		System.out.println(dob);
+		String split [] = dob.split("-");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		//Date d = new Date(Integer.parseInt(split[0]), Integer.parseInt(split[1]),Integer.parseInt(split[2]));
+		Date d = df.parse(dob);
+		Timestamp dob1 = new Timestamp(d.getTime());
+		//joined date as the register date
+		Date join = new Date();
+		Timestamp joined = new Timestamp(join.getTime());
 		// ------------------------------------
 		System.out.println("Date:" + dob1);
+		System.out.println("joined " + joined);
 
 		//String securityAnswer = req.getParameter("securityAnswer");
 		int allegiance = Integer.parseInt(req.getParameter("type"));
@@ -72,7 +83,7 @@ public class RegisterController {
 		System.out.println(dob + " " + allegiance  + " " + sec_ques + " " + securityAnswer);
 		
 		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
-		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, sq, al);
+		User user1 = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, sq, joined, al);
 
 		logger.info("user register: " + user1.getUsername() + " " + user1.getFname());
 		

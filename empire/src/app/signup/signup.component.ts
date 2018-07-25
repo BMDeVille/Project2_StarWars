@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   // create an object that recevied any type of input
   isValidFormSubmitted = null;
   reg: any = {};
+  theType: any = {};
+
   regForm: FormGroup;
 
   constructor(private _modalService: ModalService, private _userService: UserService, private formBuilder: FormBuilder) { }
@@ -38,8 +40,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
       return;
     }
     this.isValidFormSubmitted = true;
-    console.log(this.regForm.value);
+    console.log('form' + this.regForm.value);
     this.reg = this.regForm.value;
+    this.reg.type = this.theType.type;
+    this.reg.sec_ques = this.theType.sec_ques;
+    console.log(this.reg);
     this._userService.regUser(this.reg).subscribe(data => console.log(data));
   }
 
@@ -58,10 +63,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   selectType(event: any) {
-    this.reg.type = event.target.value;
+    this.theType.type = event.target.value;
   }
   selectSecurity(event: any) {
-    this.reg.sec_ques = event.target.value;
+    this.theType.sec_ques = event.target.value;
   }
   // when click register button
   // register() {
