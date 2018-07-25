@@ -6,7 +6,12 @@
 .squeeze-img{
     size: 50%;
 }
-
+.error {
+    color: red;
+    font-size: 13px;
+    font-style: normal;
+    
+  }
 .login 
 {
     font-style: italic;

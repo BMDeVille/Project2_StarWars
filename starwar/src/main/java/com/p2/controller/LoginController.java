@@ -25,7 +25,7 @@ import com.p2.models.User;
 
 
 @Controller("LoginController")
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
 public class LoginController {
 	public LoginController() {
 	}
@@ -35,7 +35,7 @@ public class LoginController {
 	@Autowired
 	private  DaoService ds;
 	
-//	@CrossOrigin(origins="http://localhost:4200")
+	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value="/login.app")
 	public @ResponseBody User login(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
@@ -52,7 +52,7 @@ public class LoginController {
 		User u1 = ds.selectByUsername(username);
 		System.out.println(u1);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
-		//res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u1 !=null) {
 			//check if password match to database 
 			if(BCrypt.checkpw(password, u1.getPassword())) {
@@ -60,6 +60,7 @@ public class LoginController {
 				logger.info("user: " + u1.getUsername() + " login ");
 				
 				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
+				req.getSession().setAttribute("cur_user", u1);
 				return u1;
 			}	
 		}
