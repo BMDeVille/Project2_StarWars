@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
     private _profileService: ProfileService, private _upload: UploadService) {
     this.createForm();
     this.showImageChange = false;
-    this.posts = _postservice.getFeed('');
+    // this.posts = _postservice.getFeed();
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
     this.viewUser = _profileService.getCurrentUser();

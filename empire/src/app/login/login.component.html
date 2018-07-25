@@ -1,6 +1,7 @@
 <div class="star-back">
   <img src="http://www.gamingface.com/wp-content/uploads/2013/03/swtorlogo.png">
   <br>
+  <p class="error" id="login-status"></p>
   <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
   <div id="login-form" class="login">
     <input type="text" name="username" placeholder="Username" formControlName="username"/> <br>

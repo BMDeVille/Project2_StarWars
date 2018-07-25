@@ -8,9 +8,10 @@
 }
 .error {
     color: red;
+    font-style: italic;
     font-size: 13px;
-    font-style: normal;
-    
+    font-weight: 900;
+    letter-spacing: 1px;
   }
 .login 
 {

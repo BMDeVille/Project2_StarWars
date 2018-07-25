@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   // create variable to hold username and password
   isValidFormSubmitted = null;
-  user: IUser;
+  user: any;
   loginForm: FormGroup;
 
   constructor(private _modalService: ModalService, private _userService: UserService,
@@ -43,9 +43,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.user = this.loginForm.value;
     this._userService.getUser(this.user);
     //  this._userService.getUser(this.user).subscribe(data => this._profileService.setViewUser(data));
-     console.log('login form' + this._profileService.getCurrentUser());
-     console.log(this._profileService.getViewUser());
-     console.log(this._userService.getCurrUser());
      setTimeout(() => {
        this.successLogin();
      }, 400);
@@ -54,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   public successLogin() {
     if (this._profileService.getCurrentUser() === null || this._profileService.getCurrentUser()  === undefined) {
       console.log('no user found');
-      console.log(this._profileService.getCurrentUser());
+      document.getElementById('login-status').innerHTML = 'Login failed.';
       return;
     }
     this.close();

@@ -12,11 +12,9 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  // private url = 'http://localhost:9005/starwar/';
+  // private url = 'http://localhost:9001/starwar/';
   private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
-  private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
-  private urlUU = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
 
 
 
@@ -38,14 +36,14 @@ export class UserService {
     return this.curr_user;
   }
 
-  getUserById(num: number) {
+  getUserByUsername(username: string) {
     // const alluser = this.getAllUsers();
     // for (let i = 0; i < alluser.length; ++i) {
     //   if (alluser[i].id === num) {
     //     return alluser[i];
     //   }
     // }
-    this._httpServ.post(this.url + '', 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser))
+    this._httpServ.post(this.url + 'get-by-username.app', 'username=' + username, this.httpOptions).pipe(map(resp => resp as IUser))
     .subscribe(data => this.setCurrUser(new IUser(data)));
   }
   getUserByFirstName(name: string) {
