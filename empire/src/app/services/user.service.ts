@@ -58,7 +58,7 @@ export class UserService {
 
   forgotPassword(email: string, sec_ans: string) {
     if (this._profileService.curr_user.email === email
-        && this._profileService.curr_user.sec_ans === sec_ans) {
+        && this._profileService.curr_user.securityAnswer === sec_ans) {
       // Send email to user, with link to password reset page
     }
   }

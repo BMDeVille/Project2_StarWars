@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,19 +32,20 @@ public class FeedController {
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping(value = "/allFeed.app")
+	@GetMapping(value = "/allFeed.app")
 	public  @ResponseBody List<Post> getAllFeed(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
+		System.out.println("in all feed controller");
 		List<Post> feed = ds.selectAllPost();
+		System.out.println("from controller: " + feed);
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-		// res.getWriter().write(new ObjectMapper().writeValueAsString(feed));
 		return feed;
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping(value = "/userFeed.app")
+	@GetMapping(value = "/userFeed.app")
 	public  @ResponseBody List<Post> getFeedByUserId(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		String username = req.getParameter("username");
@@ -52,7 +54,6 @@ public class FeedController {
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-		// res.getWriter().write(new ObjectMapper().writeValueAsString(feed));
 		return feed;
 	}
 

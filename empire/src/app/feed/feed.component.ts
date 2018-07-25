@@ -59,8 +59,8 @@ export class FeedComponent implements OnInit {
     const post = this._postservice.getPostById(+(<HTMLElement>event.target).parentElement.id);
     console.log(post);
     // assign user to viewUser
-    this._profileService.setViewUser(post.owner);
-    console.log(post.owner);
+    this._profileService.setViewUser(post.creator);
+    console.log(post.creator);
     this.router.navigateByUrl('/profile');
   }
 

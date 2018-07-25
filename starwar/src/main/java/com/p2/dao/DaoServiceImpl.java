@@ -87,6 +87,8 @@ public class DaoServiceImpl implements DaoService {
 	}
 
 	public List<Post> selectAllPost() {
+		System.out.println("in service get all post");
+		System.out.println("from service: " + pd.selectAll());
 		return pd.selectAll();
 	}
 
