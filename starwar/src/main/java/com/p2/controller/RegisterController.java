@@ -96,7 +96,7 @@ public class RegisterController {
 		// pulling back the object from the database.
 		User user = ds.selectByUsername(username);
 		System.out.println("check get by username");
-
+		System.out.println(user);
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
