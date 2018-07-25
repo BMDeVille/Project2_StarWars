@@ -25,6 +25,7 @@ export class FeedComponent implements OnInit {
     private router: Router, private _imageService: ImageService) {
     this.posts = _postservice.getFeed('');
     this.activeUser = _profileService.getCurrentUser();
+    console.log(this.activeUser.id);
   }
 
   ngOnInit() {
