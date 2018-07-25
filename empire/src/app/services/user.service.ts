@@ -31,37 +31,39 @@ export class UserService {
     this.curr_user = user;
   }
 
-  getUserById(num: number): Observable<IUser> {
+  getUserById(num: number) {
     // const alluser = this.getAllUsers();
     // for (let i = 0; i < alluser.length; ++i) {
     //   if (alluser[i].id === num) {
     //     return alluser[i];
     //   }
     // }
-    const url = 'url for get by id';
-    return this._httpServ.post(url, 'id=' + num, this.httpOptions).pipe(map(resp => resp as IUser));
+    this._httpServ.post(this.url + '', 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser))
+    .subscribe(data => this.getUser(new IUser(data)));
   }
-  getUserByFirstName(name: string): Observable<IUser> {
+  getUserByFirstName(name: string) {
     // const alluser = this.getAllUsers();
     // for (let i = 0; i < alluser.length; ++i) {
     //   if (alluser[i].id === num) {
     //     return alluser[i];
     //   }
     // }
-    const url = 'url for get by id';
-    return this._httpServ.post(url, 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser));
+    this._httpServ.post(this.url + '', 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser))
+    .subscribe(data => this.getUser(new IUser(data)));
   }
 
-  forgotPassword(email: string) {
+  getUserByEmail(email: string) {
     const user: any = this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
                       .pipe(map(resp => resp as IUser));
-    this.curr_user = user.subscribe(data => this.getUser(new IUser(data)));
-    console.log(this.curr_user);
-    // if (this.curr_user.email !== null) {
-    //   // Send email to user, with link to password reset page
-    //   this._httpServ.get(this.url + 'email.app', this.httpOptions);
-    // }
-    // this.curr_user = null;
+    user.subscribe(data => this.forgotPassword(new IUser(data), email));
+  }
+
+  forgotPassword(user: IUser, email: string) {
+    if (user !== null) {
+      console.log(user);
+      // Send email to user, with link to password reset page
+      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions);
+    }
   }
 
   getUser(user: IUser) {
@@ -72,7 +74,9 @@ export class UserService {
     // .pipe(map(resp => resp as IUser));
     // console.log(this.curr_user);
     this.curr_user = user;
+    console.log(this.curr_user);
   }
+
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {
