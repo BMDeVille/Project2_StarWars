@@ -12,11 +12,13 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  // private urlQ = 'http://localhost:9001/starwar/createAccount.app';
-  private url = 'http://ec2-18-188-25-160.us-east-2.compute.amazonaws.com:8080/cantina/';
-  public curr_user: IUser;
+  // private url = 'http://localhost:9005/starwar/';
+  private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private curr_user: IUser;
   private urlFP = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/email.app';
   private urlUU = 'http://ec2-18-217-47-221.us-east-2.compute.amazonaws.com:8080/cantina/updateUser.app';
+
+
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -31,6 +33,9 @@ export class UserService {
 
   setCurrUser(user: IUser) {
     this.curr_user = user;
+  }
+  getCurrUser() {
+    return this.curr_user;
   }
 
   getUserById(num: number): Observable<IUser> {
@@ -69,8 +74,9 @@ export class UserService {
   getUser(user: IUser) {
     // send username and password to controller
     // then receive json User object
-     return this._httpServ.post(this.url + 'login.app', 'username=' + user.username
-    + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser));
+      this._httpServ.post(this.url + 'login.app', 'username=' + user.username
+    + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
+    .subscribe(data => this._profileService.setCurrentUser(data));
     // .pipe(map(resp => Response)).subscribe(data => this.curr_user = JSON.stringify(data));
     // console.log(this.curr_user);
     // return this.curr_user;

@@ -12,6 +12,7 @@ import { ProfileService } from '../services/profile.service';
 import { IUser } from '../db_models/user';
 import { UploadService } from '../services/upload.service';
 import { SuccessfulUploadComponent } from '../successful-upload/successful-upload.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -40,7 +41,7 @@ export class ProfileComponent implements OnInit {
     this.posts = _postservice.getFeed('');
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
-    this.viewUser = _profileService.getViewUser();
+    this.viewUser = _profileService.getCurrentUser();
     // if (this.viewUser.image != null) {
     //   this.imageSrc = this.viewUser.image.image;
     // } else {

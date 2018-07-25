@@ -67,7 +67,9 @@ public class LoginController {
 		else {
 			System.out.println("no existing username");
 			logger.info("no existing username: " + username);
-			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
+			//res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
+			res.getWriter().write(new ObjectMapper().writeValueAsString(new User()));
+			
 			//return;
 		}
 		//if not found, return empty user
