@@ -40,9 +40,10 @@ export class SearchComponent implements OnInit {
     console.log((<HTMLElement>event.target).parentElement.id);
     // get user by id
     const id = (<HTMLElement>event.target).parentElement.id;
-    const user = this._userService.getUserByFirstName(id);
+    this._userService.getUserByFirstName(id);
+    const user: IUser = this._userService.curr_user;
     // assign user to viewUser
-    user.subscribe(data => this._profileService.setViewUser(new IUser(data)));
+    this._profileService.setViewUser(user);
     this.router.navigateByUrl('/profile');
   }
 }

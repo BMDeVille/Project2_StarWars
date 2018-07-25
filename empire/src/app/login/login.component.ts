@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
      console.log('login form' + this._profileService.getCurrentUser());
      console.log(this._profileService.getViewUser());
      console.log(this._userService.getCurrUser());
-    //  this.successLogin();
+     setTimeout(() => {
+       this.successLogin();
+     }, 400);
     }
 
   public successLogin() {

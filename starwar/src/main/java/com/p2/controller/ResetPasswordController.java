@@ -31,7 +31,7 @@ public class ResetPasswordController {
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@GetMapping(value = "/email.app")
+	@PostMapping(value = "/email.app")
 	public void forgotPassword(HttpServletRequest req, HttpServletResponse res) 
 			throws IOException {
 		String toEmail = req.getParameter("email");
