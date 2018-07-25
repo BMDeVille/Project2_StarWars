@@ -2,6 +2,7 @@ package com.p2.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,10 +37,8 @@ public class ChangeUserInformation {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/updateAccount.app")
-	
-	
 	public  @ResponseBody User updateAccount(HttpServletRequest req, HttpServletResponse res)
-			throws JsonProcessingException, IOException {
+			throws JsonProcessingException, IOException, ParseException {
 		System.out.println("You are updating a user");
 		res.setContentType("application/json");
 
@@ -54,13 +53,15 @@ public class ChangeUserInformation {
 		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
 		System.out.println(dob + " ");
 		System.out.println("check5");
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		Date date = null;
-		try {
-			date = (Date) simpleDateFormat.parse(dob);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		//Date d = new Date(Integer.parseInt(split[0]), Integer.parseInt(split[1]),Integer.parseInt(split[2]));
+		Date date = df.parse(dob);
+//		try {
+//			date = (Date) simpleDateFormat.parse(dob);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		Timestamp dob1 = new Timestamp(date.getTime());
 		// ------------------------------------
 		System.out.println("Date:" + dob1);

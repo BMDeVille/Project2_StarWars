@@ -50,6 +50,7 @@ public interface DaoService {
 		//read
 		public List<User> selectAllUser();
 		public User selectByUsername(String username);
+		public User selectByEmail(String email);
 		public List<User> selectByFirstName(String fname);
 		public List<User> selectByLastName(String lname);
 		//update

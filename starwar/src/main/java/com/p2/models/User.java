@@ -132,7 +132,21 @@ public class User {
 		this.dob = dob;
 		this.securityAnswer = securityAnswer;
 		this.sec_ques = sec_ques;
-		this.image = image;
+		this.allegiance = allegiance;
+	}
+	
+	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
+			String securityAnswer, SecurityQ sec_ques,Timestamp joined, Allegiance allegiance) {
+		super();
+		this.username = username;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.securityAnswer = securityAnswer;
+		this.sec_ques = sec_ques;
+		this.joined = joined;
 		this.allegiance = allegiance;
 	}
 
@@ -169,7 +183,7 @@ public class User {
 
 	// all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, SecurityQ sec_ques, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, SecurityQ sec_ques,Timestamp joined, Image image, Allegiance allegiance, String about) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -180,10 +194,12 @@ public class User {
 		this.dob = dob;
 		this.securityAnswer = securityAnswer;
 		this.sec_ques = sec_ques;
+		this.joined = joined;
 		this.image = image;
 		this.allegiance = allegiance;
 		this.about = about;
 	}
+	
 
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
 			String securityAnswer, String about, Image image, List<User> followers, Allegiance allegiance,
