@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: jialingchen
 Build-Jdk: 1.8.0_172
+=======
+Built-By: Jeffrey
+Build-Jdk: 1.8.0_171
+>>>>>>> 24371d8263579fc57c93a19eb7ee65b73645794f
 Created-By: Maven Integration for Eclipse
 

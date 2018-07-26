@@ -67,6 +67,10 @@ export class PostService {
     this.comLikes = [];
 
   }
+
+  getPostLikes() {
+
+  }
   postMapper(obs: IPost[]) {
     for (const ob of obs) {
       this.posts.push(new IPost(ob));

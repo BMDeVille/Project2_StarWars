@@ -43,7 +43,13 @@ public class FeedController {
 		System.out.println("in all feed controller");
 		List<Post> feed = ds.selectAllPost();
 		for(Post p: feed) {
-			p.setLikes(null);
+			List<Integer> likeids = ds.selectLikesByPid(p.getPid());
+			List<User> likes = new ArrayList<User>();
+			for (int i = 0; i < likeids.size(); ++i) {
+				likes.add(ds.selectById(likeids.get(i)).get(0));
+			}
+			p.setLikes(likes);
+//			p.setLikes(null);
 			p.setImages(null);
 		}
 		System.out.println("from all feed controller: " + feed);
@@ -73,7 +79,7 @@ public class FeedController {
 		System.out.println("in all comment controller");
 		List<Comment> coms = ds.selectAllComment();
 		for (Comment c: coms) {
-			c.setLikes(null);
+			// c.setLikes(null);
 			c.getPost().setLikes(null);
 			c.getPost().setImages(null);
 		}
