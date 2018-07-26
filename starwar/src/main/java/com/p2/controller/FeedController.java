@@ -1,6 +1,9 @@
 package com.p2.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,5 +83,34 @@ public class FeedController {
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		return coms;
 	}
-
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@GetMapping(value = "/newComment.app")
+	public void createNewComment(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in new comment");
+		String body = req.getParameter("body");
+		String username = req.getParameter("username");
+		int postid = Integer.parseInt(req.getParameter("postid"));
+		User u = ds.selectByUsername(username);
+		List<Post> pl = ds.selectByPid(postid);
+		Post p = pl.get(0);
+		Comment nc = new Comment(body, p, u);
+		ds.insertComment(nc);
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@GetMapping(value = "/newPost.app")
+	public void createNewPost(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in new post");
+		String body = req.getParameter("body");
+		String username = req.getParameter("username");
+		//String images = req.getParameter("images");
+		Timestamp ts = new Timestamp(new Date().getTime());
+		User u = ds.selectByUsername(username);
+		Post np = new Post(body, ts, u);
+		ds.insertPost(np);
+	}
+	
 }

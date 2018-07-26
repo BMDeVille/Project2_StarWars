@@ -89,6 +89,17 @@ export class PostService {
     }
     return null;
   }
+
+  getPostsByUserId(id: number): IPost[] {
+    const userPosts = [];
+    for (let i = 0; i < this.posts.length; ++i) {
+      if (this.posts[i].creator.id === id) {
+        userPosts.push(this.posts[i]);
+      }
+    }
+    return userPosts;
+  }
+
   getPostById(id: number): IPost {
       let post;
       for (let i = 0; i < this.posts.length; ++i) {
@@ -111,9 +122,9 @@ export class PostService {
   }
 
   createPost(post: IPost): Observable<IPost>  {
-    const url = 'url for create post';
-    return this._httpServ.post(url, 'body=' + post.body + '&owner=' + post.creator +
-    '&youtube=' + post.youtube + '&images=' + post.images, this.httpOptions).pipe(map(resp => resp as IPost));
+    const url = 'http://localhost:9005/starwar/newPost.app';
+    return this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
+      , this.httpOptions).pipe(map(resp => resp as IPost));
   }
 
   updatePost(post: IPost) {
@@ -121,9 +132,9 @@ export class PostService {
   }
 
   createComment(com: IComment): Observable<IComment> {
-    const url = 'url for create comment';
-    return this._httpServ.post(url, 'body=' + com.body + '&post=' + com.post +
-     '&poster=' + com.poster, this.httpOptions).pipe(map(resp => resp as IComment));
+    const url = 'http://localhost:9005/starwar/newComment.app';
+    return this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
+     '&username=' + com.poster.username, this.httpOptions).pipe(map(resp => resp as IComment));
   }
 
   updateComment(com: IComment) {

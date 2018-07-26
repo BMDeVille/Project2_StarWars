@@ -20,6 +20,7 @@ public interface PostDAO {
 	//read
 	public List<Post> selectAll();
 	public List<Post> selectByUser(User u);
+	public List<Post> selectByPid(int pid);
 	//update
 	public void update(Post p);
 	//delete

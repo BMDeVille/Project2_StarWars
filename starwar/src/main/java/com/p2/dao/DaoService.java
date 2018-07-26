@@ -39,6 +39,7 @@ public interface DaoService {
 		//read
 		public List<Post> selectAllPost();
 		public List<Post> selectByUserPost(User u);
+		public List<Post> selectByPid(int pid);
 		//update
 		public void updatePost(Post p);
 		//delete
