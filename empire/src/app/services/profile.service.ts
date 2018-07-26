@@ -25,6 +25,7 @@ export class ProfileService {
   }
 
   setViewUser(user: IUser) {
+    console.log(user);
     this.view_user = user;
   }
 

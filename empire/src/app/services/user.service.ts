@@ -12,8 +12,8 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  // private url = 'http://localhost:9001/starwar/';
-  private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private url = 'http://localhost:9001/starwar/';
+  // private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
 
@@ -79,8 +79,13 @@ export class UserService {
     if (user !== null) {
       console.log(user);
       // Send email to user, with link to password reset page
-      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions);
+      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions).subscribe(data => console.log(data));
     }
+  }
+
+  resetPassword(username: string, password: string, sec_ans: string) {
+    this._httpServ.post(this.url + 'reset.app', 'username=' + username +
+      '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
   }
 
   // send register information object to controller

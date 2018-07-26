@@ -5,6 +5,8 @@ import { ProfileService } from './services/profile.service';
 import { IUser } from './db_models/user';
 import { SearchService } from './services/search.service';
 import { Router } from '@angular/router';
+import { LostPassComponent } from './lost-pass/lost-pass.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +32,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => this.initLoginModal());
+    setTimeout(_ => document.getElementById('reset_pass') === null ? this.initLoginModal() : console.log('nothing'), 500);
   }
 
 
