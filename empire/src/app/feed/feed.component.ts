@@ -7,7 +7,7 @@ import { IComment } from '../db_models/comment';
 import { PostComponent } from '../post/post.component';
 import { IUser } from '../db_models/user';
 import { ProfileService } from '../services/profile.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ImagesComponent } from '../images/images.component';
 import { ImageService } from '../services/image.service';
 
@@ -23,8 +23,14 @@ export class FeedComponent implements OnInit {
   cp: IPost;
   activeUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
-    private router: Router, private _imageService: ImageService) {
-    this.posts = _postservice.getFeed();
+    private router: Router, private _imageService: ImageService, private _activeRoute: ActivatedRoute) {
+    const uri = this.router.url;
+    console.log(uri);
+    if (uri === '/feed') {
+      this.posts = _postservice.getFeed();
+    } else {
+      this.posts = _postservice.getPostsByUserId(_profileService.getViewUser().id);
+    }
     // this.comments = _postservice.getComments();
     this.activeUser = _profileService.getCurrentUser();
   }
@@ -43,7 +49,11 @@ export class FeedComponent implements OnInit {
   submitNewComment(event: { target: HTMLInputElement; }) {
     console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
-    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this.activeUser, 'post': this.cp};
+    const pid = +event.target.parentElement.parentElement.parentElement.id;
+    console.log(this.activeUser);
+    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this._profileService.getCurrentUser(),
+     'post': this._postservice.getPostById(pid)};
+    console.log(newCom);
     this._postservice.createComment(newCom);
   }
 

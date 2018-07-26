@@ -163,6 +163,11 @@ public class DaoServiceImpl implements DaoService {
 	public SecurityQ getBySqid(int id) {
 		return sd.selectById(id);
 	}
+
+
+	public List<Post> selectByPid(int pid) {
+		return pd.selectByPid(pid);
+	}
 	
 	
 }
