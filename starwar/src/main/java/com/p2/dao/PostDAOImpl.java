@@ -42,7 +42,6 @@ public class PostDAOImpl implements PostDAO {
 
 	public List<Post> selectAll() {
 		System.out.println("in get all post dao");
-		System.out.println("from dao: " + sesFact.getCurrentSession().createQuery("from Post", Post.class).list());
 		return sesFact.getCurrentSession().createQuery("from Post", Post.class).list();
 	}
 
@@ -56,6 +55,10 @@ public class PostDAOImpl implements PostDAO {
 
 	public void delete(Post p) {
 		sesFact.getCurrentSession().delete(p);
+	}
+
+	public List<Post> selectByPid(int pid) {
+		return sesFact.getCurrentSession().createQuery("from Post where pid=" + pid, Post.class).list();
 	}
 
 }

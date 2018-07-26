@@ -42,6 +42,7 @@ public class DaoServiceImpl implements DaoService {
 		cd.insert(c);
 	}
 	public List<Comment> selectAllComment() {
+		System.out.println("in service get all comment");
 		return cd.selectAll();
 	}
 
@@ -88,7 +89,6 @@ public class DaoServiceImpl implements DaoService {
 
 	public List<Post> selectAllPost() {
 		System.out.println("in service get all post");
-		System.out.println("from service: " + pd.selectAll());
 		return pd.selectAll();
 	}
 
@@ -162,6 +162,11 @@ public class DaoServiceImpl implements DaoService {
 	}
 	public SecurityQ getBySqid(int id) {
 		return sd.selectById(id);
+	}
+
+
+	public List<Post> selectByPid(int pid) {
+		return pd.selectByPid(pid);
 	}
 	
 	

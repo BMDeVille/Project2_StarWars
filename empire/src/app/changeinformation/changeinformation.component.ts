@@ -4,7 +4,8 @@ import { UserinformationComponent } from '../userinformation/userinformation.com
 import { UserService } from '../services/user.service';
 import { ProfileService } from '../services/profile.service';
 import { IUser } from '../db_models/user';
-
+import { Router } from '@angular/router';
+import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-changeinformation',
   templateUrl: './changeinformation.component.html',
@@ -14,7 +15,8 @@ export class ChangeinformationComponent implements OnInit {
   changeUser: IUser;
   up: any = {};
 
-  constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService) {
+  constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService,
+     private _router: Router) {
 
   this.changeUser = _profileService.getCurrentUser();
   }
@@ -36,8 +38,12 @@ export class ChangeinformationComponent implements OnInit {
   }
 
   submitInfoChange() {
-    this._userService.updateUser(this.up).subscribe(data => console.log(data));
+    console.log('inside info change');
+    console.log(this.up);
+    this._userService.updateUser(this.up);
+    setTimeout(() => {
     this.initAboutModal();
+    }, 2500);
 
   }
 

@@ -1,16 +1,19 @@
 <div>
-<h2>{{activeUser.fname}} {{activeUser.lname}}'s Account Information</h2>
+<h2>{{viewUser.fname}} {{viewUser.lname}}'s Account Information</h2>
 <ul class='detail-list'>
-    <li>Name:  {{activeUser.fname}} {{activeUser.lname}}</li>
-    <li>Username:  {{activeUser.username}}</li>
-    <li>Email:  {{activeUser.email}}</li>
-    <li>Birthday:  {{activeUser.dob + 86000000 | date:'yyyy-MM-dd'}}</li>
-    <li>Description:  {{activeUser.description}}</li>
-    <li>Join Date:</li>
+    <li>Name:  {{viewUser.fname}} {{viewUser.lname}}</li>
+    <li>Username:  {{viewUser.username}}</li>
+    <li>Email:  {{viewUser.email}}</li>
+    <li>Birthday:  {{viewUser.dob + 86000000 | date:'yyyy-MM-dd'}}</li>
+    <li>Description:  {{viewUser.description}}</li>
+    <li>Join Date:   {{viewUser.joined}}</li>
     <li>Years of Service:</li>
 
   </ul>
 
 <button class="button" type = "button" value = "Exit" (click) = "close()">Exit</button>
+
+<!-- <div *ngIf = "activeUser.username === viewUser.username"> -->
 <button class="button" type = "button" value = "changeInfo" (click) = "initChangeModal()">Change User Information</button>
+<!-- </div> -->
 </div>

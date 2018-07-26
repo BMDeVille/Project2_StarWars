@@ -63,17 +63,18 @@ export class UserService {
     user.subscribe(data => this.forgotPassword(new IUser(data), email));
   }
 
+  // getUserByEmail1(email: string) {
+  //  this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
+  //           .pipe(map(resp => resp as IUser))
+  //         .subscribe(data => this._profileService.setCurrentUser(data));
+  // }
+
   getUser(user: IUser) {
     // send username and password to controller
     // then receive json User object
       this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
     .subscribe(data => this._profileService.setCurrentUser(data));
-    // .pipe(map(resp => Response)).subscribe(data => this.curr_user = JSON.stringify(data));
-    // console.log(this.curr_user);
-    // return this.curr_user;
-    //  return this._httpServ.post<IUser>(this.url + 'login.app', 'username=' + user.username
-    //  + '&password=' + user.password, this.httpOptions);
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {
@@ -97,9 +98,9 @@ export class UserService {
     + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));  }
 
     // updating the user information
-    updateUser(up: any): Observable<IUser> {
-      return this._httpServ.post(this.url + 'updateUser.app', 'username=' + up.username + '&firstname=' + up.firstName
-      + '&lastname' + up.lastName + '&email' + up.email + '&about' + up.about + '&dob' + up.dob,
-      this.httpOptions).pipe(map(resp => resp as IUser));
+    updateUser(up: any) {
+     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.firstName
+      + '&lastname=' + up.lastName + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
+      this.httpOptions).pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
     }
 }
