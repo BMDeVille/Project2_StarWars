@@ -28,7 +28,8 @@ export class PostService {
     postLikes: IUser[];
 
   constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
-    this.activeUser = _profileService.getCurrentUser();
+    // this.activeUser = _profileService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
     this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};
     this.image2 = {'iid': 3, 'image': 'assets/images/5924290001_a49dc23687_b.jpg'};
   }

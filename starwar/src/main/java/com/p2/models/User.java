@@ -315,6 +315,22 @@ public class User {
 		this.followers = followers;
 	}
 
+	public Timestamp getJoined() {
+		return joined;
+	}
+
+	public void setJoined(Timestamp joined) {
+		this.joined = joined;
+	}
+
+	public SecurityQ getSec_ques() {
+		return sec_ques;
+	}
+
+	public void setSec_ques(SecurityQ sec_ques) {
+		this.sec_ques = sec_ques;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="

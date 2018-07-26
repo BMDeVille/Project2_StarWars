@@ -16,7 +16,9 @@ export class PostComponent implements OnInit {
   newPost: IPost;
   files: FileList;
   constructor(private _modalService: ModalService, private userService: ProfileService, private postService: PostService) {
-    this.activeUser = userService.getCurrentUser();
+    // this.activeUser = userService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('in post comp');
     console.log(this.activeUser.email);
   }
 

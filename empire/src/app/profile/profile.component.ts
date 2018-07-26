@@ -40,8 +40,10 @@ export class ProfileComponent implements OnInit {
     this.showImageChange = false;
     // this.posts = _postservice.getFeed();
     this.toggleFlag = false;
-    this.activeUser = _profileService.getCurrentUser();
-    this.viewUser = _profileService.getViewUser();
+    // this.activeUser = _profileService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+   // this.viewUser = _profileService.getViewUser();
+   this.viewUser = JSON.parse(localStorage.getItem('currentUser'));
     // if (this.viewUser.image != null) {
     //   this.imageSrc = this.viewUser.image.image;
     // } else {
