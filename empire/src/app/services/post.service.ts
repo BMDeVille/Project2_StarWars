@@ -3,7 +3,6 @@ import { IPost } from '../db_models/post';
 import { IUser } from '../db_models/user';
 import { IComment } from '../db_models/comment';
 import { IAllegiance } from '../db_models/allegiance';
-import { IImage } from '../db_models/image';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,16 +22,16 @@ export class PostService {
     posts: IPost[] = [];
     activeUser: IUser;
     allegiance: IAllegiance;
-    image1: IImage;
-    image2: IImage;
+    image1: string;
+    image2: string;
     user: IUser;
     comLikes: IUser[];
     postLikes: IUser[];
 
   constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
     this.activeUser = _profileService.getCurrentUser();
-    this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};
-    this.image2 = {'iid': 3, 'image': 'assets/images/5924290001_a49dc23687_b.jpg'};
+    this.image1 = 'assets/images/hqdefault.jpg';
+    this.image2 = 'assets/images/5924290001_a49dc23687_b.jpg';
   }
   httpOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -134,8 +133,7 @@ export class PostService {
 
   updatePost(post: IPost, user: IUser) {
     console.log('like post');
-    const url = 'http://localhost:9005/starwar/likePost.app';
-    this._httpServ.post(url, 'pid=' + post.pid +
+    this._httpServ.post(this._url + 'likePost.app', 'pid=' + post.pid +
      '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
@@ -147,8 +145,7 @@ export class PostService {
 
   updateComment(com: IComment, user: IUser) {
     console.log('like comment');
-    const url = 'http://localhost:9005/starwar/likeComment.app';
-    this._httpServ.post(url, 'cid=' + com.cid +
+    this._httpServ.post(this._url + 'likeComment.app', 'cid=' + com.cid +
      '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
   }
   getActivePost(): IPost {

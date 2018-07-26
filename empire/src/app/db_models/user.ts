@@ -1,5 +1,3 @@
-import { IImage } from './image';
-import { IPost } from './post';
 import { IAllegiance } from './allegiance';
 
 export class IUser {
@@ -14,7 +12,7 @@ export class IUser {
     sec_ques: string;
     securityAnswer: string;
     about: string;
-    image: IImage;
+    image: string;
     followers: IUser[];
     allegiance: IAllegiance;
 

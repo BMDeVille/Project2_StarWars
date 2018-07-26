@@ -56,7 +56,8 @@ public class LoginController {
 				logger.info("user: " + u1.getUsername() + " login ");
 				
 				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
-				req.getSession().setAttribute("cur_user", u1);
+				req.getSession().setAttribute("loggedUsername", u1.getUsername());
+				req.getSession().setAttribute("loggedPassword", u1.getPassword());
 				return u1;
 			}	
 		}
@@ -71,6 +72,30 @@ public class LoginController {
 		//if not found, return empty user
 		return new User();
 
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value="/logged.app")
+	public @ResponseBody User logged(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		
+		String username = (String) req.getSession().getAttribute("loggedUsername");
+		String password = (String) req.getSession().getAttribute("loggedPassword");
+		if(username != null && password != null) {
+			User u1 = ds.selectByUsername(username);
+			if(u1 != null) {
+				if(BCrypt.checkpw(password, u1.getPassword())){
+					res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
+					return u1;
+				}
+			}
+		}
+		
+		res.getWriter().write(new ObjectMapper().writeValueAsString(new User()));
+		return new User();
 	}
 	
 	

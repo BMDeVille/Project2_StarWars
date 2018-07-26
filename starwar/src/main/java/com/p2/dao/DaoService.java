@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.p2.models.Allegiance;
 import com.p2.models.Comment;
-import com.p2.models.Image;
 import com.p2.models.Post;
 import com.p2.models.SecurityQ;
 import com.p2.models.User;
@@ -21,18 +20,6 @@ public interface DaoService {
 		public void updateComment(Comment c);
 		//delete
 		public void deleteComment(Comment c);
-		
-		//image service
-		//create
-		public void insertImg(Image img);
-		//read
-		public List<Image> selectAllImg();
-		public List<Image> selectByUserImg(User u);
-		public List<Image> selectByPostImg(Post p);
-		//update
-		public void updateImg(Image img);
-		//delete
-		public void deleteImg(Image img);
 		
 		//post service
 		//create
