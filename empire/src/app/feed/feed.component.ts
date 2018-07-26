@@ -51,7 +51,8 @@ export class FeedComponent implements OnInit {
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
     const pid = +event.target.parentElement.parentElement.parentElement.id;
     console.log(this.activeUser);
-    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this.activeUser, 'post': this._postservice.getPostById(pid)};
+    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this._profileService.getCurrentUser(),
+     'post': this._postservice.getPostById(pid)};
     console.log(newCom);
     this._postservice.createComment(newCom);
   }

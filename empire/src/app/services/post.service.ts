@@ -121,20 +121,21 @@ export class PostService {
     return com;
   }
 
-  createPost(post: IPost): Observable<IPost>  {
+  createPost(post: IPost) {
     const url = 'http://localhost:9005/starwar/newPost.app';
-    return this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
-      , this.httpOptions).pipe(map(resp => resp as IPost));
+    this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
+      , this.httpOptions).subscribe(data => console.log(data));
   }
 
   updatePost(post: IPost) {
 
   }
 
-  createComment(com: IComment): Observable<IComment> {
+  createComment(com: IComment) {
+    console.log('sending new comment');
     const url = 'http://localhost:9005/starwar/newComment.app';
-    return this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
-     '&username=' + com.poster.username, this.httpOptions).pipe(map(resp => resp as IComment));
+    this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
+     '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
   updateComment(com: IComment) {

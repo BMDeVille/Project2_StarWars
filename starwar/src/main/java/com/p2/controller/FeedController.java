@@ -85,7 +85,7 @@ public class FeedController {
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@GetMapping(value = "/newComment.app")
+	@PostMapping(value = "/newComment.app")
 	public void createNewComment(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in new comment");
@@ -100,7 +100,7 @@ public class FeedController {
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@GetMapping(value = "/newPost.app")
+	@PostMapping(value = "/newPost.app")
 	public void createNewPost(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
 		System.out.println("in new post");
