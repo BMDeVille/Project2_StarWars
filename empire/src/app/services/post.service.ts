@@ -3,7 +3,6 @@ import { IPost } from '../db_models/post';
 import { IUser } from '../db_models/user';
 import { IComment } from '../db_models/comment';
 import { IAllegiance } from '../db_models/allegiance';
-import { IImage } from '../db_models/image';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,22 +14,24 @@ import { ProfileService } from './profile.service';
 export class PostService {
     // actually need
     activePost: IPost;
+    _url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
+    // _url = 'http://localhost:9001/starwar/';
 
     // mostly needed for hardwiring of values
     comments: IComment[];
     posts: IPost[] = [];
     activeUser: IUser;
     allegiance: IAllegiance;
-    image1: IImage;
-    image2: IImage;
+    image1: string;
+    image2: string;
     user: IUser;
     comLikes: IUser[];
     postLikes: IUser[];
 
   constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
     this.activeUser = _profileService.getCurrentUser();
-    this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};
-    this.image2 = {'iid': 3, 'image': 'assets/images/5924290001_a49dc23687_b.jpg'};
+    this.image1 = 'assets/images/hqdefault.jpg';
+    this.image2 = 'assets/images/5924290001_a49dc23687_b.jpg';
   }
   httpOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -39,11 +40,10 @@ export class PostService {
 };
   getFeed(): IPost[] {
     this.posts = [];
-     // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
-    const _url = 'http://localhost:9005/starwar/allFeed.app';
-    const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+    const obs: Observable<IPost[]> = this._httpServ.get(this._url + 'allFeed.app').pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
+     setTimeout(_ => console.log('length in get feed' + this.posts.length), 5000);
      // this.getComments();
      // this.mapCommentToPost();
     return this.posts;
@@ -51,8 +51,7 @@ export class PostService {
 
   getComments() {
     this.comments = [];
-    const _url = 'http://localhost:9005/starwar/allComments.app';
-    const obs: Observable<IComment[]> = this._httpServ.get(_url).pipe(map(resp => resp as IComment[]));
+    const obs: Observable<IComment[]> = this._httpServ.get(this._url + 'allComments.app').pipe(map(resp => resp as IComment[]));
      obs.subscribe(data => this.commentMapper(data));
      // obs.subscribe(data => console.log(data));
      return null;
@@ -124,8 +123,7 @@ export class PostService {
   }
 
   createPost(post: IPost) {
-    const url = 'http://localhost:9005/starwar/newPost.app';
-    this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
+    this._httpServ.post(this._url + 'newPost.app', 'body=' + post.body + '&username=' + post.creator.username
       , this.httpOptions).subscribe(data => console.log(data));
   }
 

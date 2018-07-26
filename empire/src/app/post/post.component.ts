@@ -16,7 +16,9 @@ export class PostComponent implements OnInit {
   newPost: IPost;
   files: FileList;
   constructor(private _modalService: ModalService, private userService: ProfileService, private postService: PostService) {
-    this.activeUser = userService.getCurrentUser();
+    // this.activeUser = userService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('in post comp');
     console.log(this.activeUser.email);
   }
 
@@ -38,7 +40,7 @@ export class PostComponent implements OnInit {
     this.files = (<HTMLInputElement>document.getElementById('body')).files;
     console.log(this.files); // files is undefined
     // need to decide how to send fileList to back end with IImage
-    const newImage = {'iid': 1, 'image': ''};
+    const newImage = '';
     this.newPost = {'pid': 1, 'body': body, 'youtube': youtube, 'created': new Date() ,
     'creator' : this.activeUser, 'comments': null, 'likes': null, 'images': [newImage]};
     this.postService.createPost(this.newPost);

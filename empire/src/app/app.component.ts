@@ -7,6 +7,7 @@ import { SearchService } from './services/search.service';
 import { Router } from '@angular/router';
 import { LostPassComponent } from './lost-pass/lost-pass.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
+import { UserinformationComponent } from './userinformation/userinformation.component';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,12 @@ export class AppComponent implements AfterViewInit, OnInit {
     setTimeout(_ => document.getElementById('reset_pass') === null ? this.initLoginModal() : console.log('nothing'), 500);
   }
 
-
+Logout() {
+  localStorage.removeItem('currentUser');
+  // this._profileService.setCurrentUser(new IUse;
+  location.reload();
+  this.initLoginModal();
+}
 
   search() {
     console.log('in search');

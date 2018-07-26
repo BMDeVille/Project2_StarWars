@@ -29,10 +29,12 @@ export class FeedComponent implements OnInit {
     if (uri === '/feed') {
       this.posts = _postservice.getFeed();
     } else {
-      this.posts = _postservice.getPostsByUserId(_profileService.getViewUser().id);
+      // this.posts = _postservice.getPostsByUserId(_profileService.getViewUser().id);
+      this.posts = _postservice.getPostsByUserId(JSON.parse(localStorage.getItem('currentUser')));
     }
     // this.comments = _postservice.getComments();
-    this.activeUser = _profileService.getCurrentUser();
+    // this.activeUser = _profileService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 
@@ -49,7 +51,8 @@ export class FeedComponent implements OnInit {
   submitNewComment(event: { target: HTMLInputElement; }) {
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
     const pid = +event.target.parentElement.parentElement.parentElement.id;
-    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this._profileService.getCurrentUser(),
+    console.log(this.activeUser);
+    const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': JSON.parse(localStorage.getItem('currentUser')),
      'post': this._postservice.getPostById(pid)};
     this._postservice.createComment(newCom);
   }
@@ -105,15 +108,16 @@ export class FeedComponent implements OnInit {
       }
       if (!found) {
         // add like
-        newlikes.push(this._profileService.getCurrentUser());
+        newlikes.push(JSON.parse(localStorage.getItem('currentUser')));
       }
     // first like
     } else {
-      newlikes = [this._profileService.getCurrentUser()];
+      newlikes = [JSON.parse(localStorage.getItem('currentUser'))];
     }
     // update likes
     com.likes = newlikes;
-    this._postservice.updateComment(com, this._profileService.getCurrentUser(), found);
+    this._postservice.updateComment(com, JSON.parse(localStorage.getItem('currentUser')), found);
+    // now need to refresh component
   }
 
   likePost(event: { target: HTMLInputElement; }) {
@@ -142,7 +146,8 @@ export class FeedComponent implements OnInit {
     }
     // update likes
     clickedPost.likes = newlikes;
-    this._postservice.updatePost(clickedPost, this._profileService.getCurrentUser(), found);
+    this._postservice.updatePost(clickedPost, JSON.parse(localStorage.getItem('currentUser')), found);
+    // now need to refresh component
   }
 
 }

@@ -1,6 +1,5 @@
 import { IComment } from './comment';
 import { IUser } from './user';
-import { IImage } from './image';
 
 export class IPost {
     pid: number;
@@ -10,7 +9,7 @@ export class IPost {
     creator: IUser;
     comments: IComment[];
     likes: IUser[];
-    images: IImage[];
+    images: string[];
 
     constructor(post: IPost) {
         this.pid = post.pid;

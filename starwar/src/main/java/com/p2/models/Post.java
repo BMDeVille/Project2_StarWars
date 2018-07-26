@@ -10,16 +10,17 @@ package com.p2.models;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -40,14 +41,16 @@ public class Post {
 	@Column(name="CREATED_DATE", nullable= false)
 	private Timestamp created;
 	
+	@ElementCollection
+	@CollectionTable(name="IMAGES", joinColumns=@JoinColumn(name="PID"))
+	@Column(name="IMAGE", columnDefinition="VARCHAR2(250)")
+	private List<String> images;
+	
 	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER)
 	private User creator;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	private List<User> likes;
-	
-	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Image> images;
 	
 	//no args
 	public Post() {
@@ -69,7 +72,7 @@ public class Post {
 		this.creator = creator;
 	}
 	//no id no like no comments no youtube
-	public Post(String body, Timestamp created, List<Image> images, User creator) {
+	public Post(String body, Timestamp created, List<String> images, User creator) {
 		super();
 		this.body = body;
 		this.created = created;
@@ -77,7 +80,7 @@ public class Post {
 		this.creator = creator;
 	}
 	//no id no likes, no comments
-	public Post(String body, String youtube, Timestamp created, List<Image> images, User creator) {
+	public Post(String body, String youtube, Timestamp created, List<String> images, User creator) {
 		super();
 		this.body = body;
 		this.youtube = youtube;
@@ -87,7 +90,7 @@ public class Post {
 	}
 	//all members
 	public Post(int pid, String body, String youtube, Timestamp created, List<User> likes,
-			List<Image> images, User creator) {
+			List<String> images, User creator) {
 		super();
 		this.pid = pid;
 		this.body = body;
@@ -122,7 +125,7 @@ public class Post {
 	public List<User> getLikes() {
 		return likes;
 	}
-	public List<Image> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 	public void setId(int pid) {
@@ -140,7 +143,7 @@ public class Post {
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
-	public void setImages(List<Image> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 //	@Override

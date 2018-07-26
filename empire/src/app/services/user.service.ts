@@ -15,7 +15,7 @@ export class UserService {
     this.getUsers();
    }
   private url = 'http://localhost:9005/starwar/';
-  // private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
   httpOptions = { headers: new HttpHeaders({
@@ -90,7 +90,9 @@ export class UserService {
     // then receive json User object
       this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
-    .subscribe(data => this._profileService.setCurrentUser(data));
+    // .subscribe(data => this._profileService.setCurrentUser(data));
+    .subscribe(data => localStorage.setItem('currentUser', JSON.stringify(data)));
+    this._profileService.setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {
@@ -104,7 +106,6 @@ export class UserService {
     this._httpServ.post(this.url + 'reset.app', 'username=' + username +
       '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
   }
-
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {

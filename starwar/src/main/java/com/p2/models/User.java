@@ -58,8 +58,8 @@ public class User {
 	@Column(name = "ABOUT")
 	private String about;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Image image;
+	@Column(name = "IMAGE")
+	private String image;
 
 	@OneToMany(mappedBy = "pid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Post> postList;
@@ -108,7 +108,7 @@ public class User {
 	
 	// no id no about
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, Allegiance allegiance) {
+			String securityAnswer, String image, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -167,7 +167,7 @@ public class User {
 
 	// no id
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, String image, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -183,7 +183,7 @@ public class User {
 
 	// all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, SecurityQ sec_ques,Timestamp joined, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, SecurityQ sec_ques,Timestamp joined, String image, Allegiance allegiance, String about) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -202,7 +202,7 @@ public class User {
 	
 
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, String about, Image image, List<User> followers, Allegiance allegiance,
+			String securityAnswer, String about, String image, List<User> followers, Allegiance allegiance,
 			List<Comment> comments) {
 		super();
 		this.id = id;
@@ -251,7 +251,7 @@ public class User {
 		return securityAnswer;
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
@@ -299,7 +299,7 @@ public class User {
 		this.securityAnswer = securityAnswer;
 	}
 
-	public void setImage(Image image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -313,6 +313,22 @@ public class User {
 
 	public void setFollowers(List<User> followers) {
 		this.followers = followers;
+	}
+
+	public Timestamp getJoined() {
+		return joined;
+	}
+
+	public void setJoined(Timestamp joined) {
+		this.joined = joined;
+	}
+
+	public SecurityQ getSec_ques() {
+		return sec_ques;
+	}
+
+	public void setSec_ques(SecurityQ sec_ques) {
+		this.sec_ques = sec_ques;
 	}
 
 	@Override
