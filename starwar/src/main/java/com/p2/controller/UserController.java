@@ -31,6 +31,7 @@ public class UserController {
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		System.out.println(ds.selectByEmail(email));
 		return ds.selectByEmail(email);
 	}
 }

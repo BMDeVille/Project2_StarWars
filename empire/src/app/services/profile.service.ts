@@ -21,6 +21,8 @@ export class ProfileService {
 
   setCurrentUser(user: IUser) {
     this.curr_user = user;
+    console.log(this.curr_user);
+
     this.setViewUser(user);
   }
 
