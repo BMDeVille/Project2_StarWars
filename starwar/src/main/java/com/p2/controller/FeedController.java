@@ -113,4 +113,43 @@ public class FeedController {
 		ds.insertPost(np);
 	}
 	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value = "/likeComment.app")
+	public void updateComment(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in like comment");
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		String username = req.getParameter("username");
+		User u = ds.selectByUsername(username);
+		List<Comment> coms = ds.selectByCid(cid);
+		Comment com = coms.get(0);
+		List<User> likes = com.getLikes();
+		likes.add(u);
+		com.setLikes(likes);
+		ds.updateComment(com);
+		
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value = "/likePost.app")
+	public void updatePost(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in like post");
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		String username = req.getParameter("username");
+		User u = ds.selectByUsername(username);
+		List<Post> posts = ds.selectByPid(pid);
+		List<Integer> likeids = ds.selectLikesByPid(pid);
+		System.out.println("likes length " + likeids.size());
+		Post p = posts.get(0);
+		List<User> likes = new ArrayList<User>();
+		for (int i = 0; i < likeids.size(); ++i) {
+			likes.add(ds.selectById(likeids.get(i)).get(0));
+		}
+		likes.add(u);
+		p.setLikes(likes);
+		ds.updatePost(p);
+		
+	}
+	
 }

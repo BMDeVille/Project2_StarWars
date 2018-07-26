@@ -26,6 +26,8 @@ export class PostService {
     image1: IImage;
     image2: IImage;
     user: IUser;
+    comLikes: IUser[];
+    postLikes: IUser[];
 
   constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
     this.activeUser = _profileService.getCurrentUser();
@@ -57,6 +59,11 @@ export class PostService {
      // obs.subscribe(data => console.log(data));
      console.log(this.comments);
      return null;
+  }
+
+  getComLikes() {
+    this.comLikes = [];
+
   }
   postMapper(obs: IPost[]) {
     for (const ob of obs) {
@@ -125,8 +132,11 @@ export class PostService {
       , this.httpOptions).subscribe(data => console.log(data));
   }
 
-  updatePost(post: IPost) {
-
+  updatePost(post: IPost, user: IUser) {
+    console.log('like post');
+    const url = 'http://localhost:9005/starwar/likePost.app';
+    this._httpServ.post(url, 'pid=' + post.pid +
+     '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
   createComment(com: IComment) {
@@ -135,8 +145,11 @@ export class PostService {
      '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
-  updateComment(com: IComment) {
-
+  updateComment(com: IComment, user: IUser) {
+    console.log('like comment');
+    const url = 'http://localhost:9005/starwar/likeComment.app';
+    this._httpServ.post(url, 'cid=' + com.cid +
+     '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
   }
   getActivePost(): IPost {
     return this.activePost;

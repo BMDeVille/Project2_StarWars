@@ -21,6 +21,7 @@ public interface PostDAO {
 	public List<Post> selectAll();
 	public List<Post> selectByUser(User u);
 	public List<Post> selectByPid(int pid);
+	public List<Integer> selectLikesByPid(int pid);
 	//update
 	public void update(Post p);
 	//delete

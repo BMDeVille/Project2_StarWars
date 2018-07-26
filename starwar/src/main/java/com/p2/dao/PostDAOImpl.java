@@ -8,6 +8,7 @@
 
 package com.p2.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -59,6 +60,17 @@ public class PostDAOImpl implements PostDAO {
 
 	public List<Post> selectByPid(int pid) {
 		return sesFact.getCurrentSession().createQuery("from Post where pid=" + pid, Post.class).list();
+	}
+	
+	public List<Integer> selectLikesByPid(int pid){
+		List<Object> likeobs = sesFact.getCurrentSession().createNativeQuery("SELECT LIKES_ID FROM POSTS_USERS WHERE POST_PID =" + pid).list();
+		System.out.println("length obs " + likeobs.size());
+		List<Integer> likesid = new ArrayList<Integer>();
+		for(Object obj : likeobs) {
+		     Integer likeid = Integer.valueOf(obj.toString());
+		     likesid.add(likeid);
+		}
+		return likesid;
 	}
 
 }

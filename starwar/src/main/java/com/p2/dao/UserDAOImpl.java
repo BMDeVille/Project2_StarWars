@@ -77,4 +77,8 @@ public class UserDAOImpl implements UserDAO {
 		sesFact.getCurrentSession().delete(u);
 	}
 
+	public List<User> selectById(int id) {
+		return sesFact.getCurrentSession().createQuery("from User where id='" + id + "'", User.class).list();
+	}
+
 }

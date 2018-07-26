@@ -36,7 +36,7 @@ public class Comment {
 	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER)
 	private User poster;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<User> likes;
 	
 	@ManyToOne(targetEntity=Post.class, fetch=FetchType.EAGER)

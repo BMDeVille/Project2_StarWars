@@ -19,6 +19,7 @@ public interface CommentDAO {
 	//read
 	public List<Comment> selectAll();
 	public List<Comment> selectByPost(Post p);
+	public List<Comment> selectByCid(int cid);
 	//update
 	public void update(Comment c);
 	//delete
