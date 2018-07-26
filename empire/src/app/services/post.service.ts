@@ -15,6 +15,8 @@ import { ProfileService } from './profile.service';
 export class PostService {
     // actually need
     activePost: IPost;
+    _url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+    // _url = 'http://localhost:9001/starwar/';
 
     // mostly needed for hardwiring of values
     comments: IComment[];
@@ -38,9 +40,7 @@ export class PostService {
   getFeed(): IPost[] {
     console.log('getting feed');
     this.posts = [];
-     // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
-    const _url = 'http://localhost:9005/starwar/allFeed.app';
-    const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
+    const obs: Observable<IPost[]> = this._httpServ.get(this._url + 'allFeed.app').pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
      console.log('length in get feed' + this.posts.length);
@@ -52,8 +52,7 @@ export class PostService {
   getComments() {
     console.log('getting comments');
     this.comments = [];
-    const _url = 'http://localhost:9005/starwar/allComments.app';
-    const obs: Observable<IComment[]> = this._httpServ.get(_url).pipe(map(resp => resp as IComment[]));
+    const obs: Observable<IComment[]> = this._httpServ.get(this._url + 'allComments.app').pipe(map(resp => resp as IComment[]));
      obs.subscribe(data => this.commentMapper(data));
      // obs.subscribe(data => console.log(data));
      console.log(this.comments);
@@ -122,8 +121,7 @@ export class PostService {
   }
 
   createPost(post: IPost) {
-    const url = 'http://localhost:9005/starwar/newPost.app';
-    this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
+    this._httpServ.post(this._url + 'newPost.app', 'body=' + post.body + '&username=' + post.creator.username
       , this.httpOptions).subscribe(data => console.log(data));
   }
 
@@ -133,8 +131,7 @@ export class PostService {
 
   createComment(com: IComment) {
     console.log('sending new comment');
-    const url = 'http://localhost:9005/starwar/newComment.app';
-    this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
+    this._httpServ.post(this._url + 'newComment.app', 'body=' + com.body + '&postid=' + com.post.pid +
      '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
