@@ -23,7 +23,7 @@ export class ProfileService {
     this.curr_user = user;
 
     console.log(this.curr_user);
-    this.userChange.emit(this.curr_user.allegiance.aid);
+    this.userChange.emit(JSON.parse(localStorage.getItem('currentUser')).allegiance.aid);
     this.setViewUser(user);
   }
 

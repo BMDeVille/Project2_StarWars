@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     // this.activeUser = _profileService.getCurrentUser();
     this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
    // this.viewUser = _profileService.getViewUser();
-   this.viewUser = JSON.parse(localStorage.getItem('currentUser'));
+   this.viewUser = this._profileService.getViewUser();
     // if (this.viewUser.image != null) {
     //   this.imageSrc = this.viewUser.image.image;
     // } else {

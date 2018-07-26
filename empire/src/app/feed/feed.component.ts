@@ -29,8 +29,8 @@ export class FeedComponent implements OnInit {
     if (uri === '/feed') {
       this.posts = _postservice.getFeed();
     } else {
-      // this.posts = _postservice.getPostsByUserId(_profileService.getViewUser().id);
-      this.posts = _postservice.getPostsByUserId(JSON.parse(localStorage.getItem('currentUser')));
+      this.posts = _postservice.getPostsByUserId(_profileService.getViewUser().id);
+      // this.posts = _postservice.getPostsByUserId(JSON.parse(localStorage.getItem('currentUser')));
     }
     // this.comments = _postservice.getComments();
     // this.activeUser = _profileService.getCurrentUser();
