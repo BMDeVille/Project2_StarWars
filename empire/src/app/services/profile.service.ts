@@ -22,7 +22,7 @@ export class ProfileService {
   setCurrentUser(user: IUser) {
     this.curr_user = user;
     console.log(this.curr_user);
-
+    this.userChange.emit(this.curr_user.allegiance.aid);
     this.setViewUser(user);
   }
 

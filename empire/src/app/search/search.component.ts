@@ -18,15 +18,19 @@ export class SearchComponent implements OnInit {
   constructor(private _userService: UserService, private _searchService: SearchService,
      private _profileService: ProfileService, private router: Router) {
     this.allUsers = this._userService.getAllUsers();
+    // setTimeout(_ => this.allUsers = this._userService.getDemBois(), 1000);
     this.searchCond = this._searchService.getSearchCond();
     this.userSearch = [];
     this.search();
+    // setTimeout(_ => this.search(), 1100);
    }
 
   ngOnInit() {
   }
 
   search() {
+    console.log(this.searchCond);
+    console.log(this.allUsers);
     console.log(this.userSearch);
     const regEx = new RegExp(this.searchCond.toLowerCase());
     for (let i = 0; i < this.allUsers.length; ++i) {
