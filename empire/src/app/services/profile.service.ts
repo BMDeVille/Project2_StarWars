@@ -26,12 +26,8 @@ export class ProfileService {
     console.log('in set current');
 
     console.log(this.curr_user);
-<<<<<<< HEAD
     this.userChange.emit(JSON.parse(localStorage.getItem('currentUser')).allegiance.aid);
     this.setViewUser(user);
-=======
-    this.userChange.emit(this.curr_user.allegiance.aid);
->>>>>>> dba005877ffdd5a90d1b64a265f2f265dd4ce750
   }
 
   setViewUser(user: IUser) {
