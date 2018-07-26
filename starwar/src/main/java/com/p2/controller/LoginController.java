@@ -58,7 +58,8 @@ public class LoginController {
 				logger.info("user: " + u1.getUsername() + " login ");
 				
 				res.getWriter().write(new ObjectMapper().writeValueAsString(u1));
-				req.getSession().setAttribute("cur_user", u1);
+				req.getSession().setAttribute("loggedUsername", u1.getUsername());
+				req.getSession().setAttribute("loggedPassword", u1.getPassword());
 				return u1;
 			}	
 		}
@@ -74,7 +75,5 @@ public class LoginController {
 		return new User();
 
 	}
-	
-	
 	
 }

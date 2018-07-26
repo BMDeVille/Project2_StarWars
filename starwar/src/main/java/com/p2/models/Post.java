@@ -47,7 +47,7 @@ public class Post {
 	private List<User> likes;
 	
 	@OneToMany(mappedBy="iid", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Image> images;
+	private List<String> images;
 	
 	//no args
 	public Post() {
@@ -69,7 +69,7 @@ public class Post {
 		this.creator = creator;
 	}
 	//no id no like no comments no youtube
-	public Post(String body, Timestamp created, List<Image> images, User creator) {
+	public Post(String body, Timestamp created, List<String> images, User creator) {
 		super();
 		this.body = body;
 		this.created = created;
@@ -77,7 +77,7 @@ public class Post {
 		this.creator = creator;
 	}
 	//no id no likes, no comments
-	public Post(String body, String youtube, Timestamp created, List<Image> images, User creator) {
+	public Post(String body, String youtube, Timestamp created, List<String> images, User creator) {
 		super();
 		this.body = body;
 		this.youtube = youtube;
@@ -87,7 +87,7 @@ public class Post {
 	}
 	//all members
 	public Post(int pid, String body, String youtube, Timestamp created, List<User> likes,
-			List<Image> images, User creator) {
+			List<String> images, User creator) {
 		super();
 		this.pid = pid;
 		this.body = body;
@@ -122,7 +122,7 @@ public class Post {
 	public List<User> getLikes() {
 		return likes;
 	}
-	public List<Image> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 	public void setId(int pid) {
@@ -140,7 +140,7 @@ public class Post {
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
-	public void setImages(List<Image> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 //	@Override

@@ -12,7 +12,7 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9005/starwar/';
+   private url = 'http://localhost:9005/starwar/';
   // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
@@ -90,7 +90,6 @@ export class UserService {
     this._httpServ.post(this.url + 'reset.app', 'username=' + username +
       '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
   }
-
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {
