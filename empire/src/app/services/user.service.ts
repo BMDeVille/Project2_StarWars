@@ -12,8 +12,13 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
+<<<<<<< HEAD
   // private url = 'http://localhost:9001/starwar/';
   private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
+=======
+  private url = 'http://localhost:9005/starwar/';
+  // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
+>>>>>>> 29fca6c3c6d430f077e8f636b54505f7d1a732f4
   public curr_user: IUser;
 
 
@@ -74,7 +79,9 @@ export class UserService {
     // then receive json User object
       this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
-    .subscribe(data => this._profileService.setCurrentUser(data));
+    // .subscribe(data => this._profileService.setCurrentUser(data));
+    .subscribe(data => localStorage.setItem('currentUser', JSON.stringify(data)));
+    this._profileService.setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {

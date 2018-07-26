@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
 export class UserinformationComponent implements OnInit {
   viewUser: IUser;
   constructor( private _modal: ModalService, private userService: ProfileService, private router: Router) {
-     this.viewUser = userService.getCurrentUser();
-   }
+    // this.viewUser = userService.getCurrentUser();
+   this.viewUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
   }

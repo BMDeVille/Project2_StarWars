@@ -29,9 +29,16 @@ export class PostService {
     postLikes: IUser[];
 
   constructor(private _httpServ: HttpClient, private _profileService: ProfileService) {
+<<<<<<< HEAD
     this.activeUser = _profileService.getCurrentUser();
     this.image1 = 'assets/images/hqdefault.jpg';
     this.image2 = 'assets/images/5924290001_a49dc23687_b.jpg';
+=======
+    // this.activeUser = _profileService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.image1 = {'iid': 2, 'image': 'assets/images/hqdefault.jpg'};
+    this.image2 = {'iid': 3, 'image': 'assets/images/5924290001_a49dc23687_b.jpg'};
+>>>>>>> 29fca6c3c6d430f077e8f636b54505f7d1a732f4
   }
   httpOptions = { headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'

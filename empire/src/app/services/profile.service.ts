@@ -21,10 +21,22 @@ export class ProfileService {
 
   setCurrentUser(user: IUser) {
     this.curr_user = user;
+<<<<<<< HEAD
     this.setViewUser(user);
   }
 
   setViewUser(user: IUser) {
+=======
+    // console.log(localStorage.getItem('currentUser'));
+    console.log('in set current');
+    console.log(this.curr_user);
+    this.setViewUser(this.curr_user);
+  }
+
+  setViewUser(user: IUser) {
+    console.log('in set view');
+    console.log(user);
+>>>>>>> 29fca6c3c6d430f077e8f636b54505f7d1a732f4
     this.view_user = user;
   }
 
