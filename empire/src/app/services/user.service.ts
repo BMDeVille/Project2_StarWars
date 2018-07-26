@@ -12,7 +12,7 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9001/starwar/';
+  private url = 'http://localhost:9005/starwar/';
   // private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 

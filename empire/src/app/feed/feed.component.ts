@@ -47,19 +47,15 @@ export class FeedComponent implements OnInit {
   }
 
   submitNewComment(event: { target: HTMLInputElement; }) {
-    console.log((<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value);
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
     const pid = +event.target.parentElement.parentElement.parentElement.id;
-    console.log(this.activeUser);
     const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': this._profileService.getCurrentUser(),
      'post': this._postservice.getPostById(pid)};
-    console.log(newCom);
     this._postservice.createComment(newCom);
   }
 
   displayImages(event: { target: HTMLInputElement; }) {
     const postId = +event.target.parentElement.id + 1;
-    console.log(postId);
     this._imageService.setImages(this._postservice.getPostById(postId).images);
     const inputs = {
       isMobile: false
@@ -67,29 +63,21 @@ export class FeedComponent implements OnInit {
     this._modalService.init(ImagesComponent, inputs, {});
   }
   setPostViewUser() {
-    console.log((<HTMLElement>event.target).parentElement.id);
     // get post by id to get user
     const post = this._postservice.getPostById(+(<HTMLElement>event.target).parentElement.id);
-    console.log(post);
     // assign user to viewUser
     this._profileService.setViewUser(post.creator);
-    console.log(post.creator);
     this.router.navigateByUrl('/profile');
   }
 
   setComViewUser() {
-    console.log((<HTMLElement>event.target).parentElement);
-
     const com = this._postservice.getCommentById(+(<HTMLElement>event.target).parentElement.id);
-    console.log(com);
     // assign user to viewUser
     this._profileService.setViewUser(com.poster);
-    console.log(com.poster);
     this.router.navigateByUrl('/profile');
   }
 
   toggleComments(event: { target: HTMLInputElement; }) {
-    console.log(event.target.parentElement.parentElement.children);
     const coms = (<HTMLUListElement>event.target.parentElement.parentElement.children[1]);
     if (coms.style.display === 'none') {
       coms.style.display = 'block';
@@ -99,9 +87,7 @@ export class FeedComponent implements OnInit {
   }
 
   likeComment(event: {target: HTMLInputElement}) {
-    console.log(event.target.parentElement.parentElement);
     const commentId = +event.target.parentElement.parentElement.id;
-    console.log(event.target.parentElement.parentElement.parentElement.parentElement.children[0]);
     const postId = +event.target.parentElement.parentElement.parentElement.parentElement.children[0].id;
     const com = this._postservice.getCommentById(commentId);
     let found = false;
@@ -110,9 +96,9 @@ export class FeedComponent implements OnInit {
     if (com.likes != null) {
       newlikes = com.likes;
       for ( let i = 0; i < newlikes.length; ++i) {
-        if (this.activeUser.id === newlikes[i].id) {
+        if (this._profileService.getCurrentUser().id === newlikes[i].id) {
           // remove like
-          newlikes.splice(newlikes[i].id);
+          newlikes.splice(i, 1);
           found = true;
           break;
         }
@@ -127,41 +113,36 @@ export class FeedComponent implements OnInit {
     }
     // update likes
     com.likes = newlikes;
-    this._postservice.updateComment(com, this._profileService.getCurrentUser());
-    // now need to refresh component
+    this._postservice.updateComment(com, this._profileService.getCurrentUser(), found);
   }
 
   likePost(event: { target: HTMLInputElement; }) {
     let found = false;
-    console.log(event.target.parentElement.parentElement);
     const postId = +event.target.parentElement.parentElement.id;
-    console.log(postId);
     const clickedPost = this._postservice.getPostById(postId);
-    console.log(clickedPost);
     let newlikes;
     // check if likes
     if (clickedPost.likes != null) {
       newlikes = clickedPost.likes;
       for ( let i = 0; i < newlikes.length; ++i) {
-        if (this.activeUser.id === newlikes[i].id) {
+        if (this._profileService.getCurrentUser().id === newlikes[i].id) {
           // remove like
-          newlikes.splice(newlikes[i].id);
+          newlikes.splice(i, 1);
           found = true;
           break;
         }
       }
       if (!found) {
         // add like
-        newlikes.push(this.activeUser);
+        newlikes.push(this._profileService.getCurrentUser());
       }
     // first like
     } else {
-      newlikes = [this.activeUser];
+      newlikes = [this._profileService.getCurrentUser()];
     }
     // update likes
     clickedPost.likes = newlikes;
-    this._postservice.updatePost(clickedPost, this._profileService.getCurrentUser());
-    // now need to refresh component
+    this._postservice.updatePost(clickedPost, this._profileService.getCurrentUser(), found);
   }
 
 }

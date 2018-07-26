@@ -66,7 +66,6 @@ public class PostDAOImpl implements PostDAO {
 	
 	public List<Integer> selectLikesByPid(int pid){
 		List<Object> likeobs = sesFact.getCurrentSession().createNativeQuery("SELECT LIKES_ID FROM POSTS_USERS WHERE POST_PID =" + pid).list();
-		System.out.println("length obs " + likeobs.size());
 		List<Integer> likesid = new ArrayList<Integer>();
 		for(Object obj : likeobs) {
 		     Integer likeid = Integer.valueOf(obj.toString());
