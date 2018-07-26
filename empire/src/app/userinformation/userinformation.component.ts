@@ -10,9 +10,9 @@ import { IUser } from '../db_models/user';
   styleUrls: ['./userinformation.component.css']
 })
 export class UserinformationComponent implements OnInit {
-  activeUser: IUser;
+  viewUser: IUser;
   constructor( private _modal: ModalService, private userService: ProfileService) {
-     this.activeUser = userService.getCurrentUser();
+     this.viewUser = userService.getCurrentUser();
    }
 
   ngOnInit() {

@@ -88,9 +88,10 @@ public class ChangeUserInformation {
 		
 		System.out.println(user);
 
-		
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
+
 		
 		return user;
 
