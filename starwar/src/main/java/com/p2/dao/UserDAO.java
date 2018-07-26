@@ -21,6 +21,7 @@ public interface UserDAO {
 	public User selectByEmail(String email);
 	public List<User> selectByFirstName(String fname);
 	public List<User> selectByLastName(String lname);
+	public List<User> selectById(int id);
 	//update
 	public void update(User u);
 	//delete

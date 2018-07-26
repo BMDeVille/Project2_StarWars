@@ -168,6 +168,21 @@ public class DaoServiceImpl implements DaoService {
 	public List<Post> selectByPid(int pid) {
 		return pd.selectByPid(pid);
 	}
+
+
+	public List<Comment> selectByCid(int cid) {
+		return cd.selectByCid(cid);
+	}
+
+
+	public List<Integer> selectLikesByPid(int pid) {
+		return pd.selectLikesByPid(pid);
+	}
+
+
+	public List<User> selectById(int id) {
+		return ud.selectById(id);
+	}
 	
 	
 }

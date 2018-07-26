@@ -55,4 +55,8 @@ public class CommentDAOImpl implements CommentDAO{
 		sesFact.getCurrentSession().delete(c);
 	}
 
+	public List<Comment> selectByCid(int cid) {
+		return sesFact.getCurrentSession().createQuery("from Comment where cid=" + cid, Comment.class).list();
+	}
+
 }

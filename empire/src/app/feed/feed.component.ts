@@ -119,22 +119,25 @@ export class FeedComponent implements OnInit {
       }
       if (!found) {
         // add like
-        newlikes.push(this.activeUser);
+        newlikes.push(this._profileService.getCurrentUser());
       }
     // first like
     } else {
-      newlikes = [this.activeUser];
+      newlikes = [this._profileService.getCurrentUser()];
     }
     // update likes
     com.likes = newlikes;
-    this._postservice.updateComment(com);
+    this._postservice.updateComment(com, this._profileService.getCurrentUser());
     // now need to refresh component
   }
 
   likePost(event: { target: HTMLInputElement; }) {
     let found = false;
-    const postId = +event.target.parentElement.id;
+    console.log(event.target.parentElement.parentElement);
+    const postId = +event.target.parentElement.parentElement.id;
+    console.log(postId);
     const clickedPost = this._postservice.getPostById(postId);
+    console.log(clickedPost);
     let newlikes;
     // check if likes
     if (clickedPost.likes != null) {
@@ -157,7 +160,7 @@ export class FeedComponent implements OnInit {
     }
     // update likes
     clickedPost.likes = newlikes;
-    this._postservice.updatePost(clickedPost);
+    this._postservice.updatePost(clickedPost, this._profileService.getCurrentUser());
     // now need to refresh component
   }
 

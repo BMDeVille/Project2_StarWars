@@ -16,6 +16,7 @@ public interface DaoService {
 		//read
 		public List<Comment> selectAllComment();
 		public List<Comment> selectByPostCom(Post p);
+		public List<Comment> selectByCid(int cid);
 		//update
 		public void updateComment(Comment c);
 		//delete
@@ -40,6 +41,7 @@ public interface DaoService {
 		public List<Post> selectAllPost();
 		public List<Post> selectByUserPost(User u);
 		public List<Post> selectByPid(int pid);
+		public List<Integer> selectLikesByPid(int pid);
 		//update
 		public void updatePost(Post p);
 		//delete
@@ -54,6 +56,7 @@ public interface DaoService {
 		public User selectByEmail(String email);
 		public List<User> selectByFirstName(String fname);
 		public List<User> selectByLastName(String lname);
+		public List<User> selectById(int id);
 		//update
 		public void updateUser(User u);
 		//delete
