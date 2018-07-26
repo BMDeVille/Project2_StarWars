@@ -88,7 +88,6 @@ export class UserService {
     this._httpServ.post(this.url + 'reset.app', 'username=' + username +
       '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
   }
-
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {
