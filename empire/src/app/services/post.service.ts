@@ -39,7 +39,6 @@ export class PostService {
   withCredentials: true
 };
   getFeed(): IPost[] {
-    console.log('getting feed');
     this.posts = [];
     const obs: Observable<IPost[]> = this._httpServ.get(this._url + 'allFeed.app').pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
@@ -51,12 +50,10 @@ export class PostService {
   }
 
   getComments() {
-    console.log('getting comments');
     this.comments = [];
     const obs: Observable<IComment[]> = this._httpServ.get(this._url + 'allComments.app').pipe(map(resp => resp as IComment[]));
      obs.subscribe(data => this.commentMapper(data));
      // obs.subscribe(data => console.log(data));
-     console.log(this.comments);
      return null;
   }
 
@@ -83,16 +80,11 @@ export class PostService {
   }
 
   mapCommentToPost() {
-    console.log('mapping comments to posts');
-    console.log('length in mapping' + this.posts.length);
     for (let i = 0; i < this.posts.length; ++i) {
       this.posts[i].comments = [];
       for (let j = 0; j < this.comments.length; ++j) {
-        console.log('post id: ' + this.posts[i].pid);
-        console.log('comment post id: ' + this.comments[j].post.pid);
         if (this.posts[i].pid === this.comments[j].post.pid) {
             this.posts[i].comments.push(this.comments[j]);
-            console.log(this.posts[i].comments);
         }
       }
     }
@@ -135,22 +127,22 @@ export class PostService {
       , this.httpOptions).subscribe(data => console.log(data));
   }
 
-  updatePost(post: IPost, user: IUser) {
-    console.log('like post');
-    this._httpServ.post(this._url + 'likePost.app', 'pid=' + post.pid +
-     '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
+  updatePost(post: IPost, user: IUser, d: Boolean) {
+    const url = 'http://localhost:9005/starwar/likePost.app';
+    this._httpServ.post(url, 'pid=' + post.pid +
+     '&username=' + user.username + '&delete=' + d, this.httpOptions).subscribe(data => console.log(data));
   }
 
   createComment(com: IComment) {
-    console.log('sending new comment');
-    this._httpServ.post(this._url + 'newComment.app', 'body=' + com.body + '&postid=' + com.post.pid +
+    const url = 'http://localhost:9005/starwar/newComment.app';
+    this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
      '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
-  updateComment(com: IComment, user: IUser) {
-    console.log('like comment');
-    this._httpServ.post(this._url + 'likeComment.app', 'cid=' + com.cid +
-     '&username=' + user.username, this.httpOptions).subscribe(data => console.log(data));
+  updateComment(com: IComment, user: IUser, d: Boolean) {
+    const url = 'http://localhost:9005/starwar/likeComment.app';
+    this._httpServ.post(url, 'cid=' + com.cid +
+     '&username=' + user.username + '&delete=' + d, this.httpOptions).subscribe(data => console.log(data));
   }
   getActivePost(): IPost {
     return this.activePost;

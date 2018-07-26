@@ -126,11 +126,24 @@ public class FeedController {
 		System.out.println("in like comment");
 		int cid = Integer.parseInt(req.getParameter("cid"));
 		String username = req.getParameter("username");
+		boolean delete = Boolean.parseBoolean(req.getParameter("delete"));
 		User u = ds.selectByUsername(username);
 		List<Comment> coms = ds.selectByCid(cid);
 		Comment com = coms.get(0);
 		List<User> likes = com.getLikes();
-		likes.add(u);
+		if (!delete) {
+			likes.add(u);
+		}
+		else {
+			int index;
+			for (int i = 0; i < likes.size(); ++i) {
+				if (likes.get(i).getId() == u.getId()) {
+					index = i;
+					likes.remove(index);
+					break;
+				}
+			}
+		}
 		com.setLikes(likes);
 		ds.updateComment(com);
 		
@@ -143,19 +156,30 @@ public class FeedController {
 		System.out.println("in like post");
 		int pid = Integer.parseInt(req.getParameter("pid"));
 		String username = req.getParameter("username");
+		boolean delete = Boolean.parseBoolean(req.getParameter("delete"));
 		User u = ds.selectByUsername(username);
 		List<Post> posts = ds.selectByPid(pid);
 		List<Integer> likeids = ds.selectLikesByPid(pid);
-		System.out.println("likes length " + likeids.size());
 		Post p = posts.get(0);
 		List<User> likes = new ArrayList<User>();
 		for (int i = 0; i < likeids.size(); ++i) {
 			likes.add(ds.selectById(likeids.get(i)).get(0));
 		}
-		likes.add(u);
+		if (!delete) {
+			likes.add(u);
+		}
+		else {
+			int index;
+			for (int i = 0; i < likes.size(); ++i) {
+				if (likes.get(i).getId() == u.getId()) {
+					index = i;
+					likes.remove(index);
+					break;
+				}
+			}
+		}
 		p.setLikes(likes);
 		ds.updatePost(p);
-		
 	}
 	
 }

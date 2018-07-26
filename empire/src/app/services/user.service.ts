@@ -10,13 +10,13 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-   private url = 'http://localhost:9005/starwar/';
+  users: IUser[];
+  constructor(private _profileService: ProfileService, private _httpServ: HttpClient) {
+    this.getUsers();
+   }
+  private url = 'http://localhost:9005/starwar/';
   // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
-
-
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -25,10 +25,26 @@ export class UserService {
   };
 
   getAllUsers(): IUser[] {
-
-    return null;
+    return this.users;
+  }
+  getUsers() {
+    const path = '/get-users.app';
+    const _url = 'http://localhost:9005/starwar/get-users.app';
+    const obs: Observable<IUser[]> = this._httpServ.get(_url).pipe(map(resp => resp as IUser[]));
+     obs.subscribe(data => this.mapUsers(data));
   }
 
+  // getDemBois(): IUser[] {
+  //   console.log(this.users);
+  //   return this.users;
+  // }
+  mapUsers(obs: IUser[]) {
+    this.users = [];
+    for (const ob of obs) {
+      this.users.push(new IUser(ob));
+    }
+    console.log(this.users);
+  }
   setCurrUser(user: IUser) {
     this.curr_user = user;
   }
