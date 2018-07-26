@@ -3,6 +3,7 @@ import { ModalService } from '../services/modal.service';
 import { ChangeinformationComponent } from '../changeinformation/changeinformation.component';
 import { ProfileService } from '../services/profile.service';
 import { IUser } from '../db_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userinformation',
@@ -11,7 +12,7 @@ import { IUser } from '../db_models/user';
 })
 export class UserinformationComponent implements OnInit {
   viewUser: IUser;
-  constructor( private _modal: ModalService, private userService: ProfileService) {
+  constructor( private _modal: ModalService, private userService: ProfileService, private router: Router) {
      this.viewUser = userService.getCurrentUser();
    }
 
@@ -20,6 +21,7 @@ export class UserinformationComponent implements OnInit {
 
   close() {
     this._modal.destroy();
+    this.router.navigateByUrl('/profile');
   }
 
   initChangeModal() {

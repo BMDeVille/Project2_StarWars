@@ -12,8 +12,8 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  // private url = 'http://localhost:9001/starwar/';
-  private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private url = 'http://localhost:9001/starwar/';
+  // private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
 
@@ -63,6 +63,12 @@ export class UserService {
     user.subscribe(data => this.forgotPassword(new IUser(data), email));
   }
 
+  // getUserByEmail1(email: string) {
+  //  this._httpServ.post(this.url + 'get-by-email.app', 'email=' + email, this.httpOptions)
+  //           .pipe(map(resp => resp as IUser))
+  //         .subscribe(data => this._profileService.setCurrentUser(data));
+  // }
+
   getUser(user: IUser) {
     // send username and password to controller
     // then receive json User object
@@ -74,8 +80,13 @@ export class UserService {
     if (user !== null) {
       console.log(user);
       // Send email to user, with link to password reset page
-      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions);
+      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions).subscribe(data => console.log(data));
     }
+  }
+
+  resetPassword(username: string, password: string, sec_ans: string) {
+    this._httpServ.post(this.url + 'reset.app', 'username=' + username +
+      '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
   }
 
   // send register information object to controller
@@ -87,9 +98,9 @@ export class UserService {
     + '&ans=' + reg.sec_ans, this.httpOptions).pipe(map(resp => resp as IUser));  }
 
     // updating the user information
-    updateUser(up: any): Observable<IUser> {
-      return this._httpServ.post(this.url + 'updateUser.app', 'username=' + up.username + '&firstname=' + up.firstName
-      + '&lastname' + up.lastName + '&email' + up.email + '&about' + up.about + '&dob' + up.dob,
-      this.httpOptions).pipe(map(resp => resp as IUser));
+    updateUser(up: any) {
+     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.firstName
+      + '&lastname=' + up.lastName + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
+      this.httpOptions).pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
     }
 }

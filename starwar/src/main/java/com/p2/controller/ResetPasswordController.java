@@ -34,27 +34,34 @@ public class ResetPasswordController {
 	@PostMapping(value = "/email.app")
 	public void forgotPassword(HttpServletRequest req, HttpServletResponse res) 
 			throws IOException {
+		res.setContentType("application/json");
+		System.out.println("in email cont");
 		String toEmail = req.getParameter("email");
 		User u = ds.selectByEmail(toEmail);
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u != null) {
-			Email.sendEmail(toEmail, u.getFname(), u.getLname(), u.getUsername(), 
+			EmailSender.sendEmail(toEmail, u.getFname(), u.getLname(), u.getUsername(), 
 					u.getAllegiance().getAid(), "http://localhost:4200/reset/", "/", "Lost Password");
+			res.getWriter().write(new ObjectMapper().writeValueAsString("success"));
 		} else {
 			logger.info("User does not exist");
+			res.getWriter().write(new ObjectMapper().writeValueAsString("failed"));
 		}
 	}
 
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/reset.app")
-	public  void reset(HttpServletRequest req, HttpServletResponse res)
+	public void reset(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
-		System.out.println("in reset cont");
 		
 		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
 		User u1 = ds.selectByUsername(username);
 		String sec_ans = req.getParameter("sec_ans");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		if(u1 != null) {
 			if(u1.getSecurityAnswer().equals(sec_ans)) {
 				// get the hash of new password

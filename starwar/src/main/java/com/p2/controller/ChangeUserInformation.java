@@ -43,42 +43,34 @@ public class ChangeUserInformation {
 		res.setContentType("application/json");
 
 		String username = req.getParameter("username");
-		String password = req.getParameter("password");
 		String firstName = req.getParameter("firstname");
 		String lastName = req.getParameter("lastname");
 		String email = req.getParameter("email");
 		// DOB Section
-		String dob = req.getParameter("date");
-		String pattern = "dd-MM-yyyy";
-		System.out.println(username + " " + password + " " + firstName + " " + lastName + " " +email);
+		String dob = req.getParameter("dob");
+		System.out.println(username + " " + firstName + " " + lastName + " " +email);
 		System.out.println(dob + " ");
 		System.out.println("check5");
-		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date date = null;
 		//date = dob
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		//Date d = new Date(Integer.parseInt(split[0]), Integer.parseInt(split[1]),Integer.parseInt(split[2]));
 		Date date1 = df.parse(dob);
-//		try {
-//			date = (Date) simpleDateFormat.parse(dob);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
+
 		Timestamp dob1 = new Timestamp(date1.getTime());
 		// ------------------------------------
 		System.out.println("Date:" + dob1);
 
-		//String securityAnswer = req.getParameter("securityAnswer");
-		int allegiance = Integer.parseInt(req.getParameter("type"));
 		String about = req.getParameter("about");
-		Allegiance al = ds.selectByAid(allegiance);
-		String securityAnswer = "test";
 
 		/// creating the user object with the no id, about, and image constructor
 		//User user1 = new User(username, firstName, lastName, email, password, dob1, securityAnswer, al);
 		
-		String pw = BCrypt.hashpw(password, BCrypt.gensalt());
-		User user = new User(username, firstName, lastName, email, pw, dob1,securityAnswer, al);
+		User user = ds.selectByEmail(email);
+		user.setUsername(username);
+		user.setFname(firstName);
+		user.setLname(lastName);
+		user.setAbout(about);
+		user.setDob(dob1);
 		
 		logger.info("user register: " + user.getUsername() + " " + user.getFname() + " updated their information.");
 
@@ -88,9 +80,9 @@ public class ChangeUserInformation {
 		
 		System.out.println(user);
 
-		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
-		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		//res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 
 		
 		return user;
