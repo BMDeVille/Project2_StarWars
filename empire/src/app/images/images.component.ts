@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../services/image.service';
-import { IImage } from '../db_models/image';
 import { ModalService } from '../services/modal.service';
+import { stringType } from '../../../node_modules/aws-sdk/clients/iam';
 
 @Component({
   selector: 'app-images',
@@ -9,7 +9,7 @@ import { ModalService } from '../services/modal.service';
   styleUrls: ['./images.component.css']
 })
 export class ImagesComponent implements OnInit {
-  images: IImage[];
+  images: stringType[];
   constructor(private _imageService: ImageService, private _modalService: ModalService) {
     this.images = this._imageService.getImages();
     console.log(this.images);

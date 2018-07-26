@@ -14,7 +14,7 @@ import { ProfileService } from './profile.service';
 export class PostService {
     // actually need
     activePost: IPost;
-    _url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+    _url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
     // _url = 'http://localhost:9001/starwar/';
 
     // mostly needed for hardwiring of values
@@ -44,7 +44,7 @@ export class PostService {
     const obs: Observable<IPost[]> = this._httpServ.get(this._url + 'allFeed.app').pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
-     console.log('length in get feed' + this.posts.length);
+     setTimeout(_ => console.log('length in get feed' + this.posts.length), 5000);
      // this.getComments();
      // this.mapCommentToPost();
     return this.posts;
