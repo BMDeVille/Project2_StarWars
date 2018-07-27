@@ -18,8 +18,8 @@ export class PostComponent implements OnInit {
   constructor(private _modalService: ModalService, private userService: ProfileService, private postService: PostService) {
     // this.activeUser = userService.getCurrentUser();
     this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('in post comp');
-    console.log(this.activeUser.email);
+    // console.log('in post comp');
+    // console.log(this.activeUser.email);
   }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class PostComponent implements OnInit {
     const body = (<HTMLTextAreaElement>document.getElementById('body')).value;
     const youtube = (<HTMLInputElement>document.getElementById('youtube')).value;
     this.files = (<HTMLInputElement>document.getElementById('body')).files;
-    console.log(this.files); // files is undefined
+    // console.log(this.files); // files is undefined
     // need to decide how to send fileList to back end with IImage
     const newImage = '';
     this.newPost = {'pid': 1, 'body': body, 'youtube': youtube, 'created': new Date() ,

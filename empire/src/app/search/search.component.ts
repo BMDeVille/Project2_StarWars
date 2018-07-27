@@ -29,9 +29,9 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    console.log(this.searchCond);
-    console.log(this.allUsers);
-    console.log(this.userSearch);
+    // console.log(this.searchCond);
+    // console.log(this.allUsers);
+    // console.log(this.userSearch);
     const regEx = new RegExp(this.searchCond.toLowerCase());
     for (let i = 0; i < this.allUsers.length; ++i) {
       if ((this.allUsers[i].fname.toLowerCase().search(regEx) !== -1) || (this.allUsers[i].lname.toLowerCase().search(regEx) !== -1)) {
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
   }
 
   setViewUser() {
-    console.log((<HTMLElement>event.target).parentElement.id);
+    // console.log((<HTMLElement>event.target).parentElement.id);
     // get user by id
     const id = (<HTMLElement>event.target).parentElement.id;
     this._userService.getUserByFirstName(id);

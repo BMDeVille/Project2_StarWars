@@ -33,7 +33,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => document.getElementById('reset_pass') === null ? this.initLoginModal() : console.log('nothing'), 500);
+    setTimeout(_ => document.getElementById('reset_pass') === null
+      ? this.initLoginModal() : console.log('Do or do not, there is no try...unless you have a catch.'), 500);
   }
 
 Logout() {
@@ -44,7 +45,7 @@ Logout() {
 }
 
   search() {
-    console.log('in search');
+    // console.log('in search');
     const str = (<HTMLInputElement>document.getElementById('txtSearch')).value;
     this._searchService.setSearchCond(str);
     // router link to search component
@@ -52,9 +53,9 @@ Logout() {
   }
 
   changeFavicon(num: number) {
-    console.log('favicon change');
+    // console.log('favicon change');
     this.faviconSrc = this.faviconArray[num];
-    console.log((<HTMLBodyElement>document.getElementsByTagName('body')[0])); // = 'url("assets/images/Coruscant_at_night.jpg")';
+    // console.log((<HTMLBodyElement>document.getElementsByTagName('body')[0])); // = 'url("assets/images/Coruscant_at_night.jpg")';
   }
 
   initLoginModal() {
@@ -120,6 +121,8 @@ CountDownTimer(dt, id) {
   timer = setInterval(showRemaining, 1000);
 }
 
-
+  changeView() {
+    this._profileService.setViewUser(this._profileService.getCurrentUser());
+  }
 
 }

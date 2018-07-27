@@ -26,7 +26,7 @@ export class FeedComponent implements OnInit {
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
     private router: Router, private _imageService: ImageService, private _activeRoute: ActivatedRoute) {
     const uri = this.router.url;
-    console.log(uri);
+    // console.log(uri);
     if (uri === '/feed') {
       this.posts = _postservice.getFeed();
     } else {
@@ -52,7 +52,7 @@ export class FeedComponent implements OnInit {
   submitNewComment(event: { target: HTMLInputElement; }) {
     const body = (<HTMLInputElement>event.target.parentElement.parentElement.children[1]).value;
     const pid = +event.target.parentElement.parentElement.parentElement.id;
-    console.log(this.activeUser);
+    // console.log(this.activeUser);
     const newCom = {'cid': 1, 'body': body, 'likes': null, 'poster': JSON.parse(localStorage.getItem('currentUser')),
      'post': this._postservice.getPostById(pid)};
     this._postservice.createComment(newCom);

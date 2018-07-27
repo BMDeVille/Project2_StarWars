@@ -43,7 +43,7 @@ export class PostService {
     const obs: Observable<IPost[]> = this._httpServ.get(this._url + 'allFeed.app').pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
-     setTimeout(_ => console.log('length in get feed' + this.posts.length), 5000);
+    //  setTimeout(_ => console.log('length in get feed' + this.posts.length), 5000);
      // this.getComments();
      // this.mapCommentToPost();
     return this.posts;
@@ -128,20 +128,17 @@ export class PostService {
   }
 
   updatePost(post: IPost, user: IUser, d: Boolean) {
-    const url = 'http://localhost:9005/starwar/likePost.app';
-    this._httpServ.post(url, 'pid=' + post.pid +
+    this._httpServ.post(this._url + 'likePost.app', 'pid=' + post.pid +
      '&username=' + user.username + '&delete=' + d, this.httpOptions).subscribe(data => console.log(data));
   }
 
   createComment(com: IComment) {
-    const url = 'http://localhost:9005/starwar/newComment.app';
-    this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
+    this._httpServ.post(this._url + 'newComment.app', 'body=' + com.body + '&postid=' + com.post.pid +
      '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }
 
   updateComment(com: IComment, user: IUser, d: Boolean) {
-    const url = 'http://localhost:9005/starwar/likeComment.app';
-    this._httpServ.post(url, 'cid=' + com.cid +
+    this._httpServ.post(this._url + 'likeComment.app', 'cid=' + com.cid +
      '&username=' + user.username + '&delete=' + d, this.httpOptions).subscribe(data => console.log(data));
   }
   getActivePost(): IPost {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class ResetPassComponent implements OnInit {
   username: string;
   sec_ans: string;
   new_pass: string;
-  constructor(private route: ActivatedRoute, private _userService: UserService) { }
+  constructor(private route: ActivatedRoute, private _userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -25,5 +25,7 @@ export class ResetPassComponent implements OnInit {
 
   reset() {
     this._userService.resetPassword(this.username, this.new_pass, this.sec_ans);
+    this.router.navigateByUrl('/feed');
+    location.reload();
   }
 }

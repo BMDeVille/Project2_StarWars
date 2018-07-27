@@ -46,11 +46,9 @@ export class ProfileComponent implements OnInit {
     this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
    // this.viewUser = _profileService.getViewUser();
    this.viewUser = this._profileService.getViewUser();
-    // if (this.viewUser.image != null) {
-    //   this.imageSrc = this.viewUser.image.image;
-    // } else {
-    //   this.imageSrc = 'assets/images/1.jpg';
-    // }
+    if (this.viewUser.image == null) {
+      this.viewUser.image = 'assets/images/1.jpg';
+    }
   }
 
   initAboutModal() {
@@ -92,10 +90,10 @@ export class ProfileComponent implements OnInit {
 
 upload() {
   const file = this.selectedFiles.item(0);
-  const image = this._upload.uploadfile(file);
-  console.log('upload');
-  console.log(file);
- console.log(image);
+  // const image = this._upload.uploadfile(file);
+//   console.log('upload');
+//   console.log(file);
+//  console.log(image);
   this.pic.location = this.linkfirsthalf + file.name;
     this._userService.updateProfilePicture(this.pic);
 

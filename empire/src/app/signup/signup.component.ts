@@ -40,20 +40,16 @@ export class SignupComponent implements OnInit, AfterViewInit {
       return;
     }
     this.isValidFormSubmitted = true;
-    console.log('form' + this.regForm.value);
+    // console.log('form' + this.regForm.value);
     this.reg = this.regForm.value;
     this.reg.type = this.theType.type;
     this.reg.sec_ques = this.theType.sec_ques;
-    console.log(this.reg);
-    this._userService.regUser(this.reg).subscribe(data => console.log(data));
+    // console.log(this.reg);
+    this._userService.regUser(this.reg).subscribe();
     this.regForm.reset();
   }
 
   ngAfterViewInit() {
-  }
-
-  public close() {
-    this._modalService.destroy();
   }
 
   initLoginModal() {

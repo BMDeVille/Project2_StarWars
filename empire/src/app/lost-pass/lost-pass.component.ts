@@ -24,12 +24,8 @@ export class LostPassComponent implements OnInit {
   }
 
   submitForgottenPass() {
-    console.log(this.email);
+    // console.log(this.email);
     this._userService.getUserByEmail(this.email);
+    this.initLoginModal();
   }
-
-  public close() {
-    this._modalService.destroy();
-  }
-
 }

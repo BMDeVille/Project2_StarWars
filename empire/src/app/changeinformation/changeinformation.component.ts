@@ -38,11 +38,11 @@ export class ChangeinformationComponent implements OnInit {
   }
 
   submitInfoChange() {
-    console.log('inside info change');
-    console.log(this.up);
+    // console.log('inside info change');
+    // console.log(this.up);
     this._userService.updateUser(this.up);
     setTimeout(() => {
-    this.initAboutModal();
+      this.initAboutModal();
     }, 2500);
 
   }

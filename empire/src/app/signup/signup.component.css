@@ -69,9 +69,13 @@
     border-radius: 5px;
 }
 
+.login input[type="date"] {
+    width: 28%;
+}
+
 .login input[type="button"]
 {
-    width: 10%;
+    width: 14%;
 }
 
 .login input[type="submit"]:hover, .login input[type="button"]:hover

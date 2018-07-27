@@ -32,11 +32,11 @@ export class UploadService {
 
   bucket.upload(params, function (err, data) {
       if (err) {
-        console.log('There was an error uploading your file: ', err);
+        // console.log('There was an error uploading your file: ', err);
         return false;
       }
 
-      console.log('Successfully uploaded file.', data);
+      // console.log('Successfully uploaded file.', data);
       return data;
     });
   }

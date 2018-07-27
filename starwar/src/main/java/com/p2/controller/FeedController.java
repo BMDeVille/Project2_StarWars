@@ -94,6 +94,9 @@ public class FeedController {
 	@PostMapping(value = "/newComment.app")
 	public void createNewComment(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		System.out.println("in new comment");
 		String body = req.getParameter("body");
 		String username = req.getParameter("username");
@@ -109,6 +112,9 @@ public class FeedController {
 	@PostMapping(value = "/newPost.app")
 	public void createNewPost(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		System.out.println("in new post");
 		String body = req.getParameter("body");
 		String username = req.getParameter("username");
@@ -123,6 +129,9 @@ public class FeedController {
 	@PostMapping(value = "/likeComment.app")
 	public void updateComment(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		System.out.println("in like comment");
 		int cid = Integer.parseInt(req.getParameter("cid"));
 		String username = req.getParameter("username");
@@ -153,6 +162,9 @@ public class FeedController {
 	@PostMapping(value = "/likePost.app")
 	public void updatePost(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		System.out.println("in like post");
 		int pid = Integer.parseInt(req.getParameter("pid"));
 		String username = req.getParameter("username");

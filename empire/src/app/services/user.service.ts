@@ -28,9 +28,7 @@ export class UserService {
     return this.users;
   }
   getUsers() {
-    const path = '/get-users.app';
-    const _url = 'http://localhost:9005/starwar/get-users.app';
-    const obs: Observable<IUser[]> = this._httpServ.get(_url).pipe(map(resp => resp as IUser[]));
+    const obs: Observable<IUser[]> = this._httpServ.get(this.url + 'get-users.app').pipe(map(resp => resp as IUser[]));
      obs.subscribe(data => this.mapUsers(data));
   }
 
@@ -43,7 +41,7 @@ export class UserService {
     for (const ob of obs) {
       this.users.push(new IUser(ob));
     }
-    console.log(this.users);
+   // console.log(this.users);
   }
   setCurrUser(user: IUser) {
     this.curr_user = user;
@@ -96,7 +94,7 @@ export class UserService {
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {
-      console.log(user);
+      // console.log(user);
       // Send email to user, with link to password reset page
       this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions).subscribe(data => console.log(data));
     }
