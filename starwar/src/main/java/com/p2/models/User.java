@@ -327,6 +327,18 @@ public class User {
 		this.sec_ques = sec_ques;
 	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public List<Post> getPostList() {
+		return postList;
+	}
+
+	public void setPostList(List<Post> postList) {
+		this.postList = postList;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="

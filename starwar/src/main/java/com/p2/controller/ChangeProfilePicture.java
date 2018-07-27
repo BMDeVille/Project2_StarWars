@@ -47,8 +47,6 @@ public class ChangeProfilePicture {
 		
 		User user = ds.selectByUsername(username);
 		
-		
-		
 		user.setImage(image);
 		
 		ds.updateUser(user);
