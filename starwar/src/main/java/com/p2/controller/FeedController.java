@@ -118,10 +118,12 @@ public class FeedController {
 		System.out.println("in new post");
 		String body = req.getParameter("body");
 		String username = req.getParameter("username");
-		//String images = req.getParameter("images");
+		String image = req.getParameter("images");
+		List<String> list1 = new ArrayList<String>();
+		list1.add(image);
 		Timestamp ts = new Timestamp(new Date().getTime());
 		User u = ds.selectByUsername(username);
-		Post np = new Post(body, ts, u);
+		Post np = new Post(body, ts, list1, u );
 		ds.insertPost(np);
 	}
 	

@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
     // console.log((<HTMLElement>event.target).parentElement.id);
     // get user by id
     const id = (<HTMLElement>event.target).parentElement.id;
-    this._userService.getUserByFirstName(id);
+    this._userService.getUserById(id);
     const user: IUser = this._userService.curr_user;
     // assign user to viewUser
     this._profileService.setViewUser(user);

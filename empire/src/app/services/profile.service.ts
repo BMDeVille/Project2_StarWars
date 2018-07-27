@@ -21,7 +21,6 @@ export class ProfileService {
 
   setCurrentUser(user: IUser) {
     this.curr_user = user;
-    this.setViewUser(user);
     // console.log(localStorage.getItem('currentUser'));
     // console.log('in set current');
 
@@ -33,6 +32,7 @@ export class ProfileService {
   setViewUser(user: IUser) {
     // console.log('in set view');
     // console.log(user);
+    localStorage.setItem('viewUser', JSON.stringify(user));
     this.view_user = user;
   }
 

@@ -33,8 +33,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => document.getElementById('reset_pass') === null
-      ? this.initLoginModal() : console.log('Do or do not, there is no try...unless you have a catch.'), 500);
+    if (JSON.parse(localStorage.getItem('currentUser')) === null) {
+      setTimeout(_ => document.getElementById('reset_pass') === null
+        ? this.initLoginModal() : console.log('Do or do not, there is no try...unless you have a catch.'), 500);
+    }
   }
 
 Logout() {

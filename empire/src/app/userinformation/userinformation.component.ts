@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class UserinformationComponent implements OnInit {
   viewUser: IUser;
   activeUser: IUser;
+  date = new Date();
+  d = this.date.getFullYear();
   constructor( private _modal: ModalService, private userService: ProfileService, private router: Router) {
     // this.viewUser = userService.getCurrentUser();
    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
