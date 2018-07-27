@@ -43,7 +43,7 @@ public interface DaoService {
 		public User selectByEmail(String email);
 		public List<User> selectByFirstName(String fname);
 		public List<User> selectByLastName(String lname);
-		public List<User> selectById(int id);
+		public User selectById(int id);
 		//update
 		public void updateUser(User u);
 		//delete

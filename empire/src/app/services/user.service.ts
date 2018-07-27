@@ -60,14 +60,14 @@ export class UserService {
     this._httpServ.post(this.url + 'get-by-username.app', 'username=' + username, this.httpOptions).pipe(map(resp => resp as IUser))
     .subscribe(data => this.setCurrUser(new IUser(data)));
   }
-  getUserByFirstName(name: string) {
+  getUserById(name: string) {
     // const alluser = this.getAllUsers();
     // for (let i = 0; i < alluser.length; ++i) {
     //   if (alluser[i].id === num) {
     //     return alluser[i];
     //   }
     // }
-    this._httpServ.post(this.url + '', 'first_name=' + name, this.httpOptions).pipe(map(resp => resp as IUser))
+    this._httpServ.post(this.url + 'get-by-id', 'id=' + name, this.httpOptions).pipe(map(resp => resp as IUser))
     .subscribe(data => this.setCurrUser(new IUser(data)));
   }
 
@@ -120,8 +120,8 @@ export class UserService {
     }
 
     updateProfilePicture(pic: any) {
-      console.log('in update profile picture');
-      console.log(pic);
+      // console.log('in update profile picture');
+      // console.log(pic);
       this._httpServ.post(this.url + 'updateProfilePicture.app', 'image=' + pic.location +
       '&username=' + this._profileService.getCurrentUser().username , this.httpOptions).
       pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));

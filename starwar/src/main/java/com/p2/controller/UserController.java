@@ -59,4 +59,15 @@ public class UserController {
 		return ds.selectAllUser();
 	}
 	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value="/get-by-id.app")
+	public @ResponseBody User getById(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		int uid = Integer.parseInt(req.getParameter("id"));
+		res.setContentType("application/json");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		User u = ds.selectById(uid);
+		return u;
+	}
 }

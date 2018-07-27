@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
 
 upload() {
   const file = this.selectedFiles.item(0);
-  // const image = this._upload.uploadfile(file);
+  this._upload.uploadfile(file);
 //   console.log('upload');
 //   console.log(file);
 //  console.log(image);

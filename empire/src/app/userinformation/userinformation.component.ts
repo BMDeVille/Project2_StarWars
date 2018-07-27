@@ -15,7 +15,8 @@ export class UserinformationComponent implements OnInit {
   activeUser: IUser;
   constructor( private _modal: ModalService, private userService: ProfileService, private router: Router) {
     // this.viewUser = userService.getCurrentUser();
-   this.viewUser = JSON.parse(localStorage.getItem('currentUser'));
+   this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+   this.viewUser = this.userService.getViewUser();
   }
 
   ngOnInit() {

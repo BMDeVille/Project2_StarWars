@@ -46,7 +46,7 @@ public class FeedController {
 			List<Integer> likeids = ds.selectLikesByPid(p.getPid());
 			List<User> likes = new ArrayList<User>();
 			for (int i = 0; i < likeids.size(); ++i) {
-				likes.add(ds.selectById(likeids.get(i)).get(0));
+				likes.add(ds.selectById(likeids.get(i)));
 			}
 			p.setLikes(likes);
 //			p.setLikes(null);
@@ -175,7 +175,7 @@ public class FeedController {
 		Post p = posts.get(0);
 		List<User> likes = new ArrayList<User>();
 		for (int i = 0; i < likeids.size(); ++i) {
-			likes.add(ds.selectById(likeids.get(i)).get(0));
+			likes.add(ds.selectById(likeids.get(i)));
 		}
 		if (!delete) {
 			likes.add(u);

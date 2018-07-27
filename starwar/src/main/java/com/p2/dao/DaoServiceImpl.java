@@ -152,7 +152,7 @@ public class DaoServiceImpl implements DaoService {
 	}
 
 
-	public List<User> selectById(int id) {
+	public User selectById(int id) {
 		return ud.selectById(id);
 	}
 	
