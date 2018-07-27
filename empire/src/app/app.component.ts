@@ -41,6 +41,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
 Logout() {
   localStorage.removeItem('currentUser');
+  localStorage.removeItem('viewUser');
   // this._profileService.setCurrentUser(new IUse;
   location.reload();
   this.initLoginModal();

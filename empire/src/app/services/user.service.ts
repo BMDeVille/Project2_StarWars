@@ -114,8 +114,8 @@ export class UserService {
 
     // updating the user information
     updateUser(up: any) {
-     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.firstName
-      + '&lastname=' + up.lastName + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
+     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.fname
+      + '&lastname=' + up.lname + '&email=' + this._profileService.curr_user.email + '&about=' + up.about,
       this.httpOptions).pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
     }
 

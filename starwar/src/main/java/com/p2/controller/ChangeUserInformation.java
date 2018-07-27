@@ -47,19 +47,10 @@ public class ChangeUserInformation {
 		String lastName = req.getParameter("lastname");
 		String email = req.getParameter("email");
 		// DOB Section
-		String dob = req.getParameter("dob");
 		System.out.println(username + " " + firstName + " " + lastName + " " +email);
-		System.out.println(dob + " ");
 		System.out.println("check5");
-		Date date = null;
 		//date = dob
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date date1 = df.parse(dob);
-
-		Timestamp dob1 = new Timestamp(date1.getTime());
-		// ------------------------------------
-		System.out.println("Date:" + dob1);
-
+			// ------------------------------------
 		String about = req.getParameter("about");
 
 		/// creating the user object with the no id, about, and image constructor
@@ -69,9 +60,7 @@ public class ChangeUserInformation {
 		user.setUsername(username);
 		user.setFname(firstName);
 		user.setLname(lastName);
-		user.setAbout(about);
-		user.setDob(dob1);
-		
+		user.setAbout(about);		
 		logger.info("user register: " + user.getUsername() + " " + user.getFname() + " updated their information.");
 
 		System.out.println(user);

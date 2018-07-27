@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
 
   activeUser: IUser;
   newPost: IPost;
-  files: FileList;
+  selectedFiles: FileList;
   pic: any = {};
   linkfirsthalf = 'https://qconlon.s3.amazonaws.com/profileimage/';
   constructor(private _modalService: ModalService, private userService: ProfileService,
@@ -35,32 +35,34 @@ export class PostComponent implements OnInit {
   }
 
   upload() {
-    const file = this.files.item(0);
+    const file = this.selectedFiles.item(0);
     this._upload.uploadfile(file);
   //   console.log('upload');
-  //   console.log(file);
+     console.log(file);
   //  console.log(image);
     this.pic.location = this.linkfirsthalf + file.name;
-    
-      this._userService.updateProfilePicture(this.pic);
+
+      // this._userService.updateProfilePicture(this.pic);
   }
 
   selectFile(event) {
     {
-    this.files = event.target.files;
+    this.selectedFiles = event.target.files;
   }
 
   }
-  fileNameChanged(event: { target: HTMLInputElement; }) {
+  fileNameChanged(event) {
     const filename = (<HTMLInputElement>document.getElementById('image')).value.split('\\');
+    this.selectedFiles = event.target.files;
     (<HTMLInputElement>document.getElementById('filepath')).value = filename[filename.length - 1];
   }
 
-  public createPost(pic: any) {
+  public createPost() {
     const body = (<HTMLTextAreaElement>document.getElementById('body')).value;
     const youtube = (<HTMLInputElement>document.getElementById('youtube')).value;
-    this.files = (<HTMLInputElement>document.getElementById('body')).files;
-    const img = pic.location;
+    // this.files = (<HTMLInputElement>document.getElementById('body')).files;
+    this.upload();
+    const img = this.pic.location;
     // console.log(this.files); // files is undefined
     // need to decide how to send fileList to back end with IImage
     const newImage = '';

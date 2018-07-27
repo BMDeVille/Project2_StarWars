@@ -14,11 +14,13 @@ import { ProfileComponent } from '../profile/profile.component';
 export class ChangeinformationComponent implements OnInit {
   changeUser: IUser;
   up: any = {};
+
   constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService,
      private _router: Router) {
 
   // this.changeUser = _profileService.getCurrentUser();
   this.changeUser = JSON.parse(localStorage.getItem('currentUser'));
+  this.up = this.changeUser;
   }
 
 
