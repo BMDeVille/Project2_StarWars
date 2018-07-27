@@ -33,8 +33,9 @@ public class UserController {
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-		System.out.println(ds.selectByEmail(email));
-		return ds.selectByEmail(email);
+		User u = ds.selectByEmail(email);
+		u.setPostList(null);
+		return u;
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
@@ -45,7 +46,9 @@ public class UserController {
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-		return ds.selectByUsername(username);
+		User u = ds.selectByUsername(username);
+		u.setPostList(null);
+		return u;
 	}
 	
 	@CrossOrigin(origins="http://localhost:4200")
@@ -55,6 +58,10 @@ public class UserController {
 		res.setContentType("application/json");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		List<User> u = ds.selectAllUser();
+		for(User u1: u) {
+			u1.setPostList(null);
+		}
 		return ds.selectAllUser();
 	}
 	

@@ -36,7 +36,7 @@ public class ChangeProfilePicture {
 	public  @ResponseBody User updatePicture(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException, ParseException {
 		System.out.println("You are changing a profile picture");
-		
+		res.setContentType("application/json");
 		String image = req.getParameter("image");
 		 
 		String username = req.getParameter("username");
