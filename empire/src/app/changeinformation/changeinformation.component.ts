@@ -17,9 +17,8 @@ export class ChangeinformationComponent implements OnInit {
   constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService,
      private _router: Router) {
 
-  this.changeUser = _profileService.getCurrentUser();
-  this.up = this.changeUser;
-
+  // this.changeUser = _profileService.getCurrentUser();
+  this.changeUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 

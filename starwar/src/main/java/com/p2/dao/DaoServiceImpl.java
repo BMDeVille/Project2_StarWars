@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.p2.models.Allegiance;
 import com.p2.models.Comment;
-import com.p2.models.Image;
 import com.p2.models.Post;
 import com.p2.models.SecurityQ;
 import com.p2.models.User;
@@ -20,8 +19,6 @@ import com.p2.models.User;
 public class DaoServiceImpl implements DaoService {
 	@Autowired
 	private CommentDAO cd;
-	@Autowired
-	private ImageDAO id;
 	@Autowired
 	private PostDAO pd;
 	@Autowired
@@ -56,31 +53,6 @@ public class DaoServiceImpl implements DaoService {
 
 	public void deleteComment(Comment c) {
 		cd.delete(c);
-	}
-	
-	//img dao
-	public void insertImg(Image img) {
-		id.insert(img);
-	}
-
-	public List<Image> selectAllImg() {
-		return id.selectAll();
-	}
-
-	public List<Image> selectByUserImg(User u) {
-		return id.selectByUser(u);
-	}
-
-	public List<Image> selectByPostImg(Post p) {
-		return id.selectByPost(p);
-	}
-
-	public void updateImg(Image img) {
-		id.update(img);
-	}
-
-	public void deleteImg(Image img) {
-		id.delete(img);
 	}
 	//post dao
 	public void insertPost(Post p) {
@@ -167,6 +139,21 @@ public class DaoServiceImpl implements DaoService {
 
 	public List<Post> selectByPid(int pid) {
 		return pd.selectByPid(pid);
+	}
+
+
+	public List<Comment> selectByCid(int cid) {
+		return cd.selectByCid(cid);
+	}
+
+
+	public List<Integer> selectLikesByPid(int pid) {
+		return pd.selectLikesByPid(pid);
+	}
+
+
+	public List<User> selectById(int id) {
+		return ud.selectById(id);
 	}
 	
 	

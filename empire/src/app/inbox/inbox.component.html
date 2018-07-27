@@ -1,7 +1,5 @@
 <!-- example of inbox list; still working on functionality -->
-<div class = "inbox">
-  <ul class = "inbox-list">
-      <li>
+      <!-- <li>
         <div class = "media">
             <div class = "media-left">
               <a href="#">
@@ -20,7 +18,6 @@
       <li>
         <div class="media">
             <div class="media-left">
-              <!-- click on it to jump to new notification(might delete) -->
                 <a href="#"> 
                     <img src="http://icons.iconarchive.com/icons/sensibleworld/starwars/128/Lightsaber-Red-icon.png" class="media-object cat-icon rounded-circle" alt="...">
                 </a>
@@ -47,10 +44,12 @@
               <p class="media-heading"><b>xxxx </b> Comment Your Post.</p>
           </div>
       </div>
-  </li>
+  </li> -->
 
   <!-- actually code -->
-  <div *ngIf = 'newFollower && newFollower.length'>
+  <!-- <div class = "inbox">
+    <ul class = "inbox-list">
+  <div *ngIf = 'newPost && newPost.length'>
   <li  *ngFor = 'let post of newPost'>
     <div class="media">
         <div class="media-left">
@@ -60,13 +59,13 @@
         </div>
         <div class="media-body">
             <ul class="n-user-list">
-            <li *ngFor='let p of post'>
+            <li *ngIf='{{p.creator.id}}=== curr_user.id'>
               <a href="#">
-                <img src="{{p.user.images}}" class="avatar rounded" alt="...">
+                <img src="{{p.creator.image}}" class="avatar rounded" alt="...">
               </a>
             </li>
             </ul>
-            <p class="media-heading"><b>{{post.user.username}} </b> Just Post .</p>
+            <p class="media-heading"><b>{{p.creator.username}} </b> Just Post .</p>
         </div>
     </div>
 </li>
@@ -82,13 +81,13 @@
         </div>
         <div class="media-body">
             <ul class="n-user-list">
-            <li *ngFor = 'let c of comment'>
+            <li *ngIf = '{{comment.post.creator.id}}=== curr_user.id'>
               <a href="#">
-                <img src="{{c.user.image}}" class="avatar rounded" alt="...">
+                <img src="{{comment.poster.image}}" class="avatar rounded" alt="...">
               </a>
             </li>
             </ul>
-            <p class="media-heading"><b>{{comment.ownerid.username}} </b> Comment Your Post .</p>
+            <p class="media-heading"><b>{{comment.poster.username}} </b> Comment Your Post .</p>
         </div>
     </div>
 </li>
@@ -116,27 +115,6 @@
 </li>
 </div>
 
-<div *ngIf = 'newFollower && newFollower.length'>
-<li  *ngFor = 'let follower of newFollower'>
-    <div class="media">
-        <div class="media-left">
-            <a href="#">
-                <img src="http://icons.iconarchive.com/icons/sensibleworld/starwars/128/Lightsaber-Red-icon.png" class="media-object cat-icon rounded-circle" alt="...">
-            </a>
-        </div>
-        <div class="media-body">
-            <ul class="n-user-list">
-            <li *ngFor='let f of follower'>
-              <a href="#">
-                <img src="{{f.images}}" class="avatar rounded" alt="...">
-              </a>
-            </li>
-            </ul>
-            <p class="media-heading"><b> {{follower.username}} </b> Like Your Post .</p>
-        </div>
-    </div>
-</li>
-</div>
   </ul>
-</div>
+</div> -->
 

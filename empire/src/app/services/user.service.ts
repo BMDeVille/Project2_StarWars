@@ -10,13 +10,13 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private url = 'http://localhost:9002/starwar/';
- // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
+  users: IUser[];
+  constructor(private _profileService: ProfileService, private _httpServ: HttpClient) {
+    this.getUsers();
+   }
+  // private url = 'http://localhost:9005/starwar/';
+  private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
-
-
 
   httpOptions = { headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -25,10 +25,26 @@ export class UserService {
   };
 
   getAllUsers(): IUser[] {
-
-    return null;
+    return this.users;
+  }
+  getUsers() {
+    const path = '/get-users.app';
+    const _url = 'http://localhost:9005/starwar/get-users.app';
+    const obs: Observable<IUser[]> = this._httpServ.get(_url).pipe(map(resp => resp as IUser[]));
+     obs.subscribe(data => this.mapUsers(data));
   }
 
+  // getDemBois(): IUser[] {
+  //   console.log(this.users);
+  //   return this.users;
+  // }
+  mapUsers(obs: IUser[]) {
+    this.users = [];
+    for (const ob of obs) {
+      this.users.push(new IUser(ob));
+    }
+    console.log(this.users);
+  }
   setCurrUser(user: IUser) {
     this.curr_user = user;
   }
@@ -74,16 +90,22 @@ export class UserService {
     // then receive json User object
       this._httpServ.post(this.url + 'login.app', 'username=' + user.username
     + '&password=' + user.password, this.httpOptions).pipe(map(resp => resp as IUser))
-    .subscribe(data => this._profileService.setCurrentUser(data));
+    // .subscribe(data => this._profileService.setCurrentUser(data));
+    .subscribe(data => localStorage.setItem('currentUser', JSON.stringify(data)));
+    this._profileService.setCurrentUser(JSON.parse(localStorage.getItem('currentUser')));
   }
     forgotPassword(user: IUser, email: string) {
     if (user !== null) {
       console.log(user);
       // Send email to user, with link to password reset page
-      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions);
+      this._httpServ.post(this.url + 'email.app', 'email=' + email, this.httpOptions).subscribe(data => console.log(data));
     }
   }
 
+  resetPassword(username: string, password: string, sec_ans: string) {
+    this._httpServ.post(this.url + 'reset.app', 'username=' + username +
+      '&sec_ans=' + sec_ans + '&newPass=' + password, this.httpOptions).subscribe(data => console.log(data));
+  }
   // send register information object to controller
   // receive user object back
   regUser(reg: any): Observable<IUser> {
@@ -94,8 +116,8 @@ export class UserService {
 
     // updating the user information
     updateUser(up: any) {
-     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.fname
-      + '&lastname=' + up.lname + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
+     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.firstName
+      + '&lastname=' + up.lastName + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
       this.httpOptions).pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
     }
 

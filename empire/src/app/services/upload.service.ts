@@ -8,7 +8,9 @@ import { UserService } from './user.service';
 })
 export class UploadService {
  add: any;
+
   FOLDER = 'profileimage/';
+  constructor(private _userService: UserService) {}
 
 
 

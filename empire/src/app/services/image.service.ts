@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { IImage } from '../db_models/image';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  images: IImage[];
+  images: string[];
   constructor() { }
 
-  setImages(is: IImage[]) {
+  setImages(is: string[]) {
     this.images = is;
   }
 
-  getImages(): IImage[] {
+  getImages(): string[] {
     return this.images;
   }
+
 }

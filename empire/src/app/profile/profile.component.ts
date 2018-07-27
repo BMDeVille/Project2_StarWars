@@ -42,11 +42,11 @@ export class ProfileComponent implements OnInit {
     this.showImageChange = false;
     // this.posts = _postservice.getFeed();
     this.toggleFlag = false;
-    this.activeUser = _profileService.getCurrentUser();
-    this.viewUser = _profileService.getViewUser();
-
-
-     // if (this.viewUser.image != null) {
+    // this.activeUser = _profileService.getCurrentUser();
+    this.activeUser = JSON.parse(localStorage.getItem('currentUser'));
+   // this.viewUser = _profileService.getViewUser();
+   this.viewUser = this._profileService.getViewUser();
+    // if (this.viewUser.image != null) {
     //   this.imageSrc = this.viewUser.image.image;
     // } else {
     //   this.imageSrc = 'assets/images/1.jpg';

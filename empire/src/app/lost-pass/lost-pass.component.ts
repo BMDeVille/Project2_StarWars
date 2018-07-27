@@ -29,8 +29,7 @@ export class LostPassComponent implements OnInit {
   }
 
   public close() {
-    console.log(this._userService.curr_user);
-    // this._modalService.destroy();
+    this._modalService.destroy();
   }
 
 }

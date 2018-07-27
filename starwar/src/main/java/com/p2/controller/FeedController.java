@@ -43,7 +43,13 @@ public class FeedController {
 		System.out.println("in all feed controller");
 		List<Post> feed = ds.selectAllPost();
 		for(Post p: feed) {
-			p.setLikes(null);
+			List<Integer> likeids = ds.selectLikesByPid(p.getPid());
+			List<User> likes = new ArrayList<User>();
+			for (int i = 0; i < likeids.size(); ++i) {
+				likes.add(ds.selectById(likeids.get(i)).get(0));
+			}
+			p.setLikes(likes);
+//			p.setLikes(null);
 			p.setImages(null);
 		}
 		System.out.println("from all feed controller: " + feed);
@@ -73,7 +79,7 @@ public class FeedController {
 		System.out.println("in all comment controller");
 		List<Comment> coms = ds.selectAllComment();
 		for (Comment c: coms) {
-			c.setLikes(null);
+			// c.setLikes(null);
 			c.getPost().setLikes(null);
 			c.getPost().setImages(null);
 		}
@@ -111,6 +117,69 @@ public class FeedController {
 		User u = ds.selectByUsername(username);
 		Post np = new Post(body, ts, u);
 		ds.insertPost(np);
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value = "/likeComment.app")
+	public void updateComment(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in like comment");
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		String username = req.getParameter("username");
+		boolean delete = Boolean.parseBoolean(req.getParameter("delete"));
+		User u = ds.selectByUsername(username);
+		List<Comment> coms = ds.selectByCid(cid);
+		Comment com = coms.get(0);
+		List<User> likes = com.getLikes();
+		if (!delete) {
+			likes.add(u);
+		}
+		else {
+			int index;
+			for (int i = 0; i < likes.size(); ++i) {
+				if (likes.get(i).getId() == u.getId()) {
+					index = i;
+					likes.remove(index);
+					break;
+				}
+			}
+		}
+		com.setLikes(likes);
+		ds.updateComment(com);
+		
+	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@PostMapping(value = "/likePost.app")
+	public void updatePost(HttpServletRequest req, HttpServletResponse res)
+			throws JsonProcessingException, IOException {
+		System.out.println("in like post");
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		String username = req.getParameter("username");
+		boolean delete = Boolean.parseBoolean(req.getParameter("delete"));
+		User u = ds.selectByUsername(username);
+		List<Post> posts = ds.selectByPid(pid);
+		List<Integer> likeids = ds.selectLikesByPid(pid);
+		Post p = posts.get(0);
+		List<User> likes = new ArrayList<User>();
+		for (int i = 0; i < likeids.size(); ++i) {
+			likes.add(ds.selectById(likeids.get(i)).get(0));
+		}
+		if (!delete) {
+			likes.add(u);
+		}
+		else {
+			int index;
+			for (int i = 0; i < likes.size(); ++i) {
+				if (likes.get(i).getId() == u.getId()) {
+					index = i;
+					likes.remove(index);
+					break;
+				}
+			}
+		}
+		p.setLikes(likes);
+		ds.updatePost(p);
 	}
 	
 }

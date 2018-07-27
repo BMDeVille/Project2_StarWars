@@ -57,12 +57,9 @@ public class User {
 
 	@Column(name = "ABOUT")
 	private String about;
-	
-	@Column(name = "Image")
-	private String image;
 
-//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	private String String;
+	@Column(name = "IMAGE")
+	private String image;
 
 	@OneToMany(mappedBy = "pid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Post> postList;
@@ -254,6 +251,10 @@ public class User {
 		return securityAnswer;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
 	public Allegiance getAllegiance() {
 		return allegiance;
 	}
@@ -310,12 +311,20 @@ public class User {
 		this.followers = followers;
 	}
 
-	public String getImage() {
-		return image;
+	public Timestamp getJoined() {
+		return joined;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setJoined(Timestamp joined) {
+		this.joined = joined;
+	}
+
+	public SecurityQ getSec_ques() {
+		return sec_ques;
+	}
+
+	public void setSec_ques(SecurityQ sec_ques) {
+		this.sec_ques = sec_ques;
 	}
 
 	@Override
