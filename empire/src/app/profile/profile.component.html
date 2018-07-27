@@ -3,12 +3,12 @@
       <hr class='lines'>
       <h3 class='profilename'>{{viewUser.fname}} {{viewUser.lname}}</h3>
       <hr class='lines'>
-      <img class="profilepageimage" src="{{imageSrc}}"/><!--src='#fileInput'-->
+      <img class="profilepageimage" src="{{viewUser.image}}"/>
     <br>
     
-    <!-- <div *ngIf = "activeUser.username === viewUser.username"> -->
+    <div *ngIf = "activeUser.username === viewUser.username">
     <button class="button1" (click)="showOption()">Change Image</button> &nbsp;
-    <!-- </div> -->
+    </div>
     <button class="button1" (click)="initAboutModal()">View Your Information</button>&nbsp;
     
     

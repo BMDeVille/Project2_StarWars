@@ -57,9 +57,12 @@ public class User {
 
 	@Column(name = "ABOUT")
 	private String about;
+	
+	@Column(name = "Image")
+	private String image;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Image image;
+//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private String String;
 
 	@OneToMany(mappedBy = "pid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Post> postList;
@@ -77,7 +80,7 @@ public class User {
 	public User() {
 	}
 
-	// no id no about no image
+	// no id no about no String
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
 			String securityAnswer, Allegiance allegiance) {
 		super();
@@ -108,7 +111,7 @@ public class User {
 	
 	// no id no about
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, Allegiance allegiance) {
+			String securityAnswer, String image, Allegiance allegiance) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -150,7 +153,7 @@ public class User {
 		this.allegiance = allegiance;
 	}
 
-	// no id no image
+	// no id no String
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
 			String securityAnswer, Allegiance allegiance, String about) {
 		super();
@@ -167,7 +170,7 @@ public class User {
 
 	// no id
 	public User(String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, String image, Allegiance allegiance, String about) {
 		super();
 		this.username = username;
 		this.fname = fname;
@@ -183,7 +186,7 @@ public class User {
 
 	// all members
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, SecurityQ sec_ques,Timestamp joined, Image image, Allegiance allegiance, String about) {
+			String securityAnswer, SecurityQ sec_ques,Timestamp joined, String image, Allegiance allegiance, String about) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -202,7 +205,7 @@ public class User {
 	
 
 	public User(int id, String username, String fname, String lname, String email, String password, Timestamp dob,
-			String securityAnswer, String about, Image image, List<User> followers, Allegiance allegiance,
+			String securityAnswer, String about, String image, List<User> followers, Allegiance allegiance,
 			List<Comment> comments) {
 		super();
 		this.id = id;
@@ -251,10 +254,6 @@ public class User {
 		return securityAnswer;
 	}
 
-	public Image getImage() {
-		return image;
-	}
-
 	public Allegiance getAllegiance() {
 		return allegiance;
 	}
@@ -299,10 +298,6 @@ public class User {
 		this.securityAnswer = securityAnswer;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
 	public void setAllegiance(Allegiance allegiance) {
 		this.allegiance = allegiance;
 	}
@@ -315,19 +310,27 @@ public class User {
 		this.followers = followers;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
 				+ email + ", password=" + password + ", dob=" + dob + ", joined=" + joined + ", securityAnswer="
-				+ securityAnswer + ", about=" + about + ", image=" + image + ", followers="
+				+ securityAnswer + ", about=" + about + ", Image=" + image + ", followers="
 				+ followers + ", allegiance=" + allegiance + ", sec_ques=" + sec_ques + "]";
 	}
 
 //	@Override
 //	public String toString() {
 //		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", email="
-//				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", image="
-//				+ image + ", about=" + about + "]";
+//				+ email + ", password=" + password + ", dob=" + dob + ", securityAnswer=" + securityAnswer + ", String="
+//				+ String + ", about=" + about + "]";
 //	}
 	
 	

@@ -6,7 +6,7 @@
         <label>Username: </label>
       </td>
       <td>
-        <input type="text" placeholder="Username" value = "{{changeUser.username}}" [(ngModel)]="up.username"/>
+        <input type="text" [(ngModel)]="up.username"/>
       </td>
     </tr>
 
@@ -15,7 +15,7 @@
         <label>First Name: </label>
       </td>
       <td>
-        <input type="text" placeholder="First Name" value = "{{changeUser.fname}}" [(ngModel)]="up.firstName"/>
+        <input type="text" [(ngModel)]="up.fname"/>
       </td>
     </tr>
 
@@ -24,7 +24,7 @@
         <label>Last Name: </label>
       </td>
       <td>
-        <input type="text" placeholder="Last Name" value = "{{changeUser.lastname}}" [(ngModel)]="up.lastName"/>
+        <input type="text"  [(ngModel)]="up.lname"/>
       </td>
     </tr>
 
@@ -33,21 +33,12 @@
         <label>About: </label>
       </td>
       <td>
-        <input type="text" placeholder="Description" value = "{{changeUser.about}}" [(ngModel)]="up.about"/>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <label>Day of Birth: </label>
-      </td>
-      <td>
-        <input class = "datechangeinfo" type="date" placeholder="Day of Birth" value = "{{changeUser.dob}}" [(ngModel)]="up.dob"/>
+        <input type="text" [(ngModel)]="up.about"/>
       </td>
     </tr>
   </table>
 </div>
 <div>
+    \<button class="button" type="button" value="Change" (click)= "submitInfoChange()">Change Information</button>
   <button class="button" type="button" value="Return" (click)="initAboutModal()">Return</button>
-  <button class="button" type="button" value="Change" (click)= "submitInfoChange()">Change Information</button>
 </div>

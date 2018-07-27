@@ -12,8 +12,8 @@ import { invalidUserTypeMessage } from 'aws-sdk/clients/iam';
 export class UserService {
 
   constructor(private _profileService: ProfileService, private _httpServ: HttpClient) { }
-  private urll = 'http://localhost:9002/starwar/';
-  private url = 'http://ec2-18-217-48-227.us-east-2.compute.amazonaws.com:8080/cantina/';
+  private url = 'http://localhost:9002/starwar/';
+ // private url = 'http://ec2-18-191-203-45.us-east-2.compute.amazonaws.com:8080/cantina/';
   public curr_user: IUser;
 
 
@@ -94,8 +94,16 @@ export class UserService {
 
     // updating the user information
     updateUser(up: any) {
-     this._httpServ.post(this.urll + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.firstName
-      + '&lastname=' + up.lastName + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
+     this._httpServ.post(this.url + 'updateAccount.app', 'username=' + up.username + '&firstname=' + up.fname
+      + '&lastname=' + up.lname + '&email=' + this._profileService.curr_user.email + '&about=' + up.about + '&dob=' + up.dob,
       this.httpOptions).pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
+    }
+
+    updateProfilePicture(pic: any) {
+      console.log('in update profile picture');
+      console.log(pic);
+      this._httpServ.post(this.url + 'updateProfilePicture.app', 'image=' + pic.location +
+      '&username=' + this._profileService.getCurrentUser().username , this.httpOptions).
+      pipe(map(resp => resp as IUser)).subscribe(data => this._profileService.setCurrentUser(data));
     }
 }

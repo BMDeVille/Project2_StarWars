@@ -22,6 +22,7 @@ export class FeedComponent implements OnInit {
   comments: IComment[];
   cp: IPost;
   activeUser: IUser;
+  viewUser: IUser;
   constructor(private _modalService: ModalService, private _postservice: PostService, private _profileService: ProfileService,
     private router: Router, private _imageService: ImageService, private _activeRoute: ActivatedRoute) {
     const uri = this.router.url;

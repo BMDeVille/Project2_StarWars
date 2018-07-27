@@ -14,11 +14,12 @@ import { ProfileComponent } from '../profile/profile.component';
 export class ChangeinformationComponent implements OnInit {
   changeUser: IUser;
   up: any = {};
-
   constructor(private _modalService: ModalService, private _profileService: ProfileService, private _userService: UserService,
      private _router: Router) {
 
   this.changeUser = _profileService.getCurrentUser();
+  this.up = this.changeUser;
+
   }
 
 
@@ -45,6 +46,31 @@ export class ChangeinformationComponent implements OnInit {
     this.initAboutModal();
     }, 2500);
 
+  }
+
+  get username(): string {
+    return this.changeUser.username;
+  }
+  get firstName(): string {
+    return this.changeUser.fname;
+  }
+  get lastName(): string {
+    return this.changeUser.lname;
+  }
+  get about(): string {
+    return this.changeUser.about;
+  }
+  set username(username: string) {
+    this.changeUser.username = username;
+  }
+  set firstName(fname: string) {
+    this.changeUser.fname = fname;
+  }
+  set lastName(lname: string) {
+    this.changeUser.lname = lname;
+  }
+  set about(about: string) {
+    this.changeUser.about = about;
   }
 
 }

@@ -39,7 +39,7 @@ export class PostService {
     console.log('getting feed');
     this.posts = [];
      // const _url = 'http://ec2-18-216-92-54.us-east-2.compute.amazonaws.com:8080/cantina/allFeed.app';
-    const _url = 'http://localhost:9005/starwar/allFeed.app';
+    const _url = 'http://localhost:9002/starwar/allFeed.app';
     const obs: Observable<IPost[]> = this._httpServ.get(_url).pipe(map(resp => resp as IPost[]));
      obs.subscribe(data => this.postMapper(data));
      // obs.subscribe(data => console.log(data));
@@ -52,7 +52,7 @@ export class PostService {
   getComments() {
     console.log('getting comments');
     this.comments = [];
-    const _url = 'http://localhost:9005/starwar/allComments.app';
+    const _url = 'http://localhost:9002/starwar/allComments.app';
     const obs: Observable<IComment[]> = this._httpServ.get(_url).pipe(map(resp => resp as IComment[]));
      obs.subscribe(data => this.commentMapper(data));
      // obs.subscribe(data => console.log(data));
@@ -122,7 +122,7 @@ export class PostService {
   }
 
   createPost(post: IPost) {
-    const url = 'http://localhost:9005/starwar/newPost.app';
+    const url = 'http://localhost:9002/starwar/newPost.app';
     this._httpServ.post(url, 'body=' + post.body + '&username=' + post.creator.username
       , this.httpOptions).subscribe(data => console.log(data));
   }
@@ -133,7 +133,7 @@ export class PostService {
 
   createComment(com: IComment) {
     console.log('sending new comment');
-    const url = 'http://localhost:9005/starwar/newComment.app';
+    const url = 'http://localhost:9002/starwar/newComment.app';
     this._httpServ.post(url, 'body=' + com.body + '&postid=' + com.post.pid +
      '&username=' + com.poster.username, this.httpOptions).subscribe(data => console.log(data));
   }

@@ -31,18 +31,22 @@ export class ProfileComponent implements OnInit {
   viewUser: IUser;
   imageSrc: string;
   selectedFiles: FileList;
+  pic: any = {};
+  linkfirsthalf = 'https://qconlon.s3.amazonaws.com/profileimage/';
 
 
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private fb: FormBuilder,  private _modalService: ModalService,  _postservice: PostService,
-    private _profileService: ProfileService, private _upload: UploadService) {
+    private _profileService: ProfileService, private _upload: UploadService, private _userService: UserService) {
     this.createForm();
     this.showImageChange = false;
     // this.posts = _postservice.getFeed();
     this.toggleFlag = false;
     this.activeUser = _profileService.getCurrentUser();
     this.viewUser = _profileService.getViewUser();
-    // if (this.viewUser.image != null) {
+
+
+     // if (this.viewUser.image != null) {
     //   this.imageSrc = this.viewUser.image.image;
     // } else {
     //   this.imageSrc = 'assets/images/1.jpg';
@@ -88,7 +92,14 @@ export class ProfileComponent implements OnInit {
 
 upload() {
   const file = this.selectedFiles.item(0);
-  this._upload.uploadfile(file);
+  const image = this._upload.uploadfile(file);
+  console.log('upload');
+  console.log(file);
+ console.log(image);
+  this.pic.location = this.linkfirsthalf + file.name;
+    this._userService.updateProfilePicture(this.pic);
+
+
 
   const inputs = {
     isMobile: false
@@ -100,10 +111,8 @@ selectFile(event) {
   {
   this.selectedFiles = event.target.files;
 }
-  this.fileInput.nativeElement.value = '';
 
 }
-
 }
 
   // onSubmit() {
